@@ -6,12 +6,20 @@ define([
 		"backbone",
 		"wreqr",
 		"marionette",
-		"Handlebars"
+		"Handlebars",
+		"../scripts/models/model-session",
+		"../scripts/layouts/layout-app",
+		"../scripts/views/view-menu"
 	],
-	function($, Cookie, _, Utils, Backbone, Wreqr, Marionette, Handlebars){
+	function($, Cookie, _, Utils, Backbone, Wreqr, Marionette, Handlebars, Session, Layout, Menu){
 		"use strict";
 
 		var App = new Marionette.Application();
+
+		App.session = new Session();
+		App.layout = new Layout({app : App});
+		App.menu = new Menu({app : App});
+		App.userSession = App.session.getUserSession();
 		
 		// Add regions to the App
 		App.addRegions({
@@ -30,7 +38,12 @@ define([
 
 		// After the App is initialized
 		App.on("initialize:after", function(){
-			
+			App.body.show(App.layout);
+
+			if(App.userSession.logged){
+				App.layout.toggleLayout("app");
+				App.layout.menu.show(App.menu);
+			}
 		});
 
 		// On App start

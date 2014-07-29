@@ -1,27 +1,28 @@
 define([
 		"jquery",
+		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-menu"
+		"hbs!/HSPost/templates/template-view-login"
 	],
-	function($, Utils, Marionette, Template){
+	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ViewMenu = Marionette.ItemView.extend({
+	var ViewLogin = Marionette.ItemView.extend({
 		tagName : "div",
-		className : "",
+		className : "portal-form-container",
 		template: Template,
 		events : {
-			"click #menu-logout" : "logout"
+			"click #login" : "login"
 		},
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Menu view initialized...");
+			console.log("Login view initialized...");
 		},
 
-		logout : function(){
-			this.options.app.router.navigate("logout", true);
+		login : function(){
+			
 		},
 
 		serializeData : function(){
@@ -31,5 +32,5 @@ define([
 		
 	});
 
-	return ViewMenu;
+	return ViewLogin;
 });

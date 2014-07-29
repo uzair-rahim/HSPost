@@ -4,11 +4,11 @@ define([
 		"backbone"
 	],
 	function($, Cookie, Backbone){
-		var CTCLUtils = Backbone.Model.extend({
+		var AppUtils = Backbone.Model.extend({
 
 		});
 
-		var Utils = new CTCLUtils();
+		var Utils = new AppUtils();
 
 		return Utils;
 	}

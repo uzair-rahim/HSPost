@@ -1,27 +1,24 @@
 define([
 		"jquery",
+		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-menu"
+		"hbs!/HSPost/templates/template-view-jobs"
 	],
-	function($, Utils, Marionette, Template){
+	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ViewMenu = Marionette.ItemView.extend({
+	var ViewJobs = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "",
 		template: Template,
 		events : {
-			"click #menu-logout" : "logout"
+			
 		},
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Menu view initialized...");
-		},
-
-		logout : function(){
-			this.options.app.router.navigate("logout", true);
+			console.log("Jobs view initialized...");
 		},
 
 		serializeData : function(){
@@ -31,5 +28,5 @@ define([
 		
 	});
 
-	return ViewMenu;
+	return ViewJobs;
 });

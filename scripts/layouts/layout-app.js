@@ -1,16 +1,15 @@
 define([
 		"jquery",
-		"app",
 		"utils",
 		"marionette",
 		"hbs!/HSPost/templates/template-layout-app"
 	],
-	function($, App, Utils, Marionette, Template){
+	function($, Utils, Marionette, Template){
 		"use strict";
 
 		var LayoutApp = Marionette.Layout.extend({
 			tagName : "div",
-			className : "app",
+			className : "app portal",
 			template : Template,
 			regions : {
 				menu : "#app-menu",

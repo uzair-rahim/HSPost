@@ -6,11 +6,13 @@ define([
 		"use strict";
 	
 		var AppRouter = Marionette.AppRouter.extend({
+			
 			controller : new AppController(),
+			
 			appRoutes : {
-				""		: "main",
-				"login" : "login",
-				"jobs"	: "jobs",
+				""		 : "main",
+				"login"	 : "login",
+				"jobs"	 : "jobs",
 				"logout" : "logout"
 			}
 
