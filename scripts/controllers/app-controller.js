@@ -34,7 +34,6 @@ define([
 
 			jobs : function(){
 				console.log("Jobs route...");
-				App.session.set({logged : true});
 				var view = new Jobs();
 				App.layout.body.show(view);
 			},

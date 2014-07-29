@@ -210,6 +210,31 @@ img{ border: 0; }
 				}
 			}
 
+			#app-head > .message{
+				display: none;
+				width: 320px;
+				height: 40px;
+				margin: 0 auto;
+				line-height: 40px;
+				font-family: "Roboto", sans-serif;
+				font-weight: 300;
+				font-size: 14px;
+				color: #ffffff;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			@media screen and (max-width: 800px){
+				#app-head > .message{
+					display: none;
+				}
+			}
+
+			.app.portal #app-head > .message{
+				display: block;
+			}
+
 		#app-body{
 			display: block;
 			float: left;
@@ -223,13 +248,13 @@ img{ border: 0; }
 				display: block;
 				width: 320px;
 				height: 340px;
-				margin: 120px auto 20px auto;
+				margin: 110px auto 20px auto;
 				background-color: rgba(0,0,0,0.70);
 			}
 
 			@media screen and (max-width: 800px){
 				.portal-form-container{
-					margin: 40px auto 20px auto;
+					margin: 30px auto 20px auto;
 					width: 300px;
 				}
 			}

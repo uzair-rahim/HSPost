@@ -4,6 +4,7 @@
 		<div class="icon"></div>
 		<div class="logo"></div>
 		<div class="heading">HotSchedules POST</div>
+		<div class="message">Find your people at the Post</div>
 	</div>
 	<div id="app-body"></div>
 </div>

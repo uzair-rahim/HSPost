@@ -3,9 +3,10 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-login"
+		"hbs!/HSPost/templates/template-view-login",
+		"../models/model-authenticate"
 	],
-	function($, App, Utils, Marionette, Template){
+	function($, App, Utils, Marionette, Template, Authenticate){
 	"use strict";
 
 	var ViewLogin = Marionette.ItemView.extend({
@@ -22,7 +23,34 @@ define([
 		},
 
 		login : function(){
+
+			var formEmail = $("#login-email").val();
+			var formPassword = $("#login-password").val();
+
+			var credentials = {
+				email	 : formEmail,
+				password : formPassword
+			}
+
+			var options = {
+				success : function(){
+					App.session.set({logged : true});
+					App.router.navigate("jobs", true);
+				},
+				error : function(model, errors){
+					console.log(errors.responseText)
+				}
+			}
+
+			var auth = new Authenticate();
+			auth.set(credentials, {validate:true});
 			
+			if(auth.validationError){
+				
+			}else{
+				auth.fetch(options);
+			}
+
 		},
 
 		serializeData : function(){
