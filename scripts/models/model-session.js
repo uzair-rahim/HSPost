@@ -47,17 +47,30 @@ define([
 			},
 
 			getUserSession : function(){
+				// If the user session cookie does not exist create a new user session cookie with default values
 				if(!this.checkUserSession()){
 					this.createUserSession();
+				}else{
+				// If the user session cookie is present set the model attributes to cookie's values
+					var existingCookie = JSON.parse($.cookie("HSPostUserSession"));
+					this.set(existingCookie);
 				}
 
 				var HSPostUserSession = $.cookie("HSPostUserSession");
-				console.log(JSON.parse(HSPostUserSession));
 				return JSON.parse(HSPostUserSession);
 			},
 
 			updateUserSession : function(){
-				this.createUserSession(this.changed);
+				var changes = this.changed;
+				var session = this.attributes;
+
+				for(var key in session){
+					if(typeof(changes[key]) === "undefined"){
+						changes[key] = session[key];
+					}
+				}
+
+				this.createUserSession(changes);
 			},
 
 			stateChanged : function(){
