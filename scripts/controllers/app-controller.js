@@ -28,14 +28,22 @@ define([
 
 			login : function(){
 				console.log("Login route...");
-				var view = new Login();
-				App.layout.body.show(view);
+				if(App.userSession.logged){
+					App.router.navigate("jobs", true);
+				}else{
+					var view = new Login();
+					App.layout.body.show(view);
+				}
 			},
 
 			jobs : function(){
 				console.log("Jobs route...");
-				var view = new Jobs();
-				App.layout.body.show(view);
+				if(!App.userSession.logged){
+					App.router.navigate("login", true);
+				}else{
+					var view = new Jobs();
+					App.layout.body.show(view);
+				}
 			},
 
 			logout : function(){

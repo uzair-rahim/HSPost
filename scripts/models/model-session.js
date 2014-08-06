@@ -52,6 +52,7 @@ define([
 				}
 
 				var HSPostUserSession = $.cookie("HSPostUserSession");
+				console.log(JSON.parse(HSPostUserSession));
 				return JSON.parse(HSPostUserSession);
 			},
 

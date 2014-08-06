@@ -225,15 +225,18 @@ img{ border: 0; }
 				white-space: nowrap;
 			}
 
+			.app.portal #app-head > .message{
+				display: block;
+			}
+
 			@media screen and (max-width: 800px){
-				#app-head > .message{
+				#app-head > .message,
+				.app.portal #app-head > .message{
 					display: none;
 				}
 			}
 
-			.app.portal #app-head > .message{
-				display: block;
-			}
+			
 
 		#app-body{
 			display: block;

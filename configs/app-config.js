@@ -64,6 +64,11 @@ require.config({
 require(["app", "approuter"],function(App, ApplicationRouter){
 	var options = {};
 	var router = new ApplicationRouter();
+	
 	App.router = router;
+		router.on("route", function(){
+			App.userSession = App.session.getUserSession();
+		});
+
 	App.start(options);
 });

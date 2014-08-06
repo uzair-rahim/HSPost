@@ -38,7 +38,7 @@ define([
 					App.router.navigate("jobs", true);
 				},
 				error : function(model, errors){
-					console.log(errors.responseText)
+					console.log(errors.responseText);
 				}
 			}
 
@@ -46,9 +46,21 @@ define([
 			auth.set(credentials, {validate:true});
 			
 			if(auth.validationError){
-				
+				console.log("There are errors");
 			}else{
-				auth.fetch(options);
+				//auth.fetch(options);
+				App.session.set({
+					logged 		: true,
+					verified	: true,
+					guid		: "1234-ABCD-5678-EFGH",
+					firstname	: "Uzair",
+					lastname	: "Rahim",
+					email		: "uzair.rahim@hotschedules.com",
+					employers	: ["9876-HIJK-5432-LMNO"],
+					role		: ["user", "employerAdmin", "support"]
+				});
+
+				App.router.navigate("jobs", true);
 			}
 
 		},
