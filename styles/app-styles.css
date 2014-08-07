@@ -310,6 +310,30 @@ img{ border: 0; }
 					margin-top: 20px;
 				}
 
+				.portal-form-container .remember-me{
+					display: block;
+					float: left;
+					clear: both;
+					margin: 10px 0 10px 30px;
+				}
+
+					.portal-form-container .remember-me input[type="checkbox"]{
+						display: block;
+						float: left;
+					}
+
+					.portal-form-container .remember-me input[type="checkbox"]:focus{
+						box-shadow: 0 0 10px 0 rgba(255,159,0,0.5);
+
+					}
+
+					.portal-form-container .remember-me label{
+						display: block;
+						float: left;
+						color: #bbbbbb;
+						margin: 0 0 0 4px;
+					}
+
 				.portal-form-container button{
 					display: block;
 					float: left;
