@@ -21,11 +21,13 @@ define([
 				this.on("change:logged", this.stateChanged);
 			},
 
+			// Check to see if the user session cookie is present
 			checkUserSession : function(){
 				var HSPostUserSession = $.cookie("HSPostUserSession");
 				return HSPostUserSession !== undefined;
 			},
 
+			// Create a user session cookie
 			createUserSession : function(options){
 				var defaults = this.defaults;
 
@@ -42,12 +44,14 @@ define([
 				$.cookie("HSPostUserSession", JSON.stringify(options), { path : "/"});
 			},
 
+			// Remove the user session cookie
 			removeUserSession : function(){
 				$.removeCookie("HSPostUserSession", { path : "/"});
 			},
 
+			// Get user session info
 			getUserSession : function(){
-				// If the user session cookie does not exist create a new user session cookie with default values
+				// If the user session cookie does not exist create a new user session cookie with default model values
 				if(!this.checkUserSession()){
 					this.createUserSession();
 				}else{
@@ -55,11 +59,10 @@ define([
 					var existingCookie = JSON.parse($.cookie("HSPostUserSession"));
 					this.set(existingCookie);
 				}
-
-				var HSPostUserSession = $.cookie("HSPostUserSession");
-				return JSON.parse(HSPostUserSession);
+				return this.attributes;
 			},
 
+			// Update user session info
 			updateUserSession : function(){
 				var changes = this.changed;
 				var session = this.attributes;
@@ -73,9 +76,15 @@ define([
 				this.createUserSession(changes);
 			},
 
-			stateChanged : function(){
-				this.trigger("stateChange", this.changed.logged);
-			}
+			// Helper Methods
+
+			isLoggedIn : function(){
+				return this.attributes.logged;
+			},
+
+			isVerified : function(){
+				return this.attributes.verified;
+			},
 
 		});
 

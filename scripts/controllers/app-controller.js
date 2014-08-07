@@ -14,12 +14,13 @@ define([
 			
 			initialize : function(){
 				console.log("App controller initialized...");
-				this.listenTo(App.session, "stateChange", this.stateChanged);
 			},
+
+			// Routes
 
 			main : function(){
 				console.log("Main route...");
-				if(!App.userSession.logged){
+				if(!App.session.isLoggedIn()){
 					App.router.navigate("login", true);
 				}else{
 					App.router.navigate("jobs", true);
@@ -28,7 +29,7 @@ define([
 
 			login : function(){
 				console.log("Login route...");
-				if(App.userSession.logged){
+				if(App.session.isLoggedIn()){
 					App.router.navigate("jobs", true);
 				}else{
 					var view = new Login();
@@ -38,7 +39,7 @@ define([
 
 			jobs : function(){
 				console.log("Jobs route...");
-				if(!App.userSession.logged){
+				if(!App.session.isLoggedIn()){
 					App.router.navigate("login", true);
 				}else{
 					var view = new Jobs();
@@ -52,26 +53,13 @@ define([
 				App.router.navigate("login", true);
 			},
 
-			// Helper Methods
+			// Processes
 
-			changeToApp : function(){
-				App.layout.toggleLayout("app");
-				App.layout.menu.show(App.menu);
-			},
-
-			changeToPortal : function(){
-				App.layout.toggleLayout("portal");
-			},
-
-			stateChanged : function(status){
-				if(status){
-					this.changeToApp();
-				}else{
-					this.changeToPortal();
+			redirectOnLogin : function(){
+				if(App.session.isVerified()){
+					App.router.navigate("jobs", true);
 				}
-			},
-
-			
+			}			
 		});
 
 		return AppController;

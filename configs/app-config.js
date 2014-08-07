@@ -20,6 +20,7 @@ require.config({
 	shim: {
 
 		jqueryui : {
+			exports: "$",
 			deps:["jquery"]
 		},
 
@@ -67,7 +68,11 @@ require(["app", "approuter"],function(App, ApplicationRouter){
 	
 	App.router = router;
 		router.on("route", function(){
-			App.userSession = App.session.getUserSession();
+			if(App.session.isLoggedIn()){
+				App.layout.toggleLayout("app");
+			}else{
+				App.layout.toggleLayout("portal");
+			}
 		});
 
 	App.start(options);

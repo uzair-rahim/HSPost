@@ -60,7 +60,7 @@ define([
 					role		: ["user", "employerAdmin", "support"]
 				});
 
-				App.router.navigate("jobs", true);
+				App.router.controller.redirectOnLogin();
 			}
 
 		},
