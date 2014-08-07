@@ -22,6 +22,13 @@ define([
 			console.log("Login view initialized...");
 		},
 
+		onShow : function(){
+			if(App.session.isRememberMe()){
+				$("#login-email").val(App.session.getEmail());
+				$("#remember-me").prop("checked", true);
+			}
+		},
+
 		login : function(){
 
 			var formEmail = $("#login-email").val();
@@ -52,6 +59,7 @@ define([
 				App.session.set({
 					logged 		: true,
 					verified	: true,
+					remember 	: $("#remember-me").prop("checked"),
 					guid		: "1234-ABCD-5678-EFGH",
 					firstname	: "Uzair",
 					lastname	: "Rahim",

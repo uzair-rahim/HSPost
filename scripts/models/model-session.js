@@ -7,6 +7,7 @@ define([
 			defaults : {
 				logged 		: false,
 				verified	: false,
+				remember	: false,
 				guid		: null,
 				firstname	: null,
 				lastname	: null,
@@ -85,6 +86,14 @@ define([
 			isVerified : function(){
 				return this.attributes.verified;
 			},
+
+			isRememberMe : function(){
+				return this.attributes.remember;
+			},
+
+			getEmail : function(){
+				return this.attributes.email;
+			}
 
 		});
 
