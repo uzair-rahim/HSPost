@@ -1,3 +1,6 @@
+<div id="app-toast" class="transition">
+	<div class="message"></div>
+</div>
 <div id="app-menu" class="transition"></div>
 <div id="app-main" class="transition">
 	<div id="app-head">

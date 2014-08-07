@@ -46,7 +46,7 @@ define([
 			auth.set(credentials, {validate:true});
 			
 			if(auth.validationError){
-				console.log("There are errors");
+				Utils.ShowToast({message : auth.validationError[0].message});
 			}else{
 				//auth.fetch(options);
 				App.session.set({

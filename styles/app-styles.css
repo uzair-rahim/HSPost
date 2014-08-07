@@ -257,7 +257,7 @@ img{ border: 0; }
 
 			@media screen and (max-width: 800px){
 				.portal-form-container{
-					margin: 30px auto 20px auto;
+					margin: 60px auto 20px auto;
 					width: 300px;
 				}
 			}
@@ -350,3 +350,33 @@ img{ border: 0; }
 				.portal-form-container a:focus{
 					color: #ff9f00;
 				}
+
+	#app-toast{
+		position: absolute;
+		display: block;
+		float: left;
+		width: 100%;
+		top: -40px;
+		padding: 8px 0;
+		background-color: #ffffff;
+		opacity: 0;
+		z-index: 99;
+	}
+
+	#app-toast.show{
+		top: 40px;
+		opacity: 1;
+	}
+
+		#app-toast .message{
+			display: block;
+			float: left;
+			width: calc(100% - 20px);
+			margin: 0 10px;
+			text-align: center;
+			color: #ff0066;
+			font-family: "Roboto", sans-serif;
+			font-size: 16px;
+			font-weight: 300;
+			white-space: pre-wrap;
+		}

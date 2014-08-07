@@ -24,14 +24,15 @@ define([
 			},
 
 			validate : function(attributes){
-
 				var errors = [];
-				if(attributes.email === ""){
-					errors.push({ error : "email", message : "Email address is required"});
+				var emailRegExp = Utils.RegularExpressions.email;
+
+				if(attributes.email === "" || attributes.password === ""){
+					errors.push({ error : "required", message : "Email address and password are required"});
 				}
 
-				if(attributes.password === ""){
-					errors.push({ error : "email", message : "Password is required"});
+				if(!emailRegExp.test(attributes.email)){
+					errors.push({ error : "email", message : "Invalid email address"});
 				}
 
 				return errors.length ? errors : false;
