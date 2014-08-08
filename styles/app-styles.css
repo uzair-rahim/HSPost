@@ -7,9 +7,10 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400italic,400,300);
 *{ margin: 0; padding: 0; font-family: sans-serif; font-size: 12px; color: #222222; cursor: default; }
-*::selection { background:transparent; }
+*::selection{ background:transparent; }
+input::selection{ background: #ff9f00; }
 html, body{ width: 100%; height: 100%; background-color: #ffffff; }
-table { border-collapse: collapse; border-spacing: 0; }
+table{ border-collapse: collapse; border-spacing: 0; }
 ol, ul{ list-style: none; list-style-type: none; }
 textarea, input, button { outline: none; }
 img{ border: 0; }
@@ -78,12 +79,83 @@ img{ border: 0; }
 		width: 0px;
 	}
 
+		#app-menu .admin-info{
+			display: block;
+			float: left;
+			clear: both;
+			width: 200px;
+			margin: 10px 0;
+			border-bottom: 1px dotted #444444;
+		}
+
+		#app-menu .admin-info > .employer-logo{
+			display: block;
+			float: left;
+			clear: both;
+			width: 78px;
+			height: 78px;
+			margin: 0 60px;
+			border-radius: 50%;
+			border: 1px solid #323232;
+			background-color: #434343;
+			background-image: url("../images/icon-location.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 40px;
+			overflow: hidden;
+		}
+
+			#app-menu .admin-info > .employer-logo > img{
+				display: block;
+				float: left;
+				width: 80px;
+				height: 80px;
+			}
+
+		#app-menu .admin-info > .user-name{
+			display: block;
+			float: left;
+			width: calc(100% - 30px);
+			margin: 8px 15px 0 15px;
+			color: #eeeeee;
+			font-family: "Roboto", sans-serif;
+			font-size: 13px;
+			line-height: 18px;
+			font-weight: 300;
+			text-align: center;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		#app-menu .admin-info > .employer-name{
+			display: block;
+			float: left;
+			width: calc(100% - 30px);
+			margin: 0 15px 8px 15px;
+			color: #faa21c;
+			font-family: "Roboto", sans-serif;
+			font-size: 13px;
+			line-height: 18px;
+			font-weight: 300;
+			text-align: center;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		#app-menu .admin-info > .employer-name.more{
+			width: calc(100% - 48px);
+			padding: 0 18px 0 0;
+			background-image: url("../images/icon-employer-switch-arrow.svg");
+			background-repeat: no-repeat;
+			background-position: right 1px;
+			background-size: 18px;
+		}
+
 		#app-menu ul.menu-list{
 			display: block;
 			float: left;
 			clear: both;
 			width: 100%;
-			margin: 5px 0 0 0;
 		}
 
 		#app-menu ul.menu-list li{

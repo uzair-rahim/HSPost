@@ -56,7 +56,7 @@ define([
 			logout : function(){
 				console.log("Logout route...");
 				// Set logged to false and redirect to login screen
-				App.session.set({logged : false});
+				App.session.set({logged : false, role : null, employers : null});
 				App.router.navigate("login", true);
 			},
 

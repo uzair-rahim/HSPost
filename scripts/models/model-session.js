@@ -5,15 +5,16 @@ define([
 		var Session = Backbone.Model.extend({
 
 			defaults : {
-				logged 		: false,
-				verified	: false,
-				remember	: false,
-				guid		: null,
-				firstname	: null,
-				lastname	: null,
-				email		: null,
-				employers	: null,
-				role		: null
+				logged 				: false,
+				verified 			: false,
+				remember 			: false,
+				guid				: null,
+				firstname			: null,
+				lastname			: null,
+				email 				: null,
+				employers			: null,
+				selectedEmployer	: 0,
+				roles				: null
 			},
 
 			initialize : function(options){
@@ -65,6 +66,9 @@ define([
 
 			// Update user session info
 			updateUserSession : function(){
+				
+				this.trigger("stateChange", this.changed);
+
 				var changes = this.changed;
 				var session = this.attributes;
 

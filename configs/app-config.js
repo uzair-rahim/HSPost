@@ -57,7 +57,7 @@ require.config({
 		templateExtension: "tpl",
 		disableI18n: true,
 		helperPathCallback: function(name){
-			return "templates/helpers/" + name;
+			return "../templates/helpers/" + name + ".js";
 		}
 	}
 });

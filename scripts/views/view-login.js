@@ -64,8 +64,19 @@ define([
 					firstname	: "Uzair",
 					lastname	: "Rahim",
 					email		: "uzair.rahim@hotschedules.com",
-					employers	: ["9876-HIJK-5432-LMNO"],
-					role		: ["user", "employerAdmin", "support"]
+					employers	: [
+						{
+							guid : "9876-HIJK-5432-LMNO",
+							name : "McDonalds North Lamar",
+							logo : "http://greedforilm.com/wp-content/uploads/2013/03/mcdonalds.jpeg"
+						},
+						{
+							guid : "J92H-7H4F-88HI-GH4G",
+							name : "McDonalds South Lamar",
+							logo : null
+						}],
+					selectedEmployer : 0,
+					roles		: ["user", "employerAdmin", "support"]
 				});
 
 				App.router.controller.redirectOnLogin();
