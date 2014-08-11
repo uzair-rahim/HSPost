@@ -74,6 +74,10 @@ define([
 						$(app).addClass("portal");
 					break;
 				}
+
+				// Hide the notification flyout
+				var notifications = $(document).find("#app-notifications");
+				$(notifications).removeClass("show");
 			},
 
 			serializeData : function(){
