@@ -40,12 +40,19 @@ define([
 			}
 
 			var options = {
-				success : function(){
-					App.session.set({logged : true});
+				success : function(response){
+					var user = new Object();
+						user = auth.getUser();
+						user.logged = true;
+						user.expired = false;
+						user.remember = $("#remember-me").prop("checked");
+						
+					App.session.set(user);
 					App.router.controller.redirectOnLogin();
 				},
 				error : function(model, errors){
-					console.log(errors.responseText);
+					var error = JSON.parse(errors.responseText);
+					Utils.ShowToast({message : error.errorMsg});
 				}
 			}
 
@@ -55,32 +62,7 @@ define([
 			if(auth.validationError){
 				Utils.ShowToast({message : auth.validationError[0].message});
 			}else{
-				//auth.fetch(options);
-				App.session.set({
-					logged 		: true,
-					verified	: true,
-					expired		: false,
-					remember 	: $("#remember-me").prop("checked"),
-					guid		: "1234-ABCD-5678-EFGH",
-					firstname	: "Uzair",
-					lastname	: "Rahim",
-					email		: "uzair.rahim@hotschedules.com",
-					employers	: [
-						{
-							guid : "9876-HIJK-5432-LMNO",
-							name : "McDonalds North Lamar",
-							logo : "http://greedforilm.com/wp-content/uploads/2013/03/mcdonalds.jpeg"
-						},
-						{
-							guid : "J92H-7H4F-88HI-GH4G",
-							name : "McDonalds South Lamar",
-							logo : null
-						}],
-					selectedEmployer : 0,
-					roles		: ["user", "employerAdmin", "support"]
-				});
-
-				App.router.controller.redirectOnLogin();
+				auth.fetch(options);
 			}
 
 		},

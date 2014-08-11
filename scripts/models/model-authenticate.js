@@ -37,7 +37,25 @@ define([
 
 				return errors.length ? errors : false;
 
-			}
+			},
+
+			getUser : function(){
+				var data = this.attributes;
+
+				if(data.errorCode === 0){
+					var user = new Object();
+						user.guid = data.guid;
+						user.verified = data.verified;
+						user.firstname = data.firstname;
+						user.lastname = data.lastname;
+						user.email = data.email;
+						user.employers = data.employerIds;
+						user.roles = data.roles;
+						return user;
+				}
+
+				return false;
+			},
 
 		});
 

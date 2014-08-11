@@ -46,6 +46,11 @@ define([
 					$(document).find("#app-toast").removeClass("show");
 				}, 4000);
 
+			},
+
+			HideToast : function(){
+				$(document).find("#app-toast").removeClass("show");
+				$(document).find("#app-toast .message").text("");
 			}
 
 		});

@@ -62,7 +62,7 @@ require.config({
 	}
 });
 
-require(["app", "approuter"],function(App, ApplicationRouter){
+require(["app", "approuter", "utils"],function(App, ApplicationRouter, Utils){
 	var options = {};
 	var router = new ApplicationRouter();
 	
@@ -75,6 +75,9 @@ require(["app", "approuter"],function(App, ApplicationRouter){
 			}else{
 				App.layout.toggleLayout("portal");
 			}
+
+			// Hide any existing toast message
+			Utils.HideToast();
 		});
 
 	App.start(options);

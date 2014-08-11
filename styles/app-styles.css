@@ -318,6 +318,7 @@ img{ border: 0; }
 			
 
 		#app-body{
+			position: relative;
 			display: block;
 			float: left;
 			clear: both;
@@ -330,7 +331,7 @@ img{ border: 0; }
 				position: absolute;
 				display: block;
 				float: right;
-				width: calc(100% - 200px);
+				width: 100%;
 				top: -40px;
 				right: 0;
 				padding: 8px 0;
@@ -340,12 +341,8 @@ img{ border: 0; }
 			}
 
 			#app-toast.show{
-				top: 40px;
+				top: 0px;
 				opacity: 1;
-			}
-
-			.app.portal #app-toast{
-				width: 100%;
 			}
 
 				#app-toast .message{
