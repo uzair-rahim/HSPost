@@ -42,6 +42,28 @@ define([
 				}
 			},
 
+			hideMenu : function(){
+				var menu = $(document).find("#app-menu");
+				var main = $(document).find("#app-main");
+				$(menu).removeClass("show");
+				$(main).removeClass("collapse");
+			},
+
+			showHideNotifications : function(){
+				var notifications = $(document).find("#app-notifications");
+				var isVisible = $(notifications).hasClass("show");
+				if(isVisible){
+					$(notifications).removeClass("show");
+				}else{
+					$(notifications).addClass("show");
+				}
+			},
+
+			hideNotifications : function(){
+				var notifications = $(document).find("#app-notifications");
+				$(notifications).removeClass("show");
+			},
+
 			toggleLayout : function(state){
 				var app = $(document).find(".app");
 				switch(state){

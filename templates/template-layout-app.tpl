@@ -8,7 +8,7 @@
 	</div>
 	<div id="app-body">
 		<div id="app-toast" class="transition"><div class="message"></div></div>
-		<div id="app-notifications" class="transition"></div>
+		<div id="app-notifications" class="transition height-hack"></div>
 		<div id="app-content"></div>
 	</div>
 </div>

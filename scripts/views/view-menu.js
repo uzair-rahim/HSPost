@@ -12,12 +12,13 @@ define([
 		className : "",
 		template: Template,
 		events : {
-			"click #menu-jobs"		 : "jobs",
-			"click #menu-candidates" : "candidates",
-			"click #menu-network"	 : "network",
-			"click #menu-messages"	 : "messages",
-			"click #menu-settings"	 : "settings",
-			"click #menu-logout"	 : "logout"
+			"click #menu-notifications" : "notifications",
+			"click #menu-jobs"		 	: "jobs",
+			"click #menu-candidates" 	: "candidates",
+			"click #menu-network"	 	: "network",
+			"click #menu-messages"	 	: "messages",
+			"click #menu-settings"	 	: "settings",
+			"click #menu-logout"	 	: "logout"
 		},
 
 		initialize : function(){
@@ -28,23 +29,38 @@ define([
 			this.listenTo(appSession, "stateChange", this.sessionChanged);
 		},
 
+		notifications : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.showHideNotifications();
+		},
+
 		jobs : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("jobs", true);
 		},
 		
 		candidates : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("candidates", true);
 		},
 
 		network : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("network", true);
 		},
 
 		messages : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("messages", true);
 		},
 
 		settings : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("settings", true);
 		},
 
