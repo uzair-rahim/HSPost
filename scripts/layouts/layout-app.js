@@ -12,10 +12,12 @@ define([
 			className : "app portal",
 			template : Template,
 			regions : {
-				menu : "#app-menu",
-				main : "#app-main",
-				head : "#app-head",
-				body : "#app-body"
+				menu 			: "#app-menu",
+				main 			: "#app-main",
+				head 			: "#app-head",
+				body 			: "#app-body",
+				content 		: "#app-content",
+				notifications 	: "#app-notifications"
 			},
 			
 			events : {

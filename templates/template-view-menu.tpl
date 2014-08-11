@@ -8,12 +8,28 @@
 	<div class="employer-name {{#if_not_eq user.employers.length 1}}more{{/if_not_eq}}">{{user.employers.[0].name}}</div>
 </div>
 <ul class="menu-list">
-	<li id="menu-jobs">Jobs</li>
-	<li id="menu-candidates">Candidates</li>
-	<li id="menu-network">Network</li>
+	<li id="menu-notifications">
+		<label>Notifications</label>
+	</li>
 	<li class="divider"></li>
-	<li id="menu-settings">Settings</li>
+	<li id="menu-jobs">
+		<label>Jobs</label>
+	</li>
+	<li id="menu-candidates">
+		<label>Candidates</label>
+	</li>
+	<li id="menu-network">
+		<label>Network</label>
+	</li>
+	<li id="menu-messages">
+		<label>Messages</label>
+	</li>
 	<li class="divider"></li>
-	<li id="menu-logout">Logout</li>
+	<li id="menu-settings">
+		<label>Settings</label>
+	</li>
+	<li id="menu-logout">
+		<label>Logout</label>
+	</li>
 	<li class="divider"></li>
 </ul>

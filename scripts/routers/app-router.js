@@ -10,10 +10,14 @@ define([
 			controller : new AppController(),
 			
 			appRoutes : {
-				""		 : "main",
-				"login"	 : "login",
-				"jobs"	 : "jobs",
-				"logout" : "logout"
+				""		 	 : "main",
+				"login"	 	 : "login",
+				"jobs"	 	 : "jobs",
+				"candidates" : "candidates",
+				"network"	 : "network",
+				"messages"	 : "messages",
+				"settings"	 : "settings",
+				"logout" 	 : "logout"
 			}
 
 		});

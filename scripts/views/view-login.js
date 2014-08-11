@@ -42,7 +42,7 @@ define([
 			var options = {
 				success : function(){
 					App.session.set({logged : true});
-					App.router.navigate("jobs", true);
+					App.router.controller.redirectOnLogin();
 				},
 				error : function(model, errors){
 					console.log(errors.responseText);
@@ -59,6 +59,7 @@ define([
 				App.session.set({
 					logged 		: true,
 					verified	: true,
+					expired		: false,
 					remember 	: $("#remember-me").prop("checked"),
 					guid		: "1234-ABCD-5678-EFGH",
 					firstname	: "Uzair",

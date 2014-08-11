@@ -15,7 +15,7 @@ ol, ul{ list-style: none; list-style-type: none; }
 textarea, input, button { outline: none; }
 img{ border: 0; }
 
-.transition{ -webkit-transition: all 300ms; -moz-transition: all 300ms; -o-transition: all 300ms; -ms-transition: all 300ms; transition: all 300ms; }
+.transition{ -webkit-transition: all 300ms; -moz-transition: all 300ms; -o-transition: all 300ms; -ms-transition: all 300ms; transition: all 300ms; -webkit-backface-visibility: hidden;}
 .height-hack{ padding-bottom: 5000px; margin-bottom: -5000px; }
 
 .app{
@@ -61,7 +61,7 @@ img{ border: 0; }
 		height: 100%;
 		background-color: #333333;
 		box-shadow: inset -2px 0 3px 0 rgba(0,0,0,0.25);
-		overflow: hidden;
+		overflow: auto;
 		white-space: nowrap;
 	}
 
@@ -132,7 +132,7 @@ img{ border: 0; }
 			float: left;
 			width: calc(100% - 30px);
 			margin: 0 15px 8px 15px;
-			color: #faa21c;
+			color: #ff9f00;
 			font-family: "Roboto", sans-serif;
 			font-size: 13px;
 			line-height: 18px;
@@ -163,17 +163,24 @@ img{ border: 0; }
 			float: left;
 			clear: both;
 			width: 100%;
-			line-height: 42px;
-			color: #cccccc;
-			font-family: "Roboto" sans-serif;
-			font-size: 16px;
-			font-weight: 300;
-			text-indent: 10px;
 		}
 
-		#app-menu ul.menu-list li:hover{
-			color: #ffffff;
-		}
+			#app-menu ul.menu-list li label{
+				display: block;
+				float: left;
+				clear: both;
+				width: 100%;
+				line-height: 42px;
+				color: #cccccc;
+				font-family: "Roboto" sans-serif;
+				font-size: 16px;
+				font-weight: 300;
+				text-indent: 10px;
+			}
+
+			#app-menu ul.menu-list li:hover label{
+				color: #ffffff;
+			}
 
 		#app-menu ul.menu-list li.divider{
 			background-image: none;
@@ -316,7 +323,7 @@ img{ border: 0; }
 			clear: both;
 			width: 100%;
 			height: calc(100% - 40px);
-			overflow: auto;
+			overflow: hidden;
 		}
 
 			.portal-form-container{
@@ -447,32 +454,64 @@ img{ border: 0; }
 					color: #ff9f00;
 				}
 
-	#app-toast{
-		position: absolute;
-		display: block;
-		float: left;
-		width: 100%;
-		top: -40px;
-		padding: 8px 0;
-		background-color: #ffffff;
-		opacity: 0;
-		z-index: 99;
-	}
+			#app-content{
+				display: block;
+				float: left;
+				clear: both;
+				width: 100%;
+				overflow: auto;
+			}
 
-	#app-toast.show{
-		top: 40px;
-		opacity: 1;
-	}
+			.page-title{
+				display: block;
+				float: left;
+				clear: both;
+				margin: 10px 15px;
+				font-family: "Roboto", sans-serif;
+				font-size: 32px;
+				font-weight: 300;
+				color: #ff9f00;
+				text-transform: uppercase;
+			}
 
-		#app-toast .message{
+			@media screen and (max-width: 800px){
+				.page-title{
+					font-size: 22px;
+				}
+			}
+
+
+		#app-toast{
+			position: absolute;
 			display: block;
-			float: left;
-			width: calc(100% - 20px);
-			margin: 0 10px;
-			text-align: center;
-			color: #ff0066;
-			font-family: "Roboto", sans-serif;
-			font-size: 16px;
-			font-weight: 300;
-			white-space: pre-wrap;
+			float: right;
+			width: calc(100% - 200px);
+			top: -40px;
+			right: 0;
+			padding: 8px 0;
+			background-color: #f2f2f2;
+			opacity: 0;
+			z-index: 99;
 		}
+
+		#app-toast.show{
+			top: 40px;
+			opacity: 1;
+		}
+
+		.app.portal #app-toast{
+			width: 100%;
+		}
+
+			#app-toast .message{
+				display: block;
+				float: left;
+				width: calc(100% - 20px);
+				margin: 0 10px;
+				text-align: center;
+				color: #ff0066;
+				font-family: "Roboto", sans-serif;
+				font-size: 16px;
+				font-weight: 300;
+				white-space: pre-wrap;
+			}

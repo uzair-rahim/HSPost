@@ -89,7 +89,10 @@ define([
 		// AJAX Send
 		// The method is called before an AJAX request is sent
 		$(document).ajaxSend(function(){
-			
+			// If user session has expired prompt the user to relogin
+			if(App.session.hasExpired()){
+				alert("Your session has expired.")
+			}
 		});
 
 		// AJAX Success

@@ -3,12 +3,12 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-jobs"
+		"hbs!/HSPost/templates/template-view-messages"
 	],
 	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ViewJobs = Marionette.ItemView.extend({
+	var ViewMessages = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "content",
 		template: Template,
@@ -18,17 +18,17 @@ define([
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Jobs view initialized...");
+			console.log("Messages view initialized...");
 		},
 
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.template.title = "Jobs"
+				jsonObject.template.title = "Messages"
 			return jsonObject;
 		}
 		
 	});
 
-	return ViewJobs;
+	return ViewMessages;
 });

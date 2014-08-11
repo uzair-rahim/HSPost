@@ -12,7 +12,12 @@ define([
 		className : "",
 		template: Template,
 		events : {
-			"click #menu-logout" : "logout"
+			"click #menu-jobs"		 : "jobs",
+			"click #menu-candidates" : "candidates",
+			"click #menu-network"	 : "network",
+			"click #menu-messages"	 : "messages",
+			"click #menu-settings"	 : "settings",
+			"click #menu-logout"	 : "logout"
 		},
 
 		initialize : function(){
@@ -21,6 +26,26 @@ define([
 
 			var appSession = this.options.app.session;
 			this.listenTo(appSession, "stateChange", this.sessionChanged);
+		},
+
+		jobs : function(){
+			this.options.app.router.navigate("jobs", true);
+		},
+		
+		candidates : function(){
+			this.options.app.router.navigate("candidates", true);
+		},
+
+		network : function(){
+			this.options.app.router.navigate("network", true);
+		},
+
+		messages : function(){
+			this.options.app.router.navigate("messages", true);
+		},
+
+		settings : function(){
+			this.options.app.router.navigate("settings", true);
 		},
 
 		logout : function(){

@@ -7,6 +7,7 @@ define([
 			defaults : {
 				logged 				: false,
 				verified 			: false,
+				expired				: false,
 				remember 			: false,
 				guid				: null,
 				firstname			: null,
@@ -20,7 +21,6 @@ define([
 			initialize : function(options){
 				console.log("Session model initialized...");
 				this.on("change", this.updateUserSession);
-				this.on("change:logged", this.stateChanged);
 			},
 
 			// Check to see if the user session cookie is present
@@ -91,8 +91,40 @@ define([
 				return this.attributes.verified;
 			},
 
+			hasExpired : function(){
+				return this.attributes.expired;
+			},
+
 			isRememberMe : function(){
 				return this.attributes.remember;
+			},
+
+			getGuid : function(){
+				return this.attributes.guid;
+			},
+
+			getFirstName : function(){
+				return this.attributes.firstname;
+			},
+
+			getLastName : function(){
+				return this.attributes.lastname;
+			},
+
+			getFullname : function(){
+				return this.attributes.firstname + " " + this.attributes.lastname;
+			},
+
+			getEmployers : function(){
+				return this.attributes.employers;
+			},
+
+			getSelectedEmployer : function(){
+				return this.attributes.selectedEmployer;
+			},
+
+			getRoles : function(){
+				return this.attributes.employers;
 			},
 
 			getEmail : function(){
