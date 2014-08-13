@@ -35,8 +35,8 @@ define([
 			var formPassword = $("#login-password").val();
 
 			var credentials = {
-				email	 : formEmail,
-				password : formPassword
+				emailaddress : formEmail,
+				password 	 : formPassword
 			}
 
 			var options = {
@@ -62,7 +62,7 @@ define([
 			if(auth.validationError){
 				Utils.ShowToast({message : auth.validationError[0].message});
 			}else{
-				auth.fetch(options);
+				auth.save(credentials, options);
 			}
 
 		},

@@ -6,8 +6,8 @@ define([
 		var Authenticate = Backbone.Model.extend({
 
 			defaults : {
-				email 	 : null,
-				password : null
+				emailaddress : null,
+				password 	 : null
 			},
 
 			urlRoot : function(){
@@ -15,7 +15,7 @@ define([
 			},
 
 			url : function(){
-				var url = this.urlRoot() + "/" + this.attributes.email + "/" + this.attributes.password;
+				var url = this.urlRoot();
 				return url;
 			},
 
@@ -27,11 +27,11 @@ define([
 				var errors = [];
 				var emailRegExp = Utils.RegularExpressions.email;
 
-				if(attributes.email === "" || attributes.password === ""){
+				if(attributes.emailaddress === "" || attributes.password === ""){
 					errors.push({ error : "required", message : "Email address and password are required"});
 				}
 
-				if(!emailRegExp.test(attributes.email)){
+				if(!emailRegExp.test(attributes.emailaddress)){
 					errors.push({ error : "email", message : "Invalid email address"});
 				}
 
