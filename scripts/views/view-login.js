@@ -51,7 +51,7 @@ define([
 					App.router.controller.redirectOnLogin();
 				},
 				error : function(model, errors){
-					var error = JSON.parse(errors.responseText);
+					var error = errors.responseJSON;
 					Utils.ShowToast({message : error.errorMsg});
 				}
 			}

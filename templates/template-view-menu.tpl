@@ -1,7 +1,7 @@
 <div class="admin-info">
 	<div class="employer-logo">
 		{{#if_not_eq user.employers.[0].logo undefined}}
-			<img src="{{user.employers.[0].logo}}"/>
+			<img src="{{user.employers.[0].logo.url}}"/>
 		{{/if_not_eq}}
 	</div>
 	<div class="user-name">{{user.firstname}} {{user.lastname}}</div>

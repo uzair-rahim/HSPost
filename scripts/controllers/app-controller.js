@@ -8,9 +8,10 @@ define([
 		"../scripts/views/view-candidates",
 		"../scripts/views/view-network",
 		"../scripts/views/view-messages",
-		"../scripts/views/view-settings"
+		"../scripts/views/view-settings",
+		"../scripts/collections/collection-employers"
 	],
-	function($, App, Utils, Marionette, Login, Jobs, Candidates, Network, Messages, Settings){
+	function($, App, Utils, Marionette, Login, Jobs, Candidates, Network, Messages, Settings, CollectionEmployers){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -108,7 +109,7 @@ define([
 			logout : function(){
 				console.log("Logout route...");
 				// Set logged to false and redirect to login screen
-				App.session.set({logged : false, role : null, employers : null});
+				App.session.set({logged : false, expired : false});
 				App.router.navigate("login", true);
 			},
 
@@ -116,7 +117,12 @@ define([
 
 			redirectOnLogin : function(){
 				if(App.session.isVerified()){
-					App.router.navigate("jobs", true);
+					var userEmployers = App.session.getEmployers();
+					var collection = new CollectionEmployers();
+						collection.getEmployers(userEmployers, function(){
+							App.session.set({employers : collection.models});
+							App.router.navigate("jobs", true);
+						});
 				}else{
 					alert("User is not verified");
 				}

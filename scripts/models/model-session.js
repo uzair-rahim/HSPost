@@ -21,15 +21,15 @@ define([
 			initialize : function(options){
 				console.log("Session model initialized...");
 				this.on("change", this.updateUserSession);
+				this.on("change:expired", this.sessionExpired);
 			},
 
-			// Check to see if the user session cookie is present
+			// Check to see if the user data is present
 			checkUserSession : function(){
-				var HSPostUserSession = $.cookie("HSPostUserSession");
-				return HSPostUserSession !== undefined;
+				return localStorage.getItem("HSPostUserSession") === null;
 			},
 
-			// Create a user session cookie
+			// Create a user data local storage key
 			createUserSession : function(options){
 				var defaults = this.defaults;
 
@@ -43,42 +43,37 @@ define([
 					}
 				}
 
-				$.cookie("HSPostUserSession", JSON.stringify(options), { path : "/"});
+				localStorage.setItem("HSPostUserSession", JSON.stringify(options));
 			},
 
-			// Remove the user session cookie
+			// Remove the user data local storage key
 			removeUserSession : function(){
-				$.removeCookie("HSPostUserSession", { path : "/"});
+				localStorage.removeItem("HSPostUserSession");
 			},
 
-			// Get user session info
+			// Get user data info
 			getUserSession : function(){
-				// If the user session cookie does not exist create a new user session cookie with default model values
-				if(!this.checkUserSession()){
+				// If the user data local storage key does not exist create a new user data local storage key with default model values
+				if(this.checkUserSession()){
 					this.createUserSession();
 				}else{
-				// If the user session cookie is present set the model attributes to cookie's values
-					var existingCookie = JSON.parse($.cookie("HSPostUserSession"));
-					this.set(existingCookie);
+				// If the user data local storage key is present set the model attributes to keys's value
+					var existingData = JSON.parse(localStorage.getItem("HSPostUserSession"));
+					this.set(existingData);
 				}
 				return this.attributes;
 			},
 
-			// Update user session info
+			// Update user data info
 			updateUserSession : function(){
-				
-				this.trigger("stateChange", this.changed);
-
-				var changes = this.changed;
-				var session = this.attributes;
-
-				for(var key in session){
-					if(typeof(changes[key]) === "undefined"){
-						changes[key] = session[key];
-					}
-				}
-
+				this.trigger("stateChanged");
+				var changes = this.attributes;
 				this.createUserSession(changes);
+			},
+
+			// Trigger session expired
+			sessionExpired : function(){
+				this.trigger("sessionExpired", this.changed);
 			},
 
 			// Helper Methods
@@ -124,7 +119,7 @@ define([
 			},
 
 			getRoles : function(){
-				return this.attributes.employers;
+				return this.attributes.roles;
 			},
 
 			getEmail : function(){

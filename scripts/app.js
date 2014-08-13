@@ -82,8 +82,13 @@ define([
 
 		// AJAX Error
 		// The method is called when the first AJAX requests complete with an error
-		$(document).ajaxError(function(event, request, settings){
-			
+		$(document).ajaxError(function(event, response, settings){
+			var error = response.responseJSON;
+			switch(error){
+				case 12:
+					App.session.set({expired : true});
+				break;
+			}
 		});
 
 		// AJAX Send
