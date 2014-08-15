@@ -19,6 +19,7 @@ define([
 			
 			initialize : function(){
 				console.log("App controller initialized...");
+				this.listenTo(App.session, "employerChanged", this.jobs);
 			},
 
 			// Routes

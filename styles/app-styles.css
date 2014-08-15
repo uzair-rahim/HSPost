@@ -16,6 +16,7 @@ textarea, input, button { outline: none; }
 img{ border: 0; }
 
 .transition{ -webkit-transition: all 300ms; -moz-transition: all 300ms; -o-transition: all 300ms; -ms-transition: all 300ms; transition: all 300ms; -webkit-backface-visibility: hidden;}
+.no-transition{ -webkit-transition: none; -moz-transition: none; -o-transition: none; -ms-transition: none; transition: none;}
 .height-hack{ padding-bottom: 5000px; margin-bottom: -5000px; }
 
 .app{
@@ -88,68 +89,118 @@ img{ border: 0; }
 			border-bottom: 1px dotted #444444;
 		}
 
-		#app-menu .admin-info > .employer-logo{
-			display: block;
-			float: left;
-			clear: both;
-			width: 78px;
-			height: 78px;
-			margin: 0 60px;
-			border-radius: 50%;
-			border: 1px solid #323232;
-			background-color: #434343;
-			background-image: url("../images/icon-location.svg");
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: 40px;
-			overflow: hidden;
-		}
-
-			#app-menu .admin-info > .employer-logo > img{
+			#app-menu .admin-info > .employer-logo{
 				display: block;
 				float: left;
-				width: 80px;
-				height: 80px;
+				clear: both;
+				width: 78px;
+				height: 78px;
+				margin: 0 60px;
+				border-radius: 50%;
+				border: 1px solid #323232;
+				background-color: #434343;
+				background-image: url("../images/icon-location.svg");
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 40px;
+				overflow: hidden;
 			}
 
-		#app-menu .admin-info > .user-name{
-			display: block;
-			float: left;
-			width: calc(100% - 30px);
-			margin: 8px 15px 0 15px;
-			color: #eeeeee;
-			font-family: "Roboto", sans-serif;
-			font-size: 13px;
-			line-height: 18px;
-			font-weight: 300;
-			text-align: center;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+				#app-menu .admin-info > .employer-logo > img{
+					display: block;
+					float: left;
+					width: 80px;
+					height: 80px;
+				}
 
-		#app-menu .admin-info > .employer-name{
-			display: block;
-			float: left;
-			width: calc(100% - 30px);
-			margin: 0 15px 8px 15px;
-			color: #ff9f00;
-			font-family: "Roboto", sans-serif;
-			font-size: 13px;
-			line-height: 18px;
-			font-weight: 300;
-			text-align: center;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+			#app-menu .admin-info > .user-name{
+				display: block;
+				float: left;
+				width: calc(100% - 30px);
+				margin: 8px 15px 0 15px;
+				color: #eeeeee;
+				font-family: "Roboto", sans-serif;
+				font-size: 13px;
+				line-height: 18px;
+				font-weight: 300;
+				text-align: center;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 
-		#app-menu .admin-info > .employer-name.more{
-			width: calc(100% - 48px);
-			padding: 0 18px 0 0;
-			background-image: url("../images/icon-employer-switch-arrow.svg");
-			background-repeat: no-repeat;
-			background-position: right 1px;
-			background-size: 18px;
-		}
+			#app-menu .admin-info > .employer-name{
+				display: block;
+				float: left;
+				width: calc(100% - 30px);
+				margin: 0 15px 8px 15px;
+				color: #ff9f00;
+				font-family: "Roboto", sans-serif;
+				font-size: 13px;
+				line-height: 18px;
+				font-weight: 300;
+				text-align: center;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			#app-menu .admin-info > .employer-name.more{
+				width: calc(100% - 48px);
+				padding: 0 18px 0 0;
+				background-image: url("../images/icon-employer-switch-arrow.svg");
+				background-repeat: no-repeat;
+				background-position: right 1px;
+				background-size: 18px;
+			}
+
+			#app-menu .admin-info > .employer-name.more:hover{
+				color: #faa21c;
+			}
+
+			#app-menu .admin-info > .employers-list{
+				position: absolute;
+				display: block;
+				float: left;
+				opacity: 0;
+				width: 190px;
+				height: 0;
+				max-height: 200px;
+				top: 140px;
+				left: 5px;
+				background-color: #ffffff;
+				border-radius: 1px;
+				box-shadow: 0 1px 4px 0 rgba(0,0,0,1);
+				overflow: auto;
+				white-space: nowrap;
+			}
+
+			#app-menu .admin-info > .employers-list.show{
+				opacity: 1;
+				height: 100%;
+			}
+
+				#app-menu .admin-info > .employers-list li{
+					display: block;
+					float: left;
+					clear: both;
+					width: 100%;
+					color: #222222;
+					text-indent: 10px;
+					font-family: "Roboto", sans-serif;
+					font-size: 12px;
+					line-height: 36px;
+					font-weight: 300;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				#app-menu .admin-info > .employers-list li:hover{
+					background-color: #ff9f00;
+					color: #ffffff;
+				}
+
+				#app-menu .admin-info > .employers-list li:hover{
+					
+				}
 
 		#app-menu ul.menu-list{
 			display: block;

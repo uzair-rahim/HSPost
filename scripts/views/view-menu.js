@@ -12,6 +12,8 @@ define([
 		className : "",
 		template: Template,
 		events : {
+			"click .employer-name"		: "showSwitchEmployer",
+			"click .employers-list li"	: "switchEmployer",
 			"click #menu-notifications" : "notifications",
 			"click #menu-jobs"		 	: "jobs",
 			"click #menu-candidates" 	: "candidates",
@@ -26,7 +28,34 @@ define([
 			console.log("Menu view initialized...");
 
 			var appSession = this.options.app.session;
-			this.listenTo(appSession, "stateChanged", this.sessionChanged);
+			this.listenTo(appSession, "sessionExpired", this.sessionChanged);
+			this.listenTo(appSession, "employerChanged", this.render);
+		},
+
+		showSwitchEmployer : function(){
+			var employers = this.options.app.session.attributes.employers;
+			if(employers.length > 1){
+				var employersList = $(".employers-list");
+				var isVisible = $(employersList).hasClass("show")
+				if(isVisible){
+					$(employersList).removeClass("show");
+					$(employersList).addClass("no-transition");
+					$(employersList).animate({scrollTop : 0});
+				}else{
+					$(employersList).addClass("show");
+					$(employersList).removeClass("no-transition");
+				}
+			}
+		},
+
+		switchEmployer : function(event){
+			var index = $(event.target).index();
+			var selectedEmployer = this.options.app.session.get("selectedEmployer");
+
+			if(index !== selectedEmployer){
+				this.options.app.session.set({selectedEmployer : index});
+			}
+
 		},
 
 		notifications : function(){
@@ -76,6 +105,7 @@ define([
 			var jsonObject = new Object();
 				jsonObject.user = new Object();
 				jsonObject.user = this.options.app.session.attributes;
+				jsonObject.selectedEmployer = this.options.app.session.attributes.selectedEmployer;
 			return jsonObject;
 		}
 		

@@ -1,11 +1,18 @@
 <div class="admin-info">
 	<div class="employer-logo">
-		{{#if_not_eq user.employers.[0].logo undefined}}
-			<img src="{{user.employers.[0].logo.url}}"/>
-		{{/if_not_eq}}
+		{{#ifEmployersHasLogo user selectedEmployer}}
+			<img src="{{getEmployersLogo user selectedEmployer}}"/>
+		{{/ifEmployersHasLogo}}
 	</div>
 	<div class="user-name">{{user.firstname}} {{user.lastname}}</div>
-	<div class="employer-name {{#if_not_eq user.employers.length 1}}more{{/if_not_eq}}">{{user.employers.[0].name}}</div>
+	<div class="employer-name {{#if_gt user.employers.length 1}}more{{/if_gt}}">{{getEmployersName user selectedEmployer}}</div>
+	{{#if_gt user.employers.length 1}}
+		<ul class="employers-list transition">
+			{{#each user.employers}}
+				<li>{{this.name}}</li>
+			{{/each}}
+		</ul>
+	{{/if_gt}}
 </div>
 <ul class="menu-list">
 	<li id="menu-notifications">

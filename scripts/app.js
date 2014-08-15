@@ -106,6 +106,23 @@ define([
 			
 		});
 
+		// Global Click Handler
+		$(document).on("click", function(event){
+			var element = $(event.target);
+
+			// Hide the Employer Switch Drop Down when user clicks anywhere in the document
+			var employerName = element.hasClass("employer-name");
+			
+			if(!employerName){
+				var employers = App.session.attributes.employers;
+				var employersList = $(document).find(".employers-list");
+				if(employers.length > 1 && employersList.hasClass("show")){
+					App.menu.showSwitchEmployer();
+				}
+			}
+			
+		});
+
 		return App;
 	}
 );

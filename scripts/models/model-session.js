@@ -22,6 +22,7 @@ define([
 				console.log("Session model initialized...");
 				this.on("change", this.updateUserSession);
 				this.on("change:expired", this.sessionExpired);
+				this.on("change:selectedEmployer", this.employerChanged);
 			},
 
 			// Check to see if the user data is present
@@ -73,7 +74,12 @@ define([
 
 			// Trigger session expired
 			sessionExpired : function(){
-				this.trigger("sessionExpired", this.changed);
+				this.trigger("sessionExpired");
+			},
+
+			// Trigger employer changed
+			employerChanged : function(){
+				this.trigger("employerChanged");
 			},
 
 			// Helper Methods
