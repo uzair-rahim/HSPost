@@ -17,6 +17,7 @@
 <ul class="menu-list">
 	<li id="menu-notifications">
 		<label>Notifications</label>
+		<div class="count">99+</div>
 	</li>
 	<li class="divider"></li>
 	<li id="menu-jobs">

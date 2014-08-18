@@ -21,6 +21,7 @@ define([
 			initialize : function(options){
 				console.log("Session model initialized...");
 				this.on("change", this.updateUserSession);
+				this.on("change:logged", this.loggedChanged);
 				this.on("change:expired", this.sessionExpired);
 				this.on("change:selectedEmployer", this.employerChanged);
 			},
@@ -72,10 +73,15 @@ define([
 				this.createUserSession(changes);
 			},
 
+			// Trigger logged changed
+			loggedChanged : function(){
+				this.trigger("loggedChanged");
+			},
+
 			// Trigger session expired
 			sessionExpired : function(){
 				this.trigger("sessionExpired");
-			},
+			},	
 
 			// Trigger employer changed
 			employerChanged : function(){

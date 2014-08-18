@@ -56,6 +56,7 @@ img{ border: 0; }
 	}
 
 	#app-menu{
+		position: relative;
 		display: block;
 		float: left;
 		width: 200px;
@@ -193,13 +194,13 @@ img{ border: 0; }
 					text-overflow: ellipsis;
 				}
 
-				#app-menu .admin-info > .employers-list li:hover{
-					background-color: #ff9f00;
-					color: #ffffff;
+				#app-menu .admin-info > .employers-list li.selected{
+					color: #ff9f00;
 				}
 
 				#app-menu .admin-info > .employers-list li:hover{
-					
+					background-color: #ff9f00;
+					color: #ffffff;
 				}
 
 		#app-menu ul.menu-list{
@@ -220,7 +221,7 @@ img{ border: 0; }
 				display: block;
 				float: left;
 				clear: both;
-				width: 100%;
+				width: calc(100% - 34px);
 				line-height: 42px;
 				color: #cccccc;
 				font-family: "Roboto" sans-serif;
@@ -233,6 +234,21 @@ img{ border: 0; }
 				color: #ffffff;
 			}
 
+			#app-menu ul.menu-list li div.count{
+				display: block;
+				float: right;
+				width: 34px;
+				line-height: 42px;
+				color: #ff0066;
+				text-align: center;
+				font-family: "Roboto" sans-serif;
+				font-size: 12px;
+			}
+
+			#app-menu ul.menu-list li div.count.zero{
+				color: #888888;
+			}
+
 		#app-menu ul.menu-list li.divider{
 			background-image: none;
 			line-height: 0;
@@ -242,6 +258,7 @@ img{ border: 0; }
 		}
 
 	#app-main{
+		position: relative;
 		display: block;
 		float: left;
 		width: calc(100% - 200px);
@@ -375,7 +392,7 @@ img{ border: 0; }
 			clear: both;
 			width: 100%;
 			height: calc(100% - 40px);
-			overflow: hidden;
+			overflow: auto;
 		}
 
 			#app-toast{
@@ -432,6 +449,7 @@ img{ border: 0; }
 			#app-content{
 				display: block;
 				float: left;
+				clear: both;
 				width: 100%;
 			}
 
@@ -563,14 +581,6 @@ img{ border: 0; }
 						color: #ff9f00;
 					}
 
-				#app-content{
-					display: block;
-					float: left;
-					clear: both;
-					width: 100%;
-					overflow: auto;
-				}
-
 				.page-title{
 					display: block;
 					float: left;
@@ -583,8 +593,163 @@ img{ border: 0; }
 					text-transform: uppercase;
 				}
 
+				.page-tools{
+					display: block;
+					float: left;
+					width: calc(100% - 30px);
+					margin: 10px 15px 10px 15px;
+				}
+
+				.page-tools button{
+					margin: 0 10px 0 0;
+				}
+
+				
+
 				@media screen and (max-width: 800px){
 					.page-title{
 						font-size: 22px;
 					}
-				}		
+				}
+
+				ul.grid-list{
+					display: block;
+					float: left;
+					width: calc(100% - 30px);
+					margin: 0 15px 15px 15px;
+					overflow: hidden;
+					white-space: nowrap;
+				}
+
+					ul.grid-list li{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+						padding: 4px 0;
+						border-bottom: 1px dotted #cccccc;
+						background-color: #ffffff;
+						overflow: hidden;
+						white-space: nowrap;
+					}
+
+					ul.grid-list li:nth-child(even){
+						background-color: #fafff5;
+					}
+
+					ul.grid-list li:hover{
+						
+					}
+
+						ul.grid-list li div.column{
+							display: block;
+							float: left;
+							text-indent: 8px;
+							line-height: 30px;
+							font-family: sans-serif;
+							font-weight: 300;
+							font-size: 12px;
+							color: #444444;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+
+							ul.grid-list li div.column span{
+								color: #ff0066;
+							}
+
+						ul.grid-list li div.column.job-name{
+							width: 200px;
+							font-weight: 400;
+							font-size: 14px;
+							color: #000000;
+							border-right: 1px dotted #cccccc;
+						}
+
+						ul.grid-list li div.column.job-wage{
+							width: 120px;
+							border-right: 1px dotted #cccccc;
+						}
+
+						@media screen and (max-width: 580px){
+							ul.grid-list li div.column.job-name{
+								border-right: none;
+								width: calc(100% - 30px);
+							}
+
+							ul.grid-list li div.column.job-wage{
+								display: none;
+							}
+						}
+
+						ul.grid-list li div.column.posted{
+							width: 130px;
+							border-right: 1px dotted #cccccc;
+						}
+
+						@media screen and (max-width: 719px){
+							ul.grid-list li div.column.posted{
+								display: none;
+							}
+						}
+
+						ul.grid-list li div.column.bonus{
+							width: 150px;
+							border-right: 1px dotted #cccccc;
+						}
+
+						@media screen and (max-width: 870px){
+							ul.grid-list li div.column.bonus{
+								display: none;
+							}
+						}
+
+						ul.grid-list li div.column.edit{
+							float: right;
+							width: 30px;
+							height: 30px;
+							background-image: url("../images/icon-ellipsis-light.svg");
+							background-position: center;
+							background-repeat: no-repeat;
+							background-size: 16px auto;
+						}
+
+						ul.grid-list li div.column.edit:hover{
+							background-image: url("../images/icon-ellipsis-orange.svg");
+						}
+
+						@media screen and (max-width: 470px){
+							#app-main.collapse ul.grid-list li div.column.edit{
+								display: none;
+							}
+						}
+
+						@media screen and (max-width: 300px){
+							ul.grid-list li div.column.edit{
+								display: none;
+							}
+						}
+
+
+button{
+	display: block;
+	float: left;
+	padding: 8px 12px;
+	font-size: 12px;
+	color: #999999;
+	background-color: #ffffff;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);
+}
+
+button.primary{
+	color: #444444;
+	border: 1px solid #444444;
+}
+
+button:hover{
+	color: #000000;
+	border: 1px solid #000000;
+}

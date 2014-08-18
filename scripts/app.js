@@ -44,8 +44,19 @@ define([
 		// After the App is initialized
 		App.on("initialize:after", function(){
 			App.body.show(App.layout);
-			App.layout.menu.show(App.menu);
+			
+			if(App.session.get("logged")){
+				App.appendMenu();
+			}
+
+			this.listenTo(App.session, "loggedChanged", App.appendMenu);
+			
 		});
+
+		// Append Menu
+		App.appendMenu = function(){
+			App.layout.menu.show(App.menu);
+		}
 
 		// On App start
 		App.on("start", function(){
@@ -83,11 +94,15 @@ define([
 		// AJAX Error
 		// The method is called when the first AJAX requests complete with an error
 		$(document).ajaxError(function(event, response, settings){
-			var error = response.responseJSON;
-			switch(error){
-				case 12:
-					App.session.set({expired : true});
-				break;
+			if(response.status === 404){
+				Utils.ShowToast({message : "Service not found"});
+			}else{
+				var error = response.responseJSON;
+				switch(error){
+					case 12:
+						App.session.set({expired : true});
+					break;
+				}
 			}
 		});
 
@@ -113,7 +128,7 @@ define([
 			// Hide the Employer Switch Drop Down when user clicks anywhere in the document
 			var employerName = element.hasClass("employer-name");
 			
-			if(!employerName){
+			if(App.menu.el.innerHTML !== "" && !employerName){
 				var employers = App.session.attributes.employers;
 				var employersList = $(document).find(".employers-list");
 				if(employers.length > 1 && employersList.hasClass("show")){

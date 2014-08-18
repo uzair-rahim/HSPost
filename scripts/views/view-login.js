@@ -51,8 +51,10 @@ define([
 					App.router.controller.redirectOnLogin();
 				},
 				error : function(model, errors){
-					var error = errors.responseJSON;
-					Utils.ShowToast({message : error.errorMsg});
+					if(typeof(errors.responseJSON) !== "undefined"){
+						var error = errors.responseJSON;
+						Utils.ShowToast({message : error.errorMsg});
+					}
 				}
 			}
 

@@ -28,7 +28,8 @@ define([
 			console.log("Menu view initialized...");
 
 			var appSession = this.options.app.session;
-			this.listenTo(appSession, "sessionExpired", this.sessionChanged);
+			this.listenTo(appSession, "loggedChanged", this.render);
+			this.listenTo(appSession, "sessionExpired", this.render);
 			this.listenTo(appSession, "employerChanged", this.render);
 		},
 
@@ -95,10 +96,6 @@ define([
 
 		logout : function(){
 			this.options.app.router.navigate("logout", true);
-		},
-
-		sessionChanged : function(){
-			this.render();
 		},
 
 		serializeData : function(){
