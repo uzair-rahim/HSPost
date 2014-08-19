@@ -20,7 +20,9 @@ define([
 			
 			initialize : function(){
 				console.log("App controller initialized...");
-				this.listenTo(App.session, "employerChanged", this.jobs);
+				this.listenTo(App.session, "employerChanged", function(){
+					App.router.navigate("jobs", true);
+				});
 			},
 
 			// Routes
