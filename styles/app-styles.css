@@ -658,21 +658,21 @@ img{ border: 0; }
 							}
 
 						ul.grid-list li div.column.job-name{
-							width: 200px;
+							width: 150px;
 							font-weight: 400;
 							font-size: 14px;
 							color: #000000;
 							border-right: 1px dotted #cccccc;
 						}
 
-							@media screen and (max-width: 609px){
+							@media screen and (max-width: 559px){
 								#app-main.collapse ul.grid-list li div.column.job-name{
 									border-right: none;
 									width: calc(100% - 30px);
 								}
 							}	
 
-							@media screen and (max-width: 409px){
+							@media screen and (max-width: 359px){
 								ul.grid-list li div.column.job-name{
 									border-right: none;
 									width: calc(100% - 30px);
@@ -684,13 +684,13 @@ img{ border: 0; }
 							border-right: 1px dotted #cccccc;
 						}
 
-							@media screen and (max-width: 609px){
+							@media screen and (max-width: 559px){
 								#app-main.collapse ul.grid-list li div.column.job-wage{
 									display: none;
 								}
 							}
 
-							@media screen and (max-width: 409px){
+							@media screen and (max-width: 359px){
 								ul.grid-list li div.column.job-wage{
 									display: none;
 								}
@@ -701,13 +701,13 @@ img{ border: 0; }
 							border-right: 1px dotted #cccccc;
 						}
 
-							@media screen and (max-width: 739px){
+							@media screen and (max-width: 689px){
 								#app-main.collapse ul.grid-list li div.column.posted{
 									display: none;
 								}
 							}
 
-							@media screen and (max-width: 539px){
+							@media screen and (max-width: 489px){
 								ul.grid-list li div.column.posted{
 									display: none;
 								}
@@ -718,13 +718,13 @@ img{ border: 0; }
 							border-right: 1px dotted #cccccc;
 						}
 
-							@media screen and (max-width: 889px){
+							@media screen and (max-width: 839px){
 								#app-main.collapse ul.grid-list li div.column.bonus{
 									display: none;
 								}
 							}
 
-							@media screen and (max-width: 689px){
+							@media screen and (max-width: 639px){
 								ul.grid-list li div.column.bonus{
 									display: none;
 								}
@@ -744,7 +744,7 @@ img{ border: 0; }
 							background-image: url("../images/icon-ellipsis-orange.svg");
 						}
 
-							@media screen and (max-width: 519px){
+							@media screen and (max-width: 469px){
 								#app-main.collapse ul.grid-list li div.column.edit{
 									display: none;
 								}

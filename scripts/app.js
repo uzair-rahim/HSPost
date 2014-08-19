@@ -98,23 +98,16 @@ define([
 		$(document).ajaxError(function(event, response, settings){
 			if(response.status === 404){
 				Utils.ShowToast({message : "Service not found"});
-			}else{
-				var error = response.responseJSON;
-				switch(error){
-					case 12:
-						App.session.set({expired : true});
-					break;
-				}
+			}else if(response.status === 403){
+				App.session.set({expired : true});
+				alert("Your session has expired.");
 			}
 		});
 
 		// AJAX Send
 		// The method is called before an AJAX request is sent
 		$(document).ajaxSend(function(){
-			// If user session has expired prompt the user to relogin
-			if(App.session.hasExpired()){
-				alert("Your session has expired.")
-			}
+			
 		});
 
 		// AJAX Success
