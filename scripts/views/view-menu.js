@@ -53,24 +53,22 @@ define([
 
 			if(index !== selectedEmployer){
 				this.options.app.session.set({selectedEmployer : index});
+				this.hideMenuAndNotification();
 			}
 
 		},
 
 		notifications : function(){
-			this.options.app.layout.hideMenu();
-			this.options.app.layout.showHideNotifications();
+			this.hideMenuAndAutoNotifaction();
 		},
 
 		jobs : function(){
-			this.options.app.layout.hideMenu();
-			this.options.app.layout.hideNotifications();
+			this.hideMenuAndNotification();
 			this.options.app.router.navigate("jobs", true);
 		},
 		
 		candidates : function(){
-			this.options.app.layout.hideMenu();
-			this.options.app.layout.hideNotifications();
+			this.hideMenuAndNotification();
 			this.options.app.router.navigate("candidates", true);
 		},
 
@@ -81,19 +79,29 @@ define([
 		},
 
 		messages : function(){
-			this.options.app.layout.hideMenu();
-			this.options.app.layout.hideNotifications();
+			this.hideMenuAndNotification();
 			this.options.app.router.navigate("messages", true);
 		},
 
 		settings : function(){
-			this.options.app.layout.hideMenu();
-			this.options.app.layout.hideNotifications();
+			this.hideMenuAndNotification();
 			this.options.app.router.navigate("settings", true);
 		},
 
 		logout : function(){
 			this.options.app.router.navigate("logout", true);
+		},
+
+		// Helper
+
+		hideMenuAndNotification : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
+		},
+
+		hideMenuAndAutoNotifaction : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.showHideNotifications();
 		},
 
 		serializeData : function(){

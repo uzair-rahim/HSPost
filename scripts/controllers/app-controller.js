@@ -9,9 +9,10 @@ define([
 		"../scripts/views/view-network",
 		"../scripts/views/view-messages",
 		"../scripts/views/view-settings",
-		"../scripts/collections/collection-employers"
+		"../scripts/collections/collection-employers",
+		"../scripts/collections/collection-jobs"
 	],
-	function($, App, Utils, Marionette, Login, Jobs, Candidates, Network, Messages, Settings, CollectionEmployers){
+	function($, App, Utils, Marionette, Login, Jobs, Candidates, Network, Messages, Settings, CollectionEmployers, CollectionJobs){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -51,8 +52,14 @@ define([
 				console.log("Jobs route...");
 				// If user is logged in and verified go to jobs screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
-					var view = new Jobs();
-					App.layout.content.show(view);
+					var selectedEmployer = App.session.get("selectedEmployer");
+					var employers = App.session.get("employers");
+					var guid = employers[selectedEmployer].guid;
+					var jobs = new CollectionJobs();
+					jobs.getJobs(guid, function(data){
+						var view = new Jobs({models : data});
+						App.layout.content.show(view);
+					});
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);

@@ -24,7 +24,8 @@ define([
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.template.title = "Jobs"
+				jsonObject.template.title = "Jobs";
+				jsonObject.jobs = this.options.models;
 			return jsonObject;
 		}
 		

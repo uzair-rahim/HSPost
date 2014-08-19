@@ -634,11 +634,11 @@ img{ border: 0; }
 					}
 
 					ul.grid-list li:nth-child(even){
-						background-color: #fffbf5;
+						background-color: #fcfcfc;
 					}
 
 					ul.grid-list li:hover{
-						
+						background-color: #fffbf5;
 					}
 
 						ul.grid-list li div.column{
@@ -647,7 +647,6 @@ img{ border: 0; }
 							text-indent: 8px;
 							line-height: 30px;
 							font-family: sans-serif;
-							font-weight: 300;
 							font-size: 12px;
 							color: #444444;
 							overflow: hidden;
@@ -668,11 +667,11 @@ img{ border: 0; }
 						}
 
 						ul.grid-list li div.column.job-wage{
-							width: 120px;
+							width: 140px;
 							border-right: 1px dotted #cccccc;
 						}
 
-						@media screen and (max-width: 580px){
+						@media screen and (max-width: 610px){
 							ul.grid-list li div.column.job-name{
 								border-right: none;
 								width: calc(100% - 30px);
@@ -688,7 +687,7 @@ img{ border: 0; }
 							border-right: 1px dotted #cccccc;
 						}
 
-						@media screen and (max-width: 719px){
+						@media screen and (max-width: 740px){
 							ul.grid-list li div.column.posted{
 								display: none;
 							}
@@ -699,7 +698,7 @@ img{ border: 0; }
 							border-right: 1px dotted #cccccc;
 						}
 
-						@media screen and (max-width: 870px){
+						@media screen and (max-width: 890px){
 							ul.grid-list li div.column.bonus{
 								display: none;
 							}
@@ -719,16 +718,16 @@ img{ border: 0; }
 							background-image: url("../images/icon-ellipsis-orange.svg");
 						}
 
-						@media screen and (max-width: 470px){
+						@media screen and (max-width: 490px){
 							#app-main.collapse ul.grid-list li div.column.edit{
 								display: none;
 							}
 						}
 
-						@media screen and (max-width: 300px){
+						@media screen and (max-width: 318px){
 							ul.grid-list li div.column.edit{
 								display: none;
-							}
+							} 
 						}
 
 

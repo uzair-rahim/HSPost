@@ -41,7 +41,7 @@ define([
 				$.when.apply($, deferred).done(function(){
 					callback();
 				});
-			},
+			}
 			
 		});
 
