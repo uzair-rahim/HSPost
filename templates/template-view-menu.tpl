@@ -9,7 +9,11 @@
 	{{#if_gt user.employers.length 1}}
 		<ul class="employers-list transition">
 			{{#each user.employers}}
-				<li>{{this.name}}</li>
+				{{#if_eq @index ../selectedEmployer}}
+					<li class="selected">{{this.name}}</li>
+				{{else}}
+					<li>{{this.name}}</li>
+				{{/if_eq}}
 			{{/each}}
 		</ul>
 	{{/if_gt}}

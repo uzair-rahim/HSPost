@@ -28,8 +28,6 @@ define([
 			console.log("Menu view initialized...");
 
 			var appSession = this.options.app.session;
-			this.listenTo(appSession, "loggedChanged", this.render);
-			this.listenTo(appSession, "sessionExpired", this.render);
 			this.listenTo(appSession, "employerChanged", this.render);
 		},
 

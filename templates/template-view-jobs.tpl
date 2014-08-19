@@ -1,7 +1,5 @@
 <div class="page-title">{{template.title}}</div>
-<div class="page-tools">
-	<button class="primary">Add New Job</button>
-</div>
+<div class="page-tools"></div>
 <ul class="grid-list">
 	<li>
 		<div class="column job-name">Bartender</div>

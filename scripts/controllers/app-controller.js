@@ -122,6 +122,7 @@ define([
 					var collection = new CollectionEmployers();
 						collection.getEmployers(userEmployers, function(){
 							App.session.set({employers : collection.models});
+							App.menu.render();
 							App.router.navigate("jobs", true);
 						});
 				}else{

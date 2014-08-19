@@ -55,7 +55,9 @@ define([
 
 		// Append Menu
 		App.appendMenu = function(){
-			App.layout.menu.show(App.menu);
+			if(App.session.get("logged")){
+				App.layout.menu.show(App.menu);
+			}
 		}
 
 		// On App start

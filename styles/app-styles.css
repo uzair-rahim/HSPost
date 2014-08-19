@@ -176,7 +176,7 @@ img{ border: 0; }
 
 			#app-menu .admin-info > .employers-list.show{
 				opacity: 1;
-				height: 100%;
+				height: auto;
 			}
 
 				#app-menu .admin-info > .employers-list li{
@@ -634,7 +634,7 @@ img{ border: 0; }
 					}
 
 					ul.grid-list li:nth-child(even){
-						background-color: #fafff5;
+						background-color: #fffbf5;
 					}
 
 					ul.grid-list li:hover{
