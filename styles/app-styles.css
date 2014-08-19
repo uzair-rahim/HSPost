@@ -593,6 +593,12 @@ img{ border: 0; }
 					text-transform: uppercase;
 				}
 
+				@media screen and (max-width: 800px){
+					.page-title{
+						font-size: 24px;
+					}
+				}
+
 				.page-tools{
 					display: block;
 					float: left;
@@ -602,14 +608,6 @@ img{ border: 0; }
 
 				.page-tools button{
 					margin: 0 10px 0 0;
-				}
-
-				
-
-				@media screen and (max-width: 800px){
-					.page-title{
-						font-size: 22px;
-					}
 				}
 
 				ul.grid-list{
@@ -626,6 +624,7 @@ img{ border: 0; }
 						float: left;
 						clear: both;
 						width: 100%;
+						height: 30px;
 						padding: 4px 0;
 						border-bottom: 1px dotted #cccccc;
 						background-color: #ffffff;
@@ -666,43 +665,70 @@ img{ border: 0; }
 							border-right: 1px dotted #cccccc;
 						}
 
+							@media screen and (max-width: 609px){
+								#app-main.collapse ul.grid-list li div.column.job-name{
+									border-right: none;
+									width: calc(100% - 30px);
+								}
+							}	
+
+							@media screen and (max-width: 409px){
+								ul.grid-list li div.column.job-name{
+									border-right: none;
+									width: calc(100% - 30px);
+								}
+							}
+
 						ul.grid-list li div.column.job-wage{
 							width: 140px;
 							border-right: 1px dotted #cccccc;
 						}
 
-						@media screen and (max-width: 610px){
-							ul.grid-list li div.column.job-name{
-								border-right: none;
-								width: calc(100% - 30px);
+							@media screen and (max-width: 609px){
+								#app-main.collapse ul.grid-list li div.column.job-wage{
+									display: none;
+								}
 							}
 
-							ul.grid-list li div.column.job-wage{
-								display: none;
+							@media screen and (max-width: 409px){
+								ul.grid-list li div.column.job-wage{
+									display: none;
+								}
 							}
-						}
 
 						ul.grid-list li div.column.posted{
 							width: 130px;
 							border-right: 1px dotted #cccccc;
 						}
 
-						@media screen and (max-width: 740px){
-							ul.grid-list li div.column.posted{
-								display: none;
+							@media screen and (max-width: 739px){
+								#app-main.collapse ul.grid-list li div.column.posted{
+									display: none;
+								}
 							}
-						}
+
+							@media screen and (max-width: 539px){
+								ul.grid-list li div.column.posted{
+									display: none;
+								}
+							}
 
 						ul.grid-list li div.column.bonus{
 							width: 150px;
 							border-right: 1px dotted #cccccc;
 						}
 
-						@media screen and (max-width: 890px){
-							ul.grid-list li div.column.bonus{
-								display: none;
+							@media screen and (max-width: 889px){
+								#app-main.collapse ul.grid-list li div.column.bonus{
+									display: none;
+								}
 							}
-						}
+
+							@media screen and (max-width: 689px){
+								ul.grid-list li div.column.bonus{
+									display: none;
+								}
+							}
 
 						ul.grid-list li div.column.edit{
 							float: right;
@@ -718,17 +744,18 @@ img{ border: 0; }
 							background-image: url("../images/icon-ellipsis-orange.svg");
 						}
 
-						@media screen and (max-width: 490px){
-							#app-main.collapse ul.grid-list li div.column.edit{
-								display: none;
+							@media screen and (max-width: 519px){
+								#app-main.collapse ul.grid-list li div.column.edit{
+									display: none;
+								}
 							}
-						}
 
-						@media screen and (max-width: 318px){
-							ul.grid-list li div.column.edit{
-								display: none;
-							} 
-						}
+							@media screen and (max-width: 319px){
+								ul.grid-list li div.column.edit{
+									display: none;
+								}
+							}
+
 
 
 button{
