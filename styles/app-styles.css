@@ -153,9 +153,9 @@ img{ border: 0; }
 				background-size: 18px;
 			}
 
-			#app-menu .admin-info > .employer-name.more:hover{
-				color: #faa21c;
-			}
+				#app-menu .admin-info > .employer-name.more:hover{
+					color: #faa21c;
+				}
 
 			#app-menu .admin-info > .employers-list{
 				position: absolute;
@@ -194,14 +194,14 @@ img{ border: 0; }
 					text-overflow: ellipsis;
 				}
 
-				#app-menu .admin-info > .employers-list li.selected{
-					color: #ff9f00;
-				}
+					#app-menu .admin-info > .employers-list li.selected{
+						color: #ff9f00;
+					}
 
-				#app-menu .admin-info > .employers-list li:hover{
-					background-color: #ff9f00;
-					color: #ffffff;
-				}
+					#app-menu .admin-info > .employers-list li:hover{
+						background-color: #ff9f00;
+						color: #ffffff;
+					}
 
 		#app-menu ul.menu-list{
 			display: block;
@@ -230,9 +230,9 @@ img{ border: 0; }
 				text-indent: 10px;
 			}
 
-			#app-menu ul.menu-list li:hover label{
-				color: #ffffff;
-			}
+				#app-menu ul.menu-list li:hover label{
+					color: #ffffff;
+				}
 
 			#app-menu ul.menu-list li div.count{
 				display: block;
@@ -730,7 +730,7 @@ img{ border: 0; }
 								}
 							}
 
-						ul.grid-list li div.column.edit{
+						ul.grid-list li div.column.more{
 							float: right;
 							width: 30px;
 							height: 30px;
@@ -740,18 +740,18 @@ img{ border: 0; }
 							background-size: 16px auto;
 						}
 
-						ul.grid-list li div.column.edit:hover{
-							background-image: url("../images/icon-ellipsis-orange.svg");
-						}
+							ul.grid-list li div.column.more:hover{
+								background-image: url("../images/icon-ellipsis-orange.svg");
+							}
 
 							@media screen and (max-width: 469px){
-								#app-main.collapse ul.grid-list li div.column.edit{
+								#app-main.collapse ul.grid-list li div.column.more{
 									display: none;
 								}
 							}
 
 							@media screen and (max-width: 319px){
-								ul.grid-list li div.column.edit{
+								ul.grid-list li div.column.more{
 									display: none;
 								}
 							}
@@ -770,12 +770,12 @@ button{
 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);
 }
 
-button.primary{
-	color: #444444;
-	border: 1px solid #444444;
-}
+	button.primary{
+		color: #444444;
+		border: 1px solid #444444;
+	}
 
-button:hover{
-	color: #000000;
-	border: 1px solid #000000;
-}
+	button:hover{
+		color: #000000;
+		border: 1px solid #000000;
+	}

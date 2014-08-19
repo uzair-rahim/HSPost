@@ -9,7 +9,7 @@
 			<div class="column job-wage">${{formatCurrency wage}} {{formatWageType wageType}}</div>
 			<!-- Posted Date -->
 			{{#if_eq status "POSTED"}}
-				<div class="column posted">Posted: {{formatDate created}}</div>
+				<div class="column posted">Posted: {{formatDate updated}}</div>
 			{{else}}
 				<div class="column posted"><span>Not Posted</span></div>
 			{{/if_eq}}
@@ -19,8 +19,8 @@
 			{{else}}
 				<div class="column bonus"><span>No Referral Bonus</span></div>
 			{{/if_not_null}}
-			<!-- Edit -->
-			<div class="column edit"></div>	
+			<!-- More -->
+			<div class="column more"></div>
 		</li>
 	{{/each}}
 </ul>
