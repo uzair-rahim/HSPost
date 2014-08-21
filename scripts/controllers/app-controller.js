@@ -3,6 +3,7 @@ define([
         "app",
         "utils",
 		"marionette",
+		"../scripts/views/view-loading",
 		"../scripts/views/view-login",
 		"../scripts/views/view-jobs",
 		"../scripts/views/view-candidates",
@@ -12,7 +13,7 @@ define([
 		"../scripts/collections/collection-employers",
 		"../scripts/collections/collection-jobs"
 	],
-	function($, App, Utils, Marionette, Login, Jobs, Candidates, Network, Messages, Settings, CollectionEmployers, CollectionJobs){
+	function($, App, Utils, Marionette, Loading, Login, Jobs, Candidates, Network, Messages, Settings, CollectionEmployers, CollectionJobs){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -54,6 +55,9 @@ define([
 				console.log("Jobs route...");
 				// If user is logged in and verified go to jobs screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append jobs view
 					var selectedEmployer = App.session.get("selectedEmployer");
 					var employers = App.session.get("employers");
 					var guid = employers[selectedEmployer].guid;
@@ -72,6 +76,9 @@ define([
 				console.log("Candidates route...");
 				// If user is logged in and verified go to candidates screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append candidates view
 					var view = new Candidates();
 					App.layout.content.show(view);
 				// If user is not logged in or is not verified go to login screen	
@@ -84,6 +91,9 @@ define([
 				console.log("Network route...");
 				// If user is logged in and verified go to network screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append networks view
 					var view = new Network();
 					App.layout.content.show(view);
 				// If user is not logged in or is not verified go to login screen	
@@ -96,6 +106,9 @@ define([
 				console.log("Messages route...");
 				// If user is logged in and verified go to messages screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append messages view
 					var view = new Messages();
 					App.layout.content.show(view);
 				// If user is not logged in or is not verified go to login screen	
@@ -108,6 +121,9 @@ define([
 				console.log("Settings route...");
 				// If user is logged in and verified go to settings screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append settings view
 					var view = new Settings();
 					App.layout.content.show(view);
 				// If user is not logged in or is not verified go to login screen	
@@ -137,7 +153,13 @@ define([
 				}else{
 					alert("User is not verified");
 				}
-			}			
+			},
+
+			// Helpers
+			showLoadingView : function(){
+				var view = new Loading();
+				App.layout.content.show(view);
+			},
 		});
 
 		return AppController;
