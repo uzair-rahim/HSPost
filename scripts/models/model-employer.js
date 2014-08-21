@@ -24,6 +24,10 @@ define([
 				claimed		: null
 			},
 
+			initialize : function(options){
+				console.log("Employer model initialized...");
+			},
+
 			urlRoot : function(){
 				return Utils.GetURL("/services/rest/employer");
 			},
@@ -33,8 +37,40 @@ define([
 				return url;
 			},
 
-			initialize : function(options){
-				console.log("Employer model initialized...");
+			getEmployees : function(callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + this.attributes.guid + "/employees";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					}
+				});
+			},
+
+			getFollowers : function(callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + this.attributes.guid + "/followers";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					}
+				});
+			},
+
+			getEndorsers : function(callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + this.attributes.guid + "/endorsements";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					}
+				});
 			}
 		
 		});

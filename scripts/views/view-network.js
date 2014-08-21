@@ -25,6 +25,15 @@ define([
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
 				jsonObject.template.title = "Network"
+
+				jsonObject.employees = new Object();
+				jsonObject.followers = new Object();
+				jsonObject.endorsers = new Object();
+
+				jsonObject.employees = this.model.employees;
+				jsonObject.followers = this.model.followers;
+				jsonObject.endorsers = this.model.endorsers;
+
 			return jsonObject;
 		}
 		
