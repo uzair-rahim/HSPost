@@ -54,6 +54,7 @@ define([
 			if(index !== selectedEmployer){
 				this.options.app.session.set({selectedEmployer : index});
 				this.hideMenuAndNotification();
+				this.options.app.router.navigate("", true);
 			}
 
 		},
