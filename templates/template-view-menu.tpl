@@ -24,6 +24,10 @@
 		<div class="count">99+</div>
 	</li>
 	<li class="divider"></li>
+	<li id="menu-dashboard">
+		<label>Dashboard</label>
+	</li>
+	<li class="divider"></li>
 	<li id="menu-jobs">
 		<label>Jobs</label>
 	</li>

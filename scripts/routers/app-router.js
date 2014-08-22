@@ -11,6 +11,7 @@ define([
 			
 			appRoutes : {
 				""		 	 : "main",
+				"dashboard"	 : "dashboard",
 				"login"	 	 : "login",
 				"jobs"	 	 : "jobs",
 				"candidates" : "candidates",

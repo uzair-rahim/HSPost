@@ -5,6 +5,7 @@ define([
 		"marionette",
 		"../scripts/views/view-loading",
 		"../scripts/views/view-login",
+		"../scripts/views/view-dashboard",
 		"../scripts/views/view-jobs",
 		"../scripts/views/view-candidates",
 		"../scripts/views/view-network",
@@ -14,7 +15,7 @@ define([
 		"../scripts/collections/collection-employers",
 		"../scripts/collections/collection-jobs"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Jobs, Candidates, Network, Messages, Settings, ModelEmployer, CollectionEmployers, CollectionJobs){
+	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, Candidates, Network, Messages, Settings, ModelEmployer, CollectionEmployers, CollectionJobs){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -23,7 +24,7 @@ define([
 			initialize : function(){
 				console.log("App controller initialized...");
 				this.listenTo(App.session, "employerChanged", function(){
-					App.router.navigate("jobs", true);
+					App.router.navigate("", true);
 				});
 			},
 
@@ -36,7 +37,7 @@ define([
 					App.router.navigate("login", true);
 				// If user is logged in and verified go to jobs screen	
 				}else if(App.session.isLoggedIn() && App.session.isVerified()){
-					App.router.navigate("jobs", true);
+					App.router.navigate("dashboard", true);
 				}
 			},
 
@@ -49,6 +50,21 @@ define([
 				// If user is logged in and verified go to jobs screen	
 				}else if(App.session.isLoggedIn() && App.session.isVerified()){
 					App.router.navigate("jobs", true);
+				}
+			},
+
+			dashboard : function(){
+				console.log("Dashboard route...");
+				// If user is logged in and verified go to dashboard screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append candidates view
+					var view = new Dashboard();
+					App.layout.content.show(view);
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
 				}
 			},
 
@@ -168,7 +184,7 @@ define([
 						collection.getEmployers(userEmployers, function(){
 							App.session.set({employers : collection.models});
 							App.menu.render();
-							App.router.navigate("jobs", true);
+							App.router.navigate("dashboard", true);
 						});
 				}else{
 					alert("User is not verified");

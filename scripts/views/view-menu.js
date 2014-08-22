@@ -15,6 +15,7 @@ define([
 			"click .employer-name"		: "showSwitchEmployer",
 			"click .employers-list li"	: "switchEmployer",
 			"click #menu-notifications" : "notifications",
+			"click #menu-dashboard"		: "dashboard",
 			"click #menu-jobs"		 	: "jobs",
 			"click #menu-candidates" 	: "candidates",
 			"click #menu-network"	 	: "network",
@@ -61,6 +62,11 @@ define([
 
 		notifications : function(){
 			this.hideMenuAndAutoNotifaction();
+		},
+
+		dashboard : function(){
+			this.hideMenuAndNotification();
+			this.options.app.router.navigate("dashboard", true);
 		},
 
 		jobs : function(){
