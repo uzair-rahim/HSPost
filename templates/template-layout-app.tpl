@@ -1,3 +1,4 @@
+<div id="app-modal" class="transition"></div>
 <div id="app-menu" class="transition"></div>
 <div id="app-main" class="transition">
 	<div id="app-head">

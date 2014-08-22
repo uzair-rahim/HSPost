@@ -100,6 +100,7 @@ define([
 				Utils.ShowToast({message : "Service not found"});
 			}else if(response.status === 403){
 				App.session.set({expired : true});
+				Utils.ShowModal();
 				alert("Your session has expired.");
 			}
 		});

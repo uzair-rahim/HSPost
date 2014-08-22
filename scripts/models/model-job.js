@@ -29,6 +29,10 @@ define([
 
 			},
 
+			initialize : function(options){
+				console.log("Job model initialized...");
+			},
+
 			urlRoot : function(){
 				return Utils.GetURL("/services/rest/job");
 			},
@@ -38,9 +42,11 @@ define([
 				return url;
 			},
 
-			initialize : function(options){
-				console.log("Job model initialized...");
-			}
+			getUnarchivedCandidates : function(callback){
+				var guid = this.attributes.guid;
+				var url = this.urlRoot() + "/"+ guid + "/candidates";
+				console.log(url);
+			},
 		
 		});
 

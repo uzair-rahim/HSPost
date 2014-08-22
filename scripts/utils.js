@@ -51,6 +51,24 @@ define([
 			HideToast : function(){
 				$(document).find("#app-toast").removeClass("show");
 				$(document).find("#app-toast .message").text("");
+			},
+
+			// Show modal overlay
+			ShowModal : function(){
+				var modal = $("#app-modal");
+				var isVisible = $(modal).hasClass();
+				if(!isVisible){
+					modal.addClass("show");
+				}
+			},
+
+			// Hide modal overlay
+			HideModal : function(){
+				var modal = $("#app-modal");
+				var isVisible = $(modal).hasClass();
+				if(isVisible){
+					modal.removeClass("show");	
+				}
 			}
 
 		});
