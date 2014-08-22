@@ -98,25 +98,24 @@ define([
 					var model = new Object();
 					employer.set({guid : guid});
 
-					$.when(
-						employer.getEmployees(function(data){
-							model.employees = new Object();
-							model.employees = data;
-						}),
+					// Get Employees
+					employer.getEmployees(function(data){
+						model.employees = new Object();
+						model.employees = data;
+						// Get Followers
 						employer.getFollowers(function(data){
 							model.followers = new Object();
 							model.followers = data;
-						}),
-						employer.getEndorsers(function(data){
-							model.endorsers = new Object();
-							model.endorsers = data;
-						})
-					).done(function(){
-						var view = new Network({model : model});
-						App.layout.content.show(view);
+							// Get Endorsers
+							employer.getEndorsers(function(data){
+								model.endorsers = new Object();
+								model.endorsers = data;
+								// Append View
+								var view = new Network({model : model});
+								App.layout.content.show(view);
+							});
+						});
 					});
-
-
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
