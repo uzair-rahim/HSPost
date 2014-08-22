@@ -20,7 +20,7 @@ img{ border: 0; }
 .height-hack{ padding-bottom: 5000px; margin-bottom: -5000px; }
 
 .loading { position: absolute; top:50%; left: 50%; text-align: center; }
-.loading > div { width: 6px; height: 6px; background-color: #aaaaaa; border-radius: 100%; display: inline-block; -webkit-animation: bouncedelay 1.4s infinite ease-in-out; animation: bouncedelay 1.4s infinite ease-in-out; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
+.loading > div { width: 10px; height: 10px; background-color: #aaaaaa; border-radius: 100%; display: inline-block; -webkit-animation: bouncedelay 1.4s infinite ease-in-out; animation: bouncedelay 1.4s infinite ease-in-out; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
 .loading .dot1 { -webkit-animation-delay: -0.32s; animation-delay: -0.32s; }
 .loading .dot2 { -webkit-animation-delay: -0.16s; animation-delay: -0.16s; }
 @-webkit-keyframes bouncedelay { 0%, 80%, 100% { -webkit-transform: scale(0.0) } 40% { -webkit-transform: scale(1.0) } }
@@ -672,6 +672,16 @@ button:hover{
 					margin: 0 10px 0 0;
 				}
 
+				div.grid-list-title{
+					display: block;
+					float: left;
+					clear: both;
+					margin: 10px 15px;
+					font-size: 16px;
+					font-weight: 700;
+					color: #444444;
+				}
+
 				ul.grid-list{
 					display: block;
 					float: left;
@@ -701,6 +711,22 @@ button:hover{
 					ul.grid-list li:hover{
 						background-color: #fffbf5;
 					}
+
+					ul.grid-list li.tall{
+						height: 50px;
+					}
+
+						ul.grid-list li.tall input.user-select{
+							float: left;
+							margin: 20px 4px 0 4px;
+						}
+
+						@media screen and (max-width: 399px){
+							ul.grid-list li.tall input.user-select{
+								display: none;
+							}
+						}
+
 
 						ul.grid-list li div.column{
 							display: block;
@@ -802,6 +828,10 @@ button:hover{
 							background-size: 16px auto;
 						}
 
+						ul.grid-list li.tall div.column.more{
+							margin: 15px 0 0 0;
+						}
+
 							ul.grid-list li div.column.more:hover{
 								background-image: url("../images/icon-ellipsis-orange.svg");
 							}
@@ -816,4 +846,57 @@ button:hover{
 								ul.grid-list li div.column.more{
 									display: none;
 								}
+							}
+
+						ul.grid-list li div.column.user-picture{
+							width: 44px;
+							height: 44px;
+							margin: 2px 0px 0px 4px;
+							text-indent: 0;
+							border-radius: 50%;
+							border: 1px solid #cccccc;
+							background-color: #eeeeee;
+							background-image: url("../images/icon-user.svg");
+							background-position: center 3px;
+							background-repeat: no-repeat;
+							background-size: auto 45px;
+							overflow: hidden;
+						}
+
+						ul.grid-list li div.column.user-picture img{
+							width: 44px;
+							height: 44px;
+						}
+
+						ul.grid-list li div.column.user-info{
+							display: block;
+							float: left;
+							margin: 8px 0 0 0;
+							max-width: 250px;
+							width: calc(100% - 90px);
+						}
+
+							@media screen and (max-width: 519px){
+								#app-main.collapse ul.grid-list li div.column.user-info{
+									width: calc(100% - 80px);
+								}
+							}
+
+							ul.grid-list li div.column.user-info .name{
+								font-size: 14px;
+								color: #000000;
+								line-height: 20px;
+								width: 100%;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
+
+							ul.grid-list li div.column.user-info .job{
+								line-height: 15px;
+								color: #888888;
+								width: 100%;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
 							}
