@@ -181,6 +181,48 @@ input::selection{
 			margin: 5px 10px;
 		}
 
+	ul.context-menu{
+		position: absolute;
+		display: block;
+		float: left;
+		max-width: 300px;
+		border-radius: 2px;
+		background-color: #f5f5f5;
+		box-shadow: 0px 2px 8px 0 rgba(0,0,0,0.15);
+		border: 1px solid #cccccc;
+		white-space: nowrap;
+		overflow: hidden;
+		z-index: 9996;
+	}
+
+		ul.context-menu li{
+			display: block;
+			float: left;
+			clear: both;
+			padding: 0 10px 0 0;
+			width: 100%;
+			line-height: 32px;
+			text-indent: 10px;
+			color: #444444;
+		}
+
+		ul.context-menu li:hover{
+			background-color: #fffbf5;
+		}
+
+		ul.context-menu li.disabled{
+			color: #aaaaaa;
+		}
+
+		ul.context-menu li.disabled:hover{
+			background-color: #f5f5f5;
+		}
+
+		ul.context-menu li.divider{
+			height: 0;
+			border-bottom: 1px dotted #dddddd;
+		}
+
 	#app-relogin.dialog{
 		width: 300px;
 		height: 185px;

@@ -32,4 +32,16 @@
 			</li>
 		{{/each}}
 	</ul>
-{{/if_eq}}	
+{{/if_eq}}
+
+<ul class="context-menu">
+	<li>Post</li>
+	<li>Unpost</li>
+	<li>Edit</li>
+	<li class="divider"></li>
+	<li>Copy job link</li>
+	<li>Share with employees</li>
+	<li>Share with followes</li>
+	<li class="divider"></li>
+	<li>Delete</li>
+</ul>
