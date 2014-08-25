@@ -932,3 +932,39 @@ button:hover{
 								text-overflow: ellipsis;
 								white-space: nowrap;
 							}
+
+				ul.tabs{
+					display: block;
+					float: left;
+					clear: both;
+					width: 100%;
+					background-color: #e5e5e5;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				ul.tabs li{
+					display: block;
+					float: left;
+					line-height: 46px;
+					padding: 0 10px;
+					font-size: 14px;
+					color: #666666;
+					font-family: "Roboto", sans-serif;
+					font-weight: 300;
+					background-color: #e5e5e5;
+					border-right: 1px solid #cccccc;
+				}
+
+				ul.tabs li:hover{
+					color: #222222;
+				}
+
+				ul.tabs li:last-of-type{
+					border-right: none;
+				}
+
+				ul.tabs li.selected{
+					background-color: #ffffff;
+					color: #ff9f00;
+				}

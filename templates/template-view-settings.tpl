@@ -1,1 +1,4 @@
-<div class="page-title">{{template.title}}</div>
+<ul class="tabs">
+	<li class="selected">Account Settings</li>
+	<li>Profile Settings</li>
+</ul>
