@@ -5,7 +5,9 @@
 		<button class="primary">Add New Job Posting</button>
 	</div>
 {{else}}
-	<div class="page-tools"></div>
+	<div class="page-tools">
+		<button id="add-job" class="primary">Add New Job</button>
+	</div>
 	<ul class="grid-list">
 		{{#each jobs}}
 			<li>

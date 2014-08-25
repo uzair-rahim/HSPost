@@ -33,16 +33,21 @@ button{
 	float: left;
 	padding: 8px 12px;
 	font-size: 12px;
-	color: #999999;
+	color: #666666;
 	background-color: #ffffff;
-	border: 1px solid #999999;
+	border: 1px solid #666666;
 	border-radius: 4px;
 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);
 }
 
 button:hover{
-	color: #000000;
-	border: 1px solid #000000;
+	color: #333333;
+	border: 1px solid #333333;
+}
+
+button:disabled{
+	color: #cccccc;
+	border: 1px solid #cccccc;
 }
 
 	button.primary{
@@ -53,6 +58,11 @@ button:hover{
 	button.primary:hover{
 		color: #ff0033;
 		border: 1px solid #ff0033;
+	}
+
+	button.primary:disabled{
+		color: #f096ba;
+		border:1px solid #f096ba;
 	}
 
 
@@ -697,7 +707,9 @@ button:hover{
 					display: block;
 					float: left;
 					width: calc(100% - 30px);
+					min-width: 320px;
 					margin: 10px 15px 10px 15px;
+					overflow: hidden;
 				}
 
 				.page-tools button{

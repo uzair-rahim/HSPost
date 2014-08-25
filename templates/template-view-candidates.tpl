@@ -1,6 +1,9 @@
 <div class="page-title">{{template.title}}</div>
 {{#if_true hasCandidates}}
-	<div class="page-tools"></div>
+	<div class="page-tools">
+		<button id="send-message" class="primary" disabled>Send Message</button>
+		<button id="archive-candidates" disabled>Archive Candidates</button>
+	</div>
 	{{#each jobs}}
 		<div class="grid-list-title">{{jobName}}</div>
 		<ul class="grid-list">

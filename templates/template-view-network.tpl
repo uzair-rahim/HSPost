@@ -4,7 +4,10 @@
 		Looks like you don't have anybody in your network.
 	</div>
 {{else}}
-	<div class="page-tools"></div>
+	<div class="page-tools">
+		<button id="send-message" class="primary" disabled>Send Message</button>
+		<button id="share-job" disabled>Share Job</button>
+	</div>
 	<!-- Employees -->
 	{{#if_not_eq employees.length 0}}
 		<div class="grid-list-title">Employees ({{employees.length}})</div>
