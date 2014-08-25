@@ -69,6 +69,24 @@ define([
 				if(isVisible){
 					modal.removeClass("show");	
 				}
+			},
+
+			// Show relogin dialog
+			ShowReloginDialog : function(){
+				var dialog = $("#app-relogin");
+				var isVisible = $(dialog).hasClass("show");
+				if(!isVisible){
+					dialog.addClass("show");
+				}
+			},
+
+			// Hide relogin dialog
+			HideReloginDialog : function(){
+				var dialog = $("#app-relogin");
+				var isVisible = $(dialog).hasClass("show");
+				if(isVisible){
+					dialog.removeClass("show");
+				}
 			}
 
 		});

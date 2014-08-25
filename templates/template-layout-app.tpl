@@ -1,3 +1,10 @@
+<div id="app-relogin" class="dialog">
+	<div class="title">Your Session Expired</div>
+	<input type="email" id="relogin-email" placeholder="Email Address"/>
+	<input type="password" id="relogin-password" placeholder="Password"/>
+	<button id="relogin">Login</button>
+	<button id="cancel-relogin">Cancel</button>
+</div>
 <div id="app-modal" class="transition"></div>
 <div id="app-menu" class="transition"></div>
 <div id="app-main" class="transition">

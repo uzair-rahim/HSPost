@@ -2,9 +2,10 @@ define([
 		"jquery",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-layout-app"
+		"hbs!/HSPost/templates/template-layout-app",
+		"../models/model-authenticate"
 	],
-	function($, Utils, Marionette, Template){
+	function($, Utils, Marionette, Template, Authenticate){
 		"use strict";
 
 		var LayoutApp = Marionette.Layout.extend({
@@ -21,12 +22,20 @@ define([
 			},
 			
 			events : {
-				"click #app-head .icon" : "showHideMenu"
+				"click #app-head .icon" : "showHideMenu",
+				"click #relogin" 		: "relogin",
+				"click #cancel-relogin" : "cancelRelogin"
 			},
 
 			initialize : function(){
 				_.bindAll.apply(_, [this].concat(_.functions(this)));
 				console.log("App layout initialized...");
+			},
+
+			onShow : function(){
+				if(this.options.app.session.isRememberMe()){
+					$("#relogin-email").val(this.options.app.session.getEmail());
+				}
 			},
 
 			showHideMenu : function(){
@@ -78,6 +87,52 @@ define([
 				// Hide the notification flyout
 				var notifications = $(document).find("#app-notifications");
 				$(notifications).removeClass("show");
+			},
+
+			relogin : function(){
+				var formEmail = $("#relogin-email").val();
+				var formPassword = $("#relogin-password").val();
+
+				var credentials = {
+					emailaddress : formEmail,
+					password 	 : formPassword
+				}
+
+				var that = this;
+
+				var options = {
+					success : function(response){
+						var user = new Object();
+							user = auth.getUser();
+							user.logged = true;
+							user.expired = false;
+							
+						that.options.app.session.set(user);
+						that.options.app.router.controller.redirectOnLogin();
+						Utils.HideModal();
+						Utils.HideReloginDialog();
+					},
+					error : function(model, errors){
+						if(typeof(errors.responseJSON) !== "undefined"){
+							var error = errors.responseJSON;
+							Utils.ShowToast({message : error.errorMsg});
+						}
+					}
+				}
+
+				var auth = new Authenticate();
+				auth.set(credentials, {validate:true});
+				
+				if(auth.validationError){
+					Utils.ShowToast({message : auth.validationError[0].message});
+				}else{
+					auth.save(credentials, options);
+				}
+
+			},
+
+			cancelRelogin : function(){
+				this.options.app.router.navigate("logout", true);
 			},
 
 			serializeData : function(){

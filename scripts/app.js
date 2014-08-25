@@ -101,7 +101,7 @@ define([
 			}else if(response.status === 403){
 				App.session.set({expired : true});
 				Utils.ShowModal();
-				alert("Your session has expired.");
+				Utils.ShowReloginDialog();
 			}
 		});
 
