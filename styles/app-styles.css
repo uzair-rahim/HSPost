@@ -766,6 +766,11 @@ button:hover{
 								color: #ff0066;
 							}
 
+						ul.grid-list li div.column.empty-list{
+							font-size: 14px;
+							color: #aaaaaa;
+						}
+
 						ul.grid-list li div.column.job-name{
 							width: 150px;
 							font-weight: 400;
@@ -938,6 +943,7 @@ button:hover{
 					float: left;
 					clear: both;
 					width: 100%;
+					min-width: 320px;
 					background-color: #e5e5e5;
 					white-space: nowrap;
 					overflow: hidden;
@@ -947,7 +953,7 @@ button:hover{
 					display: block;
 					float: left;
 					line-height: 46px;
-					padding: 0 10px;
+					padding: 0 15px;
 					font-size: 14px;
 					color: #666666;
 					font-family: "Roboto", sans-serif;

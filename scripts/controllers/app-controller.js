@@ -94,8 +94,12 @@ define([
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
 					// Append candidates view
-					var view = new Candidates();
-					App.layout.content.show(view);
+					var guid = this.getEmployerGuid(); 
+					var jobs = new CollectionJobs();
+					jobs.getJobs(guid, function(data){
+						var view = new Candidates({models : data});
+						App.layout.content.show(view);
+					});
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
