@@ -31,6 +31,9 @@ define([
 
 		login : function(){
 
+			var form = $(".portal-form-container");
+				form.addClass("load");
+
 			var formEmail = $("#login-email").val();
 			var formPassword = $("#login-password").val();
 
@@ -49,9 +52,11 @@ define([
 						
 					App.session.set(user);
 					App.router.controller.redirectOnLogin();
+					form.removeClass("load");
 				},
 				error : function(model, errors){
 					if(typeof(errors.responseJSON) !== "undefined"){
+						form.removeClass("load");
 						var error = errors.responseJSON;
 						Utils.ShowToast({message : error.errorMsg});
 					}
@@ -62,6 +67,7 @@ define([
 			auth.set(credentials, {validate:true});
 			
 			if(auth.validationError){
+				form.removeClass("load");
 				Utils.ShowToast({message : auth.validationError[0].message});
 			}else{
 				auth.save(credentials, options);
