@@ -131,6 +131,9 @@ define([
 					App.menu.showSwitchEmployer();
 				}
 			}
+
+			// Remove all context menu
+			$(".context-menu").remove();
 			
 		});
 

@@ -56,7 +56,7 @@ define([
 			// Show modal overlay
 			ShowModal : function(){
 				var modal = $("#app-modal");
-				var isVisible = $(modal).hasClass();
+				var isVisible = modal.hasClass("show");
 				if(!isVisible){
 					modal.addClass("show");
 				}
@@ -65,7 +65,7 @@ define([
 			// Hide modal overlay
 			HideModal : function(){
 				var modal = $("#app-modal");
-				var isVisible = $(modal).hasClass();
+				var isVisible = modal.hasClass("show");
 				if(isVisible){
 					modal.removeClass("show");	
 				}

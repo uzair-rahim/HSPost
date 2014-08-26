@@ -10,7 +10,7 @@
 	</div>
 	<ul class="grid-list">
 		{{#each jobs}}
-			<li>
+			<li id="{{id}}">
 				<!-- Name -->
 				<div class="column job-name">{{jobName}}</div>
 				<!-- Wage -->
@@ -33,15 +33,3 @@
 		{{/each}}
 	</ul>
 {{/if_eq}}
-
-<ul class="context-menu">
-	<li>Post</li>
-	<li>Unpost</li>
-	<li>Edit</li>
-	<li class="divider"></li>
-	<li>Copy job link</li>
-	<li>Share with employees</li>
-	<li>Share with followes</li>
-	<li class="divider"></li>
-	<li>Delete</li>
-</ul>
