@@ -264,16 +264,18 @@ input::selection{
 		width: 0px;
 	}
 
-		#app-menu .admin-info{
+		#app-menu .user-info{
 			display: block;
 			float: left;
 			clear: both;
 			width: 200px;
 			margin: 10px 0;
+			padding: 0 0 8px 0;
 			border-bottom: 1px dotted #444444;
 		}
 
-			#app-menu .admin-info > .employer-logo{
+			#app-menu .user-info > .employer-logo,
+			#app-menu .user-info > .user-photo{
 				display: block;
 				float: left;
 				clear: both;
@@ -290,14 +292,19 @@ input::selection{
 				overflow: hidden;
 			}
 
-				#app-menu .admin-info > .employer-logo > img{
+				#app-menu .user-info > .user-photo{
+					background-image: url("../images/icon-user-dark.svg");
+				}
+
+				#app-menu .user-info > .employer-logo > img,
+				#app-menu .user-info > .user-logo > im{
 					display: block;
 					float: left;
 					width: 78px;
 					height: 78px;
 				}
 
-			#app-menu .admin-info > .user-name{
+			#app-menu .user-info > .user-name{
 				display: block;
 				float: left;
 				width: calc(100% - 30px);
@@ -312,11 +319,11 @@ input::selection{
 				text-overflow: ellipsis;
 			}
 
-			#app-menu .admin-info > .employer-name{
+			#app-menu .user-info > .employer-name{
 				display: block;
 				float: left;
 				width: calc(100% - 30px);
-				margin: 0 15px 8px 15px;
+				margin: 0 15px 0 15px;
 				color: #ff9f00;
 				font-family: "Roboto", sans-serif;
 				font-size: 13px;
@@ -327,7 +334,7 @@ input::selection{
 				text-overflow: ellipsis;
 			}
 
-			#app-menu .admin-info > .employer-name.more{
+			#app-menu .user-info > .employer-name.more{
 				width: calc(100% - 48px);
 				padding: 0 18px 0 0;
 				background-image: url("../images/icon-employer-switch-arrow.svg");
@@ -336,11 +343,11 @@ input::selection{
 				background-size: 18px;
 			}
 
-				#app-menu .admin-info > .employer-name.more:hover{
+				#app-menu .user-info > .employer-name.more:hover{
 					color: #faa21c;
 				}
 
-			#app-menu .admin-info > .employers-list{
+			#app-menu .user-info > .employers-list{
 				position: absolute;
 				display: block;
 				float: left;
@@ -357,12 +364,12 @@ input::selection{
 				white-space: nowrap;
 			}
 
-			#app-menu .admin-info > .employers-list.show{
+			#app-menu .user-info > .employers-list.show{
 				opacity: 1;
 				height: auto;
 			}
 
-				#app-menu .admin-info > .employers-list li{
+				#app-menu .user-info > .employers-list li{
 					display: block;
 					float: left;
 					clear: both;
@@ -377,11 +384,11 @@ input::selection{
 					text-overflow: ellipsis;
 				}
 
-					#app-menu .admin-info > .employers-list li.selected{
+					#app-menu .user-info > .employers-list li.selected{
 						color: #ff9f00;
 					}
 
-					#app-menu .admin-info > .employers-list li:hover{
+					#app-menu .user-info > .employers-list li:hover{
 						background-color: #ff9f00;
 						color: #ffffff;
 					}
@@ -1030,7 +1037,7 @@ input::selection{
 							border-radius: 50%;
 							border: 1px solid #cccccc;
 							background-color: #eeeeee;
-							background-image: url("../images/icon-user.svg");
+							background-image: url("../images/icon-user-light.svg");
 							background-position: center 3px;
 							background-repeat: no-repeat;
 							background-size: auto 45px;

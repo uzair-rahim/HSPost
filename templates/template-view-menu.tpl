@@ -1,11 +1,21 @@
-<div class="admin-info">
-	<div class="employer-logo">
-		{{#ifEmployersHasLogo user selectedEmployer}}
-			<img src="{{getEmployersLogo user selectedEmployer}}"/>
-		{{/ifEmployersHasLogo}}
-	</div>
+<div class="user-info">
+	{{#if_eq user.type "user"}}
+		<div class="user-photo">
+			{{#if_not_null user.photo}}
+				<img src="{{user.photo.url}}"/>
+			{{/if_not_null }}
+		</div>
+	{{else}}
+		<div class="employer-logo">
+			{{#ifEmployersHasLogo user selectedEmployer}}
+				<img src="{{getEmployersLogo user selectedEmployer}}"/>
+			{{/ifEmployersHasLogo}}
+		</div>
+	{{/if_eq}}	
 	<div class="user-name">{{user.firstname}} {{user.lastname}}</div>
-	<div class="employer-name {{#if_gt user.employers.length 1}}more{{/if_gt}}">{{getEmployersName user selectedEmployer}}</div>
+	{{#if_not_eq user.type "user"}}
+		<div class="employer-name {{#if_gt user.employers.length 1}}more{{/if_gt}}">{{getEmployersName user selectedEmployer}}</div>
+	{{/if_not_eq}}
 	{{#if_gt user.employers.length 1}}
 		<ul class="employers-list transition">
 			{{#each user.employers}}
@@ -24,18 +34,28 @@
 		<div class="count">99+</div>
 	</li>
 	<li class="divider"></li>
-	<li id="menu-dashboard">
-		<label>Dashboard</label>
-	</li>
-	<li class="divider"></li>
-	<li id="menu-jobs">
-		<label>Jobs</label>
-	</li>
-	<li id="menu-candidates">
-		<label>Candidates</label>
-	</li>
+	{{#if_not_eq user.type "user"}}
+		<li id="menu-dashboard">
+			<label>Dashboard</label>
+		</li>
+		<li class="divider"></li>
+		<li id="menu-jobs">
+			<label>Jobs</label>
+		</li>
+		<li id="menu-candidates">
+			<label>Candidates</label>
+		</li>
+	{{/if_not_eq}}
+	{{#if_eq user.type "user"}}
+		<li id="menu-search-jobs">
+			<label>Jobs</label>
+		</li>
+	{{/if_eq}}
 	<li id="menu-network">
 		<label>Network</label>
+	</li>
+	<li id="menu-profile">
+		<label>Profile</label>
 	</li>
 	<li id="menu-messages">
 		<label>Messages</label>

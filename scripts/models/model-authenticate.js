@@ -48,6 +48,7 @@ define([
 						user.verified = data.verified;
 						user.firstname = data.firstname;
 						user.lastname = data.lastname;
+						user.photo = data.photo;
 						user.email = data.email;
 						user.employers = data.employerIds;
 						user.roles = data.roles;

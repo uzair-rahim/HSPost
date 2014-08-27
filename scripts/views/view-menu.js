@@ -17,8 +17,10 @@ define([
 			"click #menu-notifications" : "notifications",
 			"click #menu-dashboard"		: "dashboard",
 			"click #menu-jobs"		 	: "jobs",
+			"click #menu-search-jobs"	: "searchJobs",
 			"click #menu-candidates" 	: "candidates",
 			"click #menu-network"	 	: "network",
+			"click #menu-profile"		: "profile",
 			"click #menu-messages"	 	: "messages",
 			"click #menu-settings"	 	: "settings",
 			"click #menu-logout"	 	: "logout"
@@ -73,6 +75,11 @@ define([
 			this.hideMenuAndNotification();
 			this.options.app.router.navigate("jobs", true);
 		},
+
+		searchJobs : function(){
+			this.hideMenuAndNotification();
+			this.options.app.router.navigate("searchJobs", true);
+		},
 		
 		candidates : function(){
 			this.hideMenuAndNotification();
@@ -83,6 +90,11 @@ define([
 			this.options.app.layout.hideMenu();
 			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("network", true);
+		},
+
+		profile : function(){
+			this.hideMenuAndNotification();
+			this.options.app.router.navigate("profile", true);
 		},
 
 		messages : function(){
@@ -111,11 +123,45 @@ define([
 			this.options.app.layout.showHideNotifications();
 		},
 
+		getUser : function(){
+			return this.options.app.session.attributes;
+		},
+
+		getUserRole : function(){
+			var roles = this.options.app.session.attributes.roles;
+			var levels = ["user", "employerAdmin", "support"];
+			
+			var previousLevel = 0;
+			var currentLevel = 0;
+			var currentRole = "user";
+			var role = currentRole;
+
+			$.each(roles, function(){
+				currentRole = this.role;
+				$.each(levels, function(index){
+					if(currentRole === this){
+						currentLevel = index;
+					}
+					if(currentLevel > previousLevel){
+						previousLevel = currentLevel;
+						role = currentRole;
+					}
+				})
+			});
+
+			return role;
+		},
+
+		getSelectedEmployer : function(){
+			return this.options.app.session.attributes.selectedEmployer;
+		},
+
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.user = new Object();
-				jsonObject.user = this.options.app.session.attributes;
-				jsonObject.selectedEmployer = this.options.app.session.attributes.selectedEmployer;
+				jsonObject.user = this.getUser();
+				jsonObject.user.type = this.getUserRole();
+				jsonObject.selectedEmployer = this.getSelectedEmployer();
 			return jsonObject;
 		}
 		

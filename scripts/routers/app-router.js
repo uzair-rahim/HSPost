@@ -14,8 +14,10 @@ define([
 				"dashboard"	 : "dashboard",
 				"login"	 	 : "login",
 				"jobs"	 	 : "jobs",
+				"searchJobs" : "searchJobs",
 				"candidates" : "candidates",
 				"network"	 : "network",
+				"profile"	 : "profile",
 				"messages"	 : "messages",
 				"settings"	 : "settings",
 				"logout" 	 : "logout"

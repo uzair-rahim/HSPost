@@ -12,6 +12,7 @@ define([
 				guid				: null,
 				firstname			: null,
 				lastname			: null,
+				photo				: null,
 				email 				: null,
 				employers			: null,
 				selectedEmployer	: 0,
@@ -120,6 +121,10 @@ define([
 
 			getFullname : function(){
 				return this.attributes.firstname + " " + this.attributes.lastname;
+			},
+
+			getPhoto : function(){
+				return this.attributes.photo.url;
 			},
 
 			getEmployers : function(){

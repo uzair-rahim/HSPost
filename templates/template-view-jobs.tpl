@@ -6,7 +6,7 @@
 	</div>
 {{else}}
 	<div class="page-tools">
-		<button id="add-job" class="primary">Add New Job</button>
+		<button id="add-job" class="primary">Add New Job Posting</button>
 	</div>
 	<ul class="grid-list">
 		{{#each jobs}}

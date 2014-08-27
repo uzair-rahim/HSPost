@@ -7,15 +7,17 @@ define([
 		"../scripts/views/view-login",
 		"../scripts/views/view-dashboard",
 		"../scripts/views/view-jobs",
+		"../scripts/views/view-search-jobs",
 		"../scripts/views/view-candidates",
 		"../scripts/views/view-network",
+		"../scripts/views/view-profile",
 		"../scripts/views/view-messages",
 		"../scripts/views/view-settings",
 		"../scripts/models/model-employer",
 		"../scripts/collections/collection-employers",
 		"../scripts/collections/collection-jobs"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, Candidates, Network, Messages, Settings, ModelEmployer, CollectionEmployers, CollectionJobs){
+	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Network, Profile, Messages, Settings, ModelEmployer, CollectionEmployers, CollectionJobs){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -87,6 +89,21 @@ define([
 				}
 			},
 
+			searchJobs : function(){
+				console.log("Search jobs route...");
+				// If user is logged in and verified go to jobs screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append jobs view
+					var view = new SearchJobs();
+					App.layout.content.show(view);
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
 			candidates : function(){
 				console.log("Candidates route...");
 				// If user is logged in and verified go to candidates screen
@@ -136,6 +153,21 @@ define([
 							});
 						});
 					});
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			profile : function(){
+				console.log("Profile route...");
+				// If user is logged in and verified go to jobs screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append jobs view
+					var view = new Profile();
+					App.layout.content.show(view);
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
