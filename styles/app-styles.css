@@ -297,7 +297,7 @@ input::selection{
 				}
 
 				#app-menu .user-info > .employer-logo > img,
-				#app-menu .user-info > .user-logo > im{
+				#app-menu .user-info > .user-photo > img{
 					display: block;
 					float: left;
 					width: 78px;

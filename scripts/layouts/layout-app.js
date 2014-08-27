@@ -111,6 +111,7 @@ define([
 						that.options.app.router.controller.redirectOnLogin();
 						Utils.HideModal();
 						Utils.HideReloginDialog();
+						$("#relogin-password").val("");
 					},
 					error : function(model, errors){
 						if(typeof(errors.responseJSON) !== "undefined"){
