@@ -2,11 +2,11 @@
 {{#if_eq jobs.length 0}}
 	<div class="empty-page">
 		Looks like you don't have any Job Postings. Tap on the 'Add New Job Posting' button to get started.<br/>
-		<button class="primary">Add New Job Posting</button>
+		<button class="primary">Add New Job</button>
 	</div>
 {{else}}
 	<div class="page-tools">
-		<button id="add-job" class="primary">Add New Job Posting</button>
+		<button id="add-job" class="primary">Add New Job</button>
 	</div>
 	<ul class="grid-list">
 		{{#each jobs}}

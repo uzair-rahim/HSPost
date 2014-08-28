@@ -99,32 +99,8 @@ define([
 				return this.attributes.verified;
 			},
 
-			hasExpired : function(){
-				return this.attributes.expired;
-			},
-
 			isRememberMe : function(){
 				return this.attributes.remember;
-			},
-
-			getGuid : function(){
-				return this.attributes.guid;
-			},
-
-			getFirstName : function(){
-				return this.attributes.firstname;
-			},
-
-			getLastName : function(){
-				return this.attributes.lastname;
-			},
-
-			getFullname : function(){
-				return this.attributes.firstname + " " + this.attributes.lastname;
-			},
-
-			getPhoto : function(){
-				return this.attributes.photo.url;
 			},
 
 			getEmployers : function(){
@@ -135,12 +111,45 @@ define([
 				return this.attributes.selectedEmployer;
 			},
 
-			getRoles : function(){
-				return this.attributes.roles;
-			},
-
 			getEmail : function(){
 				return this.attributes.email;
+			},
+
+			getRole : function(){
+				var roles = this.attributes.roles;
+				var levels = ["user", "employerAdmin", "support"];
+				
+				var previousLevel = 0;
+				var currentLevel = 0;
+				var currentRole = "user";
+				var role = currentRole;
+
+				$.each(roles, function(){
+					currentRole = this.role;
+					$.each(levels, function(index){
+						if(currentRole == this){
+							currentLevel = index;
+						}
+						if(currentLevel > previousLevel){
+							previousLevel = currentLevel;
+							role = currentRole;
+						}
+					})
+				});
+
+				return role;
+			},
+
+			isUser : function(){
+				return this.getRole() === "user";
+			},
+
+			isAdmin : function(){
+				return this.getRole() === "employerAdmin";
+			},
+
+			isSupport : function(){
+				return this.getRole() === "support";
 			}
 
 		});

@@ -3,12 +3,12 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-settings"
+		"hbs!/HSPost/templates/template-view-user-network"
 	],
 	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ViewSettings = Marionette.ItemView.extend({
+	var ViewUserNetwork = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "content",
 		template: Template,
@@ -18,17 +18,17 @@ define([
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Settings view initialized...");
+			console.log("User Network view initialized...");
 		},
 
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.template.title = "Settings"
+				jsonObject.template.title = "Network"
 			return jsonObject;
 		}
 		
 	});
 
-	return ViewSettings;
+	return ViewUserNetwork;
 });

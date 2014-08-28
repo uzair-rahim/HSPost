@@ -3,12 +3,12 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-network"
+		"hbs!/HSPost/templates/template-view-employer-network"
 	],
 	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ViewNetwork = Marionette.ItemView.extend({
+	var ViewEmployerNetwork = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "content",
 		template: Template,
@@ -18,7 +18,7 @@ define([
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Network view initialized...");
+			console.log("Employer Network view initialized...");
 		},
 
 		serializeData : function(){
@@ -36,5 +36,5 @@ define([
 		
 	});
 
-	return ViewNetwork;
+	return ViewEmployerNetwork;
 });
