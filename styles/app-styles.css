@@ -294,6 +294,8 @@ input::selection{
 
 				#app-menu .user-info > .user-photo{
 					background-image: url("../images/icon-user-dark.svg");
+					background-position: center 8px;
+					background-size: 76px;
 				}
 
 				#app-menu .user-info > .employer-logo > img,
@@ -1118,3 +1120,136 @@ input::selection{
 					background-color: #ffffff;
 					color: #ff9f00;
 				}
+
+
+
+
+				.profile-row{
+					display: block;
+					float: left;
+					clear: both;
+					margin: 10px 15px;
+					width: calc(100% - 30px);
+					min-width: 280px;
+					overflow: hidden;
+					white-space: nowrap;
+					border-bottom: 1px dotted #dddddd;
+				}
+
+				.profile-name{
+					display: block;
+					float: left;
+					clear: both;
+					width: 100%;
+					font-size: 18px;
+					line-height: 24px;
+					color: #444444;
+					font-family: "Roboto", sans-serif;
+				}
+
+				.profile-info{
+					display: block;
+					float: left;
+					clear: both;
+					margin: 10px 0;
+					width: 100%;
+				}
+
+				.profile-info .profile-photo{
+					display: block;
+					float: left;
+					width: 78px;
+					height: 78px;
+					border: 1px solid #cccccc;
+					border-radius: 50%;
+					background-color: #eeeeee;
+					background-image: url("../images/icon-user-light.svg");
+					background-position: center 8px;
+					background-repeat: no-repeat;
+					background-size: auto 76px;
+					overflow: hidden;
+				}
+					.profile-info .profile-photo img{
+						width: 78px;
+						height: 78px;
+					}
+
+				.profile-info .profile-details{
+					display: block;
+					float: left;
+					margin: 20px 0 0 8px;
+					width: calc(100% - 90px);
+				}
+
+				@media screen and (max-width: 449px){
+					.profile-info .profile-details{
+						display: block;
+						float: left;
+						margin: 10px 0 0 8px;
+						width: calc(100% - 90px);
+					}	
+				}
+
+					.profile-info .profile-details > .primary-work{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+					}
+
+					.profile-info .profile-details > .primary-work .position,
+					.profile-info .profile-details > .primary-work .location{
+						display: block;
+						float: left;
+						margin: 0 15px 0 0;
+						max-width: calc(50% - 15px);
+						min-width: 100px;
+						font-weight: bold;
+						font-size: 14px;
+						text-indent: 16px;
+						color: #444444;
+						background-image: url("../images/icon-briefcase.svg");
+						background-repeat: no-repeat;
+						background-position: 0 1px;
+						background-size: 12px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+
+					.profile-info .profile-details > .primary-work .location{
+						text-indent: 14px;
+						background-image: url("../images/icon-location.svg");
+					}
+
+					@media screen and (max-width: 449px){
+						.profile-info .profile-details > .primary-work .position,
+						.profile-info .profile-details > .primary-work .location{
+							max-width: 100%;
+							width: 100%;
+							clear: both;
+							margin: 0 0 5px 0;
+						}
+					}
+
+					.profile-info .profile-details > .about{
+						display: block;
+						float: left;
+						clear: both;
+						margin: 4px 0 0 0;
+						width: 100%;
+						text-indent: 2px;
+						font-size: 14px;
+						color: #444444;
+						white-space: normal;
+					}
+
+					@media screen and (max-width: 449px){
+						.profile-info .profile-details > .about{
+							margin: 0;
+						}
+					}
+
+
+
+
+

@@ -34,7 +34,7 @@ define([
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
 				jsonObject.template.title = this.getFirstName() + " Profile"
-				jsobObject.user = new Object();
+				jsonObject.user = new Object();
 				jsonObject.user = this.options.model;
 			return jsonObject;
 		}
