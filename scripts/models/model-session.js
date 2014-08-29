@@ -16,7 +16,8 @@ define([
 				email 				: null,
 				employers			: null,
 				selectedEmployer	: 0,
-				roles				: null
+				roles				: null,
+				notificationsCount	: 0
 			},
 
 			initialize : function(options){
@@ -25,6 +26,7 @@ define([
 				this.on("change:logged", this.loggedChanged);
 				this.on("change:expired", this.sessionExpired);
 				this.on("change:selectedEmployer", this.employerChanged);
+				this.on("change:notificationsCount", this.notificationsChanged);
 			},
 
 			// Check to see if the user data is present
@@ -87,6 +89,11 @@ define([
 			// Trigger employer changed
 			employerChanged : function(){
 				this.trigger("employerChanged");
+			},
+
+			// Trigger notifications changed
+			notificationsChanged : function(){
+				this.trigger("notificationsChanged");
 			},
 
 			// Helper Methods

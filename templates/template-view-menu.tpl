@@ -31,7 +31,7 @@
 <ul class="menu-list">
 	<li id="menu-notifications">
 		<label>Notifications</label>
-		<div class="count">99+</div>
+		<div class="count">{{notificationsCount}}</div>
 	</li>
 	<li class="divider"></li>
 	{{#if_not_eq user.type "user"}}

@@ -27,6 +27,10 @@ define([
 				verified : null
 			},
 
+			initialize : function(options){
+				console.log("User model initialized...");
+			},
+
 			urlRoot : function(){
 				return Utils.GetURL("/services/rest/user");
 			},
@@ -36,9 +40,39 @@ define([
 				return url;
 			},
 
-			initialize : function(options){
-				console.log("User model initialized...");
+			getUser : function(callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + this.attributes.guid;
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					}
+				});
+			},
+
+			getProfilePhoto : function(callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + this.attributes.guid + "/profilePhoto" ;
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(response){
+						var error = response.responseJSON;
+						switch(error.errorCode){
+							case 4:
+								callback(null);
+							break;
+						}
+
+					}
+				});
 			}
+
 		
 		});
 

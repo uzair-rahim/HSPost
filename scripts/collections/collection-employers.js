@@ -9,6 +9,10 @@ define([
 		var Employers = Backbone.Collection.extend({
 			model : Employer,
 
+			initialize : function(options){
+				console.log("Employers collection initialized...");
+			},
+
 			urlRoot : function(){
 				return Utils.GetURL("/services/rest/employer");
 			},
@@ -16,10 +20,6 @@ define([
 			url : function(){
 				var url = this.urlRoot();
 				return url;
-			},
-
-			initialize : function(options){
-				console.log("Employers collection initialized...");
 			},
 
 			getEmployers : function(guids, callback){

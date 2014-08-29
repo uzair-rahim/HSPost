@@ -9,6 +9,10 @@ define([
 		var Jobs = Backbone.Collection.extend({
 			model : Job,
 
+			initialize : function(options){
+				console.log("Jobs collection initialized...");
+			},
+
 			urlRoot : function(){
 				return Utils.GetURL("/services/rest/job");
 			},
@@ -16,10 +20,6 @@ define([
 			url : function(){
 				var url = this.urlRoot();
 				return url;
-			},
-
-			initialize : function(options){
-				console.log("Jobs collection initialized...");
 			},
 
 			getJobs : function(guid, callback){
@@ -35,7 +35,6 @@ define([
 						console.log("Error fetching jobs");
 					}
 				});
-
 			}
 			
 		});

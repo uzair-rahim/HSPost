@@ -32,6 +32,7 @@ define([
 
 			var appSession = this.options.app.session;
 			this.listenTo(appSession, "employerChanged", this.render);
+			this.listenTo(appSession, "notificationsChanged", this.render);
 		},
 
 		showSwitchEmployer : function(){
@@ -123,6 +124,20 @@ define([
 			this.options.app.layout.showHideNotifications();
 		},
 
+		getNotificationsCount : function(){
+			var count = this.options.app.session.attributes.notificationsCount;
+			
+			if(count > 99){
+				count = "99+";
+			}
+
+			if(count == 0){
+				count = "";
+			}
+
+			return count;
+		},
+
 		getUser : function(){
 			return this.options.app.session.attributes;
 		},
@@ -162,6 +177,7 @@ define([
 				jsonObject.user = this.getUser();
 				jsonObject.user.type = this.getUserRole();
 				jsonObject.selectedEmployer = this.getSelectedEmployer();
+				jsonObject.notificationsCount = this.getNotificationsCount();
 			return jsonObject;
 		}
 		

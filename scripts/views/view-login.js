@@ -52,7 +52,7 @@ define([
 						
 					App.session.set(user);
 					App.router.controller.redirectOnLogin();
-					form.removeClass("load");
+					//form.removeClass("load");
 				},
 				error : function(model, errors){
 					if(typeof(errors.responseJSON) !== "undefined"){

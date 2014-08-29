@@ -10,6 +10,10 @@ define([
 				password 	 : null
 			},
 
+			initialize : function(options){
+				console.log("Authenticate model initialized...");
+			},
+
 			urlRoot : function(){
 				return Utils.GetURL("/services/rest/auth/login");
 			},
@@ -17,10 +21,6 @@ define([
 			url : function(){
 				var url = this.urlRoot();
 				return url;
-			},
-
-			initialize : function(options){
-				console.log("Authenticate model initialized...");
 			},
 
 			validate : function(attributes){

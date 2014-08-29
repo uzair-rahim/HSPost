@@ -16,10 +16,12 @@ define([
 		"../scripts/views/view-user-settings",
 		"../scripts/views/view-employer-settings",
 		"../scripts/models/model-employer",
+		"../scripts/models/model-user",
 		"../scripts/collections/collection-employers",
-		"../scripts/collections/collection-jobs"
+		"../scripts/collections/collection-jobs",
+		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, UserNetwork, EmployerNetwork, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, CollectionEmployers, CollectionJobs){
+	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, UserNetwork, EmployerNetwork, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -97,6 +99,9 @@ define([
 						var view = new Dashboard();
 						App.layout.content.show(view);	
 					}
+
+					// Get Notifications
+					this.getNotifications();
 					
 				// If user is not logged in or is not verified go to login screen	
 				}else{
@@ -122,6 +127,10 @@ define([
 							App.layout.content.show(view);
 						});
 					}
+					
+					// Get Notifications
+					this.getNotifications();
+
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -141,6 +150,10 @@ define([
 						var view = new SearchJobs();
 						App.layout.content.show(view);
 					}
+
+					// Get Notifications
+					this.getNotifications();
+
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -165,6 +178,10 @@ define([
 							App.layout.content.show(view);
 						});
 					}
+
+					// Get Notifications
+					this.getNotifications();
+
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -209,6 +226,10 @@ define([
 							});
 						});
 					}
+
+					// Get Notifications
+					this.getNotifications();
+
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -224,6 +245,10 @@ define([
 					// Append jobs view
 					var view = new Profile();
 					App.layout.content.show(view);
+
+					// Get Notifications
+					this.getNotifications();
+
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -239,6 +264,10 @@ define([
 					// Append messages view
 					var view = new Messages();
 					App.layout.content.show(view);
+
+					// Get Notifications
+					this.getNotifications();
+
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -260,6 +289,10 @@ define([
 						var view = new EmployerSettings();
 						App.layout.content.show(view);
 					}
+
+					// Get Notifications
+					this.getNotifications();
+					
 				// If user is not logged in or is not verified go to login screen	
 				}else{
 					App.router.navigate("login", true);
@@ -279,20 +312,40 @@ define([
 
 			redirectOnLogin : function(){
 				if(App.session.isVerified()){
-					if(App.session.isUser()){
-						App.router.navigate("searchJobs", true);
-					}else{
-						var userEmployers = App.session.getEmployers();
-						var collection = new CollectionEmployers();
-							collection.getEmployers(userEmployers, function(){
-								App.session.set({employers : collection.models});
-								App.menu.render();
-								App.router.navigate("dashboard", true);
-							});
-					}
+					var userGUID = App.session.get("guid");
+					var user = new ModelUser({guid : userGUID});
+						user.getProfilePhoto(function(data){
+							// Set photo in session
+							App.session.set("photo", data);
+							// If user is user then...
+							if(App.session.isUser()){
+								// ...go to search jobs screen
+								App.router.navigate("searchJobs", true);
+							}else{
+								// ...get all employers and go to dashboard
+								var userEmployers = App.session.getEmployers();
+								var collection = new CollectionEmployers();
+									collection.getEmployers(userEmployers, function(){
+										App.session.set({employers : collection.models});
+										App.menu.render();
+										App.router.navigate("dashboard", true);
+									});
+							}
+						});
+
+					this.getNotifications();
+
 				}else{
 					alert("User is not verified");
 				}
+			},
+
+			getNotifications : function(){
+				var userGUID = App.session.get("guid");
+				var notifications = new CollectionNotifications();
+					notifications.getUserNotifications(userGUID, function(data){
+						App.session.set("notificationsCount", data.totalNotifications);
+					});
 			},
 
 			// Helpers
