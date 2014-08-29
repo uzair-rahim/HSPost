@@ -1177,17 +1177,8 @@ input::selection{
 				.profile-info .profile-details{
 					display: block;
 					float: left;
-					margin: 20px 0 0 8px;
+					margin: 10px 0 0 8px;
 					width: calc(100% - 90px);
-				}
-
-				@media screen and (max-width: 449px){
-					.profile-info .profile-details{
-						display: block;
-						float: left;
-						margin: 10px 0 0 8px;
-						width: calc(100% - 90px);
-					}	
 				}
 
 					.profile-info .profile-details > .primary-work{
@@ -1201,9 +1192,7 @@ input::selection{
 					.profile-info .profile-details > .primary-work .location{
 						display: block;
 						float: left;
-						margin: 0 15px 0 0;
-						max-width: calc(50% - 15px);
-						min-width: 100px;
+						margin: 0 15px 4px 0;
 						font-weight: bold;
 						font-size: 14px;
 						text-indent: 16px;
@@ -1221,32 +1210,16 @@ input::selection{
 						background-image: url("../images/icon-location.svg");
 					}
 
-					@media screen and (max-width: 449px){
-						.profile-info .profile-details > .primary-work .position,
-						.profile-info .profile-details > .primary-work .location{
-							max-width: 100%;
-							width: 100%;
-							clear: both;
-							margin: 0 0 5px 0;
-						}
-					}
-
 					.profile-info .profile-details > .about{
 						display: block;
 						float: left;
 						clear: both;
-						margin: 4px 0 0 0;
+						margin: 0;
 						width: 100%;
 						text-indent: 2px;
 						font-size: 14px;
-						color: #444444;
+						color: #898989;
 						white-space: normal;
-					}
-
-					@media screen and (max-width: 449px){
-						.profile-info .profile-details > .about{
-							margin: 0;
-						}
 					}
 
 

@@ -1,6 +1,6 @@
 <div id="app-relogin" class="dialog">
 	<div class="title">Your Session Expired</div>
-	<input type="email" id="relogin-email" placeholder="Email Address"/>
+	<input type="email" id="relogin-email" placeholder="Email Address" disabled />
 	<input type="password" id="relogin-password" placeholder="Password"/>
 	<button id="relogin">Login</button>
 	<button id="cancel-relogin">Cancel</button>
