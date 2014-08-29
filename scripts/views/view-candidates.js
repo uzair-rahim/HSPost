@@ -13,7 +13,7 @@ define([
 		className : "content",
 		template: Template,
 		events : {
-			
+			"click .grid-list > li" : "viewProfile"
 		},
 
 		initialize : function(){
@@ -35,6 +35,13 @@ define([
 			});
 
 			return totalCandidates !== 0;
+		},
+
+		viewProfile : function(event){
+			var guid = $(event.target).closest("li").attr("data-guid");
+			if(typeof(guid) !== "undefined"){
+				App.router.navigate("profile/"+guid, true);
+			}
 		},
 
 		serializeData : function(){

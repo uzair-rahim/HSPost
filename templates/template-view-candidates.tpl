@@ -13,7 +13,7 @@
 				</li>
 			{{else}}
 				{{#each candidates}}
-					<li class="tall">
+					<li class="tall" data-guid="{{user.guid}}">
 						<input type="checkbox" class="user-select"/>
 						<!-- Profile Picture -->
 						<div class="column user-picture">

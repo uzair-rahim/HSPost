@@ -22,7 +22,7 @@ define([
 		},
 
 		getFirstName : function(){
-			var firstname = this.options.model.firstname + "'";
+			var firstname = this.options.model.user.firstname + "'";
 			var lastCharacter = firstname.substr(firstname.length - 2, 1);
 			if(lastCharacter !== "s"){
 				firstname += "s"
@@ -35,7 +35,8 @@ define([
 				jsonObject.template = new Object();
 				jsonObject.template.title = this.getFirstName() + " Profile"
 				jsonObject.user = new Object();
-				jsonObject.user = this.options.model;
+				jsonObject.user = this.options.model.user;
+				console.log(jsonObject);
 			return jsonObject;
 		}
 		

@@ -25,6 +25,7 @@ define([
 				this.on("change", this.updateUserSession);
 				this.on("change:logged", this.loggedChanged);
 				this.on("change:expired", this.sessionExpired);
+				this.on("change:photo", this.photoChanged);
 				this.on("change:selectedEmployer", this.employerChanged);
 				this.on("change:notificationsCount", this.notificationsChanged);
 			},
@@ -84,7 +85,12 @@ define([
 			// Trigger session expired
 			sessionExpired : function(){
 				this.trigger("sessionExpired");
-			},	
+			},
+
+			// Trigger photo changed
+			photoChanged : function(){
+				this.trigger("photoChanged");
+			},
 
 			// Trigger employer changed
 			employerChanged : function(){

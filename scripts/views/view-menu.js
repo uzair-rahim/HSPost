@@ -31,6 +31,7 @@ define([
 			console.log("Menu view initialized...");
 
 			var appSession = this.options.app.session;
+			this.listenTo(appSession, "photoChanged", this.render);
 			this.listenTo(appSession, "employerChanged", this.render);
 			this.listenTo(appSession, "notificationsChanged", this.render);
 		},

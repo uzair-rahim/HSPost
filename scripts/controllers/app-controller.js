@@ -242,12 +242,25 @@ define([
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
-					// Get user
+					
+					var model = new Object();
 					var user = new ModelUser({guid : userGUID});
+						// Get user
 						user.getUser(function(data){
-							// Append jobs view
-							var view = new Profile({model : data});
-							App.layout.content.show(view);
+							model.user = new Object();
+							model.user = data;
+							// Get primary work history
+							user.getPrimaryWorkHistory(function(data){
+								model.user.primaryWorkHistory = data;
+								// Get work history
+								user.getWorkHistory(function(){
+									model.user.workHistory = new Object();
+									model.user.workHistory = data;	
+									// Append jobs view
+									var view = new Profile({model : model});
+									App.layout.content.show(view);	
+								});
+							});
 						});
 					
 					// Get Notifications

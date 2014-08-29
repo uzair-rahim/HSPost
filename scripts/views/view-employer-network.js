@@ -13,12 +13,19 @@ define([
 		className : "content",
 		template: Template,
 		events : {
-			
+			"click .grid-list > li" : "viewProfile"
 		},
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
 			console.log("Employer Network view initialized...");
+		},
+
+		viewProfile : function(event){
+			var guid = $(event.target).closest("li").attr("data-guid");
+			if(typeof(guid) !== "undefined"){
+				App.router.navigate("profile/"+guid, true);
+			}
 		},
 
 		serializeData : function(){

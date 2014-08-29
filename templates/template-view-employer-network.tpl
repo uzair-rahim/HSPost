@@ -13,7 +13,7 @@
 		<div class="grid-list-title">Employees ({{employees.length}})</div>
 		<ul class="grid-list">
 			{{#each employees}}
-				<li class="tall">
+				<li class="tall" data-guid="{{guid}}">
 					<input type="checkbox" class="user-select"/>
 					<!-- Profile Picture -->
 					<div class="column user-picture">
@@ -46,7 +46,7 @@
 		<div class="grid-list-title">Followers ({{followers.length}})</div>
 		<ul class="grid-list">
 			{{#each followers}}
-				<li class="tall">
+				<li class="tall" data-guid="{{guid}}">
 					<input type="checkbox" class="user-select"/>
 					<!-- Profile Picture -->
 					<div class="column user-picture">
@@ -79,7 +79,7 @@
 		<div class="grid-list-title">Endorsers ({{endorsers.length}})</div>
 		<ul class="grid-list">
 			{{#each endorsers}}
-				<li class="tall">
+				<li class="tall" data-guid="{{guid}}">
 					<!-- Profile Picture -->
 					<div class="column user-picture">
 						{{#if_not_null photo}}

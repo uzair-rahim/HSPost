@@ -41,7 +41,6 @@ define([
 			},
 
 			getUser : function(callback){
-				var that = this;
 				var url = this.urlRoot() + "/" + this.attributes.guid;
 				$.ajax({
 					type : "GET",
@@ -53,8 +52,47 @@ define([
 			},
 
 			getProfilePhoto : function(callback){
-				var that = this;
 				var url = this.urlRoot() + "/" + this.attributes.guid + "/profilePhoto" ;
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(response){
+						var error = response.responseJSON;
+						switch(error.errorCode){
+							case 4:
+								callback(null);
+							break;
+						}
+
+					}
+				});
+			},
+
+			getPrimaryWorkHistory : function(callback){
+				var url = this.urlRoot() + "/" + this.attributes.guid + "/workHistory/primary";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(response){
+						var error = response.responseJSON;
+						switch(error.errorCode){
+							case 4:
+								callback(null);
+							break;
+						}
+
+					}
+				});
+			},
+
+			getWorkHistory : function(callback){
+				var url = this.urlRoot() + "/" + this.attributes.guid + "/workHistory";
 				$.ajax({
 					type : "GET",
 					url : url,
