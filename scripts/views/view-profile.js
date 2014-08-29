@@ -21,10 +21,21 @@ define([
 			console.log("Profile view initialized...");
 		},
 
+		getFirstName : function(){
+			var firstname = this.options.model.firstname + "'";
+			var lastCharacter = firstname.substr(firstname.length - 2, 1);
+			if(lastCharacter !== "s"){
+				firstname += "s"
+			}
+			return firstname;
+		},
+
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.template.title = "Profile"
+				jsonObject.template.title = this.getFirstName() + " Profile"
+				jsobObject.user = new Object();
+				jsonObject.user = this.options.model;
 			return jsonObject;
 		}
 		

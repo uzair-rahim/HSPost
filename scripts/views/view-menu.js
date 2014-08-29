@@ -95,7 +95,8 @@ define([
 
 		profile : function(){
 			this.hideMenuAndNotification();
-			this.options.app.router.navigate("profile", true);
+			var userGUID = this.options.app.session.get("guid");
+			this.options.app.router.navigate("profile/"+userGUID, true);
 		},
 
 		messages : function(){

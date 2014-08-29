@@ -10,17 +10,17 @@ define([
 			controller : new AppController(),
 			
 			appRoutes : {
-				""		 	 : "main",
-				"dashboard"	 : "dashboard",
-				"login"	 	 : "login",
-				"jobs"	 	 : "jobs",
-				"searchJobs" : "searchJobs",
-				"candidates" : "candidates",
-				"network"	 : "network",
-				"profile"	 : "profile",
-				"messages"	 : "messages",
-				"settings"	 : "settings",
-				"logout" 	 : "logout"
+				""		 	 		: "main",
+				"dashboard"	 		: "dashboard",
+				"login"	 	 		: "login",
+				"jobs"	 	 		: "jobs",
+				"searchJobs" 		: "searchJobs",
+				"candidates" 		: "candidates",
+				"network"	 		: "network",
+				"profile/:userGUID"	: "profile",
+				"messages"	 		: "messages",
+				"settings"	 		: "settings",
+				"logout" 	 		: "logout"
 			}
 
 		});

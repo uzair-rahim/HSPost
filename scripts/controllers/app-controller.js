@@ -236,16 +236,20 @@ define([
 				}
 			},
 
-			profile : function(){
+			profile : function(userGUID){
 				console.log("Profile route...");
 				// If user is logged in and verified go to jobs screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
-					// Append jobs view
-					var view = new Profile();
-					App.layout.content.show(view);
-
+					// Get user
+					var user = new ModelUser({guid : userGUID});
+						user.getUser(function(data){
+							// Append jobs view
+							var view = new Profile({model : data});
+							App.layout.content.show(view);
+						});
+					
 					// Get Notifications
 					this.getNotifications();
 
