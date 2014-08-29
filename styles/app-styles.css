@@ -1136,91 +1136,91 @@ input::selection{
 					border-bottom: 1px dotted #dddddd;
 				}
 
-				.profile-name{
-					display: block;
-					float: left;
-					clear: both;
-					width: 100%;
-					font-size: 18px;
-					line-height: 24px;
-					color: #444444;
-					font-family: "Roboto", sans-serif;
-				}
+					.row-title{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+						font-size: 18px;
+						line-height: 24px;
+						color: #444444;
+						font-family: "Roboto", sans-serif;
+					}
 
-				.profile-info{
-					display: block;
-					float: left;
-					clear: both;
-					margin: 10px 0;
-					width: 100%;
-				}
+					.profile-info{
+						display: block;
+						float: left;
+						clear: both;
+						margin: 10px 0;
+						width: 100%;
+					}
 
-				.profile-info .profile-photo{
-					display: block;
-					float: left;
-					width: 78px;
-					height: 78px;
-					border: 1px solid #cccccc;
-					border-radius: 50%;
-					background-color: #eeeeee;
-					background-image: url("../images/icon-user-light.svg");
-					background-position: center 8px;
-					background-repeat: no-repeat;
-					background-size: auto 76px;
-					overflow: hidden;
-				}
-					.profile-info .profile-photo img{
+					.profile-info .profile-photo{
+						display: block;
+						float: left;
 						width: 78px;
 						height: 78px;
-					}
-
-				.profile-info .profile-details{
-					display: block;
-					float: left;
-					margin: 10px 0 0 8px;
-					width: calc(100% - 90px);
-				}
-
-					.profile-info .profile-details > .primary-work{
-						display: block;
-						float: left;
-						clear: both;
-						width: 100%;
-					}
-
-					.profile-info .profile-details > .primary-work .position,
-					.profile-info .profile-details > .primary-work .location{
-						display: block;
-						float: left;
-						margin: 0 15px 4px 0;
-						font-weight: bold;
-						font-size: 14px;
-						text-indent: 16px;
-						color: #444444;
-						background-image: url("../images/icon-briefcase.svg");
+						border: 1px solid #cccccc;
+						border-radius: 50%;
+						background-color: #eeeeee;
+						background-image: url("../images/icon-user-light.svg");
+						background-position: center 8px;
 						background-repeat: no-repeat;
-						background-position: 0 1px;
-						background-size: 12px;
+						background-size: auto 76px;
 						overflow: hidden;
-						text-overflow: ellipsis;
 					}
+						.profile-info .profile-photo img{
+							width: 78px;
+							height: 78px;
+						}
 
-					.profile-info .profile-details > .primary-work .location{
-						text-indent: 14px;
-						background-image: url("../images/icon-location.svg");
-					}
-
-					.profile-info .profile-details > .about{
+					.profile-info .profile-details{
 						display: block;
 						float: left;
-						clear: both;
-						margin: 0;
-						width: 100%;
-						text-indent: 2px;
-						font-size: 14px;
-						color: #898989;
-						white-space: normal;
+						margin: 10px 0 0 8px;
+						width: calc(100% - 90px);
 					}
+
+						.profile-info .profile-details > .primary-work{
+							display: block;
+							float: left;
+							clear: both;
+							width: 100%;
+						}
+
+						.profile-info .profile-details > .primary-work .position,
+						.profile-info .profile-details > .primary-work .location{
+							display: block;
+							float: left;
+							margin: 0 15px 4px 0;
+							font-weight: bold;
+							font-size: 14px;
+							text-indent: 16px;
+							color: #444444;
+							background-image: url("../images/icon-briefcase.svg");
+							background-repeat: no-repeat;
+							background-position: 0 1px;
+							background-size: 12px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+						}
+
+						.profile-info .profile-details > .primary-work .location{
+							text-indent: 14px;
+							background-image: url("../images/icon-location.svg");
+						}
+
+						.profile-info .profile-details > .about{
+							display: block;
+							float: left;
+							clear: both;
+							margin: 0;
+							width: 100%;
+							text-indent: 2px;
+							font-size: 14px;
+							color: #898989;
+							white-space: normal;
+						}
 
 
 

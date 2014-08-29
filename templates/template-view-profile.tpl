@@ -1,6 +1,6 @@
 <div class="page-title">{{template.title}}</div>
 <div class="profile-row">
-	<div class="profile-name">{{user.firstname}} {{user.lastname}}</div>
+	<div class="row-title">{{user.firstname}} {{user.lastname}}</div>
 	<div class="profile-info">
 		<div class="profile-photo">
 			{{#if_not_null user.photo}}
@@ -35,4 +35,7 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="profile-row">
+	<div class="row-title">Work History</div>
 </div>
