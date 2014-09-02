@@ -253,9 +253,9 @@ define([
 							user.getPrimaryWorkHistory(function(data){
 								model.user.primaryWorkHistory = data;
 								// Get work history
-								user.getWorkHistory(function(){
+								user.getWorkHistory(function(data){
 									model.user.workHistory = new Object();
-									model.user.workHistory = data;	
+									model.user.workHistory = data.history;	
 									// Append jobs view
 									var view = new Profile({model : model});
 									App.layout.content.show(view);	

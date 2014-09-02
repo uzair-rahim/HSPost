@@ -285,7 +285,7 @@ input::selection{
 				border-radius: 50%;
 				border: 1px solid #323232;
 				background-color: #434343;
-				background-image: url("../images/icon-location.svg");
+				background-image: url("../images/icon-location-dark.svg");
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: 40px;
@@ -1207,7 +1207,7 @@ input::selection{
 
 						.profile-info .profile-details > .primary-work .location{
 							text-indent: 14px;
-							background-image: url("../images/icon-location.svg");
+							background-image: url("../images/icon-location-dark.svg");
 						}
 
 						.profile-info .profile-details > .about{
@@ -1222,6 +1222,96 @@ input::selection{
 							white-space: normal;
 						}
 
+				ul.work-history-list{
+					display: block;
+					float: left;
+					clear: both;
+					width: 100%;
+					margin: 10px 0 0 0;
+				}
+
+					ul.work-history-list li{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+					}
+
+					ul.work-history-list li:nth-child(even){
+						background-color: #fcfcfc;
+					}
+
+						ul.work-history-list li > .empty{
+							color: #aaaaaa;
+							font-size: 14px;
+						}
+
+						ul.work-history-list li .work-history-info{
+							display: block;
+							float: left;
+							clear: both;
+							width: 100%;
+							padding: 5px 0;
+						}
+
+							ul.work-history-list li .work-history-info > .employer-logo{
+								display: block;
+								float: left;
+								width: 60px;
+								height: 60px;
+								margin: 0 0 0 5px;
+								border: 1px solid #cccccc;
+								border-radius: 50%;
+								background-color: #eeeeee;
+								background-image: url("../images/icon-location-light.svg");
+								background-position: center;
+								background-repeat: no-repeat;
+								background-size: auto 30px;
+								overflow: hidden;
+							}
+
+								ul.work-history-list li .work-history-info > .employer-logo img{
+									width: 60px;
+									height: 60px;
+								}
+
+							ul.work-history-list li .work-history-info > .employment-details{
+								float: left;
+								margin: 4px 0 0 8px;
+								width: calc(100% - 80px);
+							}
+
+								ul.work-history-list li .work-history-info > .employment-details > .position,
+								ul.work-history-list li .work-history-info > .employment-details > .location,
+								ul.work-history-list li .work-history-info > .employment-details > .dates{
+									display: block;
+									float: left;
+									clear: both;
+									margin: 0 0 4px 0;
+									font-size: 14px;
+									text-indent: 16px;
+									color: #444444;
+									background-image: url("../images/icon-briefcase.svg");
+									background-repeat: no-repeat;
+									background-position: 0 1px;
+									background-size: 12px;
+									overflow: hidden;
+									text-overflow: ellipsis;
+									width: 100%;
+								}
+
+								ul.work-history-list li .work-history-info > .employment-details > .location{
+									text-indent: 14px;
+									background-image: url("../images/icon-location-dark.svg");	
+								}
+
+								ul.work-history-list li .work-history-info > .employment-details > .dates{
+									margin: 0;
+									background-image: none;
+									font-size: 12px;
+									color: #888888;
+									text-indent: 2px;
+								}
 
 
 
