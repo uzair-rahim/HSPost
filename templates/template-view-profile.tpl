@@ -34,6 +34,20 @@
 				{{/if_not_null}}	
 			</div>
 		</div>
+		<div class="profile-kpis">
+			<div class="endorsements">
+				<label>Endorsements</label>
+				<div>999+</div>
+			</div>
+			<div class="connections">
+				<label>Connections</label>
+				<div>999+</div>
+			</div>
+			<div class="places-worked">
+				<label>Places Worked</label>
+				<div>{{user.placesWorkedCount}}</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="profile-row">

@@ -1151,7 +1151,7 @@ input::selection{
 						display: block;
 						float: left;
 						clear: both;
-						margin: 10px 0;
+						margin: 10px 0 0 0;
 						width: 100%;
 					}
 
@@ -1221,6 +1221,101 @@ input::selection{
 							color: #898989;
 							white-space: normal;
 						}
+
+					.profile-info .profile-kpis{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+						margin: 10px 0 0 0;
+						border-top: 1px dotted #dddddd;
+					}
+
+						.profile-info .profile-kpis > .endorsements,
+						.profile-info .profile-kpis > .connections,
+						.profile-info .profile-kpis > .places-worked{
+							display: block;
+							float: left;
+							margin: 4px 0;
+							max-width: 33%;
+							min-width: 90px;
+							width: 100%;
+							height: 40px;
+							text-indent: 34px;
+							border-right: 1px dotted #dddddd;
+							background-image: url("../images/icon-thumbs-up-pink.svg");
+							background-repeat: no-repeat;
+							background-position: 6px 10px;
+							background-size: 20px;
+						}
+
+						.profile-info .profile-kpis > .connections{
+							background-image: url("../images/icon-users-pink.svg");
+						}
+
+						.profile-info .profile-kpis > .places-worked{
+							max-width: calc(34% - 2px);
+							text-indent: 30px;
+							border-right: none;
+							background-image: url("../images/icon-location-pink.svg");
+							background-position: 8px 10px;
+							background-size: 18px;
+						}
+
+						.profile-info .profile-kpis > .endorsements:hover,
+						.profile-info .profile-kpis > .connections:hover,
+						.profile-info .profile-kpis > .places-worked:hover{
+							background-color: #fffbf5;
+						}
+
+							.profile-info .profile-kpis > .endorsements label,
+							.profile-info .profile-kpis > .connections label,
+							.profile-info .profile-kpis > .places-worked label{
+								display: block;
+								float: left;
+								clear: both;
+								color: #444444;
+								font-size: 14px;
+								margin: 4px 0 0 0;
+								font-weight: bolder;
+							}
+
+							.profile-info .profile-kpis > .endorsements div,
+							.profile-info .profile-kpis > .connections div,
+							.profile-info .profile-kpis > .places-worked div{
+								display: block;
+								float: left;
+								clear: both;
+								font-size: 14px;
+							}
+
+							@media screen and (max-width: 649px){
+								#app-main.collapse .profile-info .profile-kpis > .endorsements label,
+								#app-main.collapse .profile-info .profile-kpis > .connections label,
+								#app-main.collapse .profile-info .profile-kpis > .places-worked label{
+									display: none;
+								}
+
+								#app-main.collapse .profile-info .profile-kpis > .endorsements div,
+								#app-main.collapse .profile-info .profile-kpis > .connections div,
+								#app-main.collapse .profile-info .profile-kpis > .places-worked div{
+									margin: 13px 0 0 0;
+								}
+							}
+
+							@media screen and (max-width: 449px){
+								.profile-info .profile-kpis > .endorsements label,
+								.profile-info .profile-kpis > .connections label,
+								.profile-info .profile-kpis > .places-worked label{
+									display: none;
+								}
+
+								.profile-info .profile-kpis > .endorsements div,
+								.profile-info .profile-kpis > .connections div,
+								.profile-info .profile-kpis > .places-worked div{
+									margin: 13px 0 0 0;
+								}
+							}
 
 				ul.work-history-list{
 					display: block;

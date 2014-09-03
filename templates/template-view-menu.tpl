@@ -39,11 +39,11 @@
 			<label>Dashboard</label>
 		</li>
 		<li class="divider"></li>
-		<li id="menu-jobs">
-			<label>Jobs</label>
-		</li>
 		<li id="menu-candidates">
 			<label>Candidates</label>
+		</li>
+		<li id="menu-jobs">
+			<label>Jobs</label>
 		</li>
 	{{/if_not_eq}}
 	{{#if_eq user.type "user"}}

@@ -33,10 +33,13 @@ define([
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.template.title = this.getFirstName() + " Profile"
+				if(App.session.get("guid") === this.options.model.user.guid){
+					jsonObject.template.title = "My Profile"
+				}else{
+					jsonObject.template.title = this.getFirstName() + " Profile"	
+				}
 				jsonObject.user = new Object();
 				jsonObject.user = this.options.model.user;
-				console.log(jsonObject);
 			return jsonObject;
 		}
 		
