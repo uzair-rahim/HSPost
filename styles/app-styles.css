@@ -58,6 +58,16 @@ button:disabled{
 		border: 1px solid #ff0033;
 	}
 
+	button.secondary{
+		color: #ff9f00;
+		border: 1px solid #ff9f00;
+	}
+
+	button.secondary:hover{
+		color: #f67c0b;
+		border: 1px solid #f67c0b;
+	}
+
 input[type=input],
 input[type=email],
 input[type=password]{
@@ -1220,6 +1230,53 @@ input::selection{
 							font-size: 14px;
 							color: #898989;
 							white-space: normal;
+						}
+
+					.profile-info .profile-actions{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+						margin: 5px 0;
+					}
+
+					@media screen and (max-width: 499px){
+						.profile-info .profile-actions{
+							margin: 20px 0 5px 0;		
+						}
+					}
+
+						.profile-info .profile-actions button{
+							padding: 6px 20px 6px 30px;
+							margin: 0 0 0 10px;
+							float: right;
+						}
+
+						.profile-info .profile-actions button.connect{
+							background-image: url("../images/icon-users-pink.svg");
+							background-repeat: no-repeat;
+							background-position: 10px 4px;
+							background-size: 16px;
+						}
+
+						.profile-info .profile-actions button.endorse{
+							background-image: url("../images/icon-thumbs-up-pink.svg");
+							background-repeat: no-repeat;
+							background-position: 9px 4px;
+							background-size: 16px;
+						}
+
+						@media screen and (max-width: 449px){
+							.profile-info .profile-actions button{
+								padding: 6px 0;
+								width: calc(50% - 10px);
+								margin: 0 5px;
+							}
+
+							.profile-info .profile-actions button.connect,
+							.profile-info .profile-actions button.endorse{
+								background-image: none;
+							}
 						}
 
 					.profile-info .profile-kpis{

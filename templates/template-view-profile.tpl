@@ -34,6 +34,10 @@
 				{{/if_not_null}}	
 			</div>
 		</div>
+		<div class="profile-actions">
+			<button class="primary connect">Connect</button>
+			<button class="primary endorse">Endorse</button>
+		</div>
 		<div class="profile-kpis">
 			<div class="endorsements">
 				<label>Endorsements</label>
