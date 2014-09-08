@@ -34,10 +34,12 @@
 				{{/if_not_null}}	
 			</div>
 		</div>
+		{{#if_false template.self}}
 		<div class="profile-actions">
 			<button class="primary connect">Connect</button>
 			<button class="primary endorse">Endorse</button>
 		</div>
+		{{/if_false}}
 		<div class="profile-kpis">
 			<div class="endorsements">
 				<label>Endorsements</label>

@@ -35,8 +35,10 @@ define([
 				jsonObject.template = new Object();
 				if(App.session.get("guid") === this.options.model.user.guid){
 					jsonObject.template.title = "My Profile"
+					jsonObject.template.self = true;
 				}else{
-					jsonObject.template.title = this.getFirstName() + " Profile"	
+					jsonObject.template.title = this.getFirstName() + " Profile";
+					jsonObject.template.self = false;
 				}
 				jsonObject.user = new Object();
 				jsonObject.user = this.options.model.user;

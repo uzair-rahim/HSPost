@@ -5,7 +5,8 @@
 	<li class="divider"></li>
 	<li id="copy-job-link">Copy job link</li>
 	<li id="share-with-employees">Share with employees</li>
-	<li id="share-with-followers">Share with followes</li>
+	<li id="share-with-followers">Share with followers</li>
+	<li id="share-with-connections">Share with connections</li>
 	<li class="divider"></li>
 	<li id="delete-job">Delete</li>
 </ul>

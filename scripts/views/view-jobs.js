@@ -80,6 +80,7 @@ define([
 						menu.find("#copy-job-link").addClass("disabled");
 						menu.find("#share-with-employees").addClass("disabled");
 						menu.find("#share-with-followers").addClass("disabled");
+						menu.find("#share-with-connections").addClass("disabled");
 				}
 			});
 
