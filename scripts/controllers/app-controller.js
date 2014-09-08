@@ -43,18 +43,19 @@ define([
 					App.router.navigate("login", true);
 				// If user is logged in and verified then go to...	
 				}else if(App.session.isLoggedIn() && App.session.isVerified()){
+					var route = Utils.GetDefaultRoute();
 					switch(App.session.getRole()){
 						case "user":
 							// ...search jobs screen if user is user
 							App.router.navigate("searchJobs", true);
 						break;
 						case "employerAdmin":
-							// ...dashboard screen if user is admin
-							App.router.navigate("dashboard", true);
+							// ...default screen if user is admin
+							App.router.navigate(route, true);
 						break;
 						case "support":
-							// ...dashboard screen if user is support
-							App.router.navigate("dashboard", true);
+							// ...default screen if user is support
+							App.router.navigate(route, true);
 						break;
 					}
 				}
@@ -68,18 +69,19 @@ define([
 					App.layout.content.show(view);
 				// If user is logged in and verified then go to...
 				}else if(App.session.isLoggedIn() && App.session.isVerified()){
+					var route = Utils.GetDefaultRoute();
 					switch(App.session.getRole()){
 						case "user":
 							// ...search jobs screen if user is user
 							App.router.navigate("searchJobs", true);
 						break;
 						case "employerAdmin":
-							// ...screen if user is admin
-							App.router.navigate("dashboard", true);
+							// ...default screen if user is admin
+							App.router.navigate(route, true);
 						break;
 						case "support":
-							// ...dashboard screen if user is support
-							App.router.navigate("dashboard", true);
+							// ...default screen if user is support
+							App.router.navigate(route, true);
 						break;
 					}
 				}
@@ -88,7 +90,7 @@ define([
 			dashboard : function(){
 				console.log("Dashboard route...");
 				// If user is logged in and verified then...
-				if(App.session.isLoggedIn() && App.session.isVerified()){
+				if(Utils.AppConfig.dashboard && App.session.isLoggedIn() && App.session.isVerified()){
 					// ...go to search jobs page screen if user is user
 					if(App.session.isUser()){
 						App.router.navigate("searchJobs", true);
@@ -142,7 +144,8 @@ define([
 				// If user is logged in and verified go to jobs screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					if(!App.session.isUser()){
-						App.router.navigate("dashboard", true);
+						var route = Utils.GetDefaultRoute();
+						App.router.navigate(route, true);
 					}else{
 						// ...show loading animation and clear out the current content
 						this.showLoadingView();
@@ -339,13 +342,14 @@ define([
 								// ...go to search jobs screen
 								App.router.navigate("searchJobs", true);
 							}else{
-								// ...get all employers and go to dashboard
+								// ...get all employers and go to default
 								var userEmployers = App.session.getEmployers();
 								var collection = new CollectionEmployers();
 									collection.getEmployers(userEmployers, function(){
 										App.session.set({employers : collection.models});
 										App.menu.render();
-										App.router.navigate("dashboard", true);
+										var route = Utils.GetDefaultRoute();
+										App.router.navigate(route, true);
 									});
 							}
 						});

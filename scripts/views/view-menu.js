@@ -175,6 +175,8 @@ define([
 
 		serializeData : function(){
 			var jsonObject = new Object();
+				jsonObject.config = new Object;
+				jsonObject.config = Utils.AppConfig;
 				jsonObject.user = new Object();
 				jsonObject.user = this.getUser();
 				jsonObject.user.type = this.getUserRole();

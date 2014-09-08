@@ -18,6 +18,28 @@ define([
 				zip 			: /(^\d{5}$)|(^\d{5}-\d{4}$)/
 			},
 
+			// App Configurations
+			AppConfig : {
+				// Menu
+				notification	: true,
+				dashboard		: true,
+				candidates		: true,
+				jobs			: true,
+				network			: true,
+				profile			: true,
+				messages		: true,
+				settings		: true
+			},
+
+			// Get Default Route
+			GetDefaultRoute : function(){
+				if(this.AppConfig.dashboard){
+					return "dashboard";
+				}else{
+					return 	"candidates";
+				}
+			},
+
 			// Get URL
 			GetURL : function(url){
 				//return this.CONTEXT + url;

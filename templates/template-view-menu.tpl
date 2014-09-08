@@ -29,16 +29,20 @@
 	{{/if_gt}}
 </div>
 <ul class="menu-list">
+	{{#if_true config.notification}}
 	<li id="menu-notifications">
 		<label>Notifications</label>
 		<div class="count">{{notificationsCount}}</div>
 	</li>
 	<li class="divider"></li>
+	{{/if_true}}
 	{{#if_not_eq user.type "user"}}
+		{{#if_true config.dashboard}}
 		<li id="menu-dashboard">
 			<label>Dashboard</label>
 		</li>
 		<li class="divider"></li>
+		{{/if_true}}
 		<li id="menu-candidates">
 			<label>Candidates</label>
 		</li>
