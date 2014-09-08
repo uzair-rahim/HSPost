@@ -55,14 +55,20 @@
 			<label>Jobs</label>
 		</li>
 	{{/if_eq}}
+	{{#if_not_eq user.type "user"}}
 	<li id="menu-network">
 		<label>Network</label>
 	</li>
-	<li id="menu-profile">
-		<label>Profile</label>
-	</li>
+	{{/if_not_eq}}
 	<li id="menu-messages">
 		<label>Messages</label>
+	</li>
+	<li class="divider"></li>
+	<li id="menu-connections">
+		<label>Connections</label>
+	</li>
+	<li id="menu-profile">
+		<label>Profile</label>
 	</li>
 	<li class="divider"></li>
 	<li id="menu-settings">

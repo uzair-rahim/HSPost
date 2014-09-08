@@ -18,6 +18,7 @@ define([
 				"candidates" 		: "candidates",
 				"network"	 		: "network",
 				"profile/:userGUID"	: "profile",
+				"connections"		: "connections",
 				"messages"	 		: "messages",
 				"settings"	 		: "settings",
 				"logout" 	 		: "logout"

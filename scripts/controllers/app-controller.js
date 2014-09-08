@@ -9,8 +9,8 @@ define([
 		"../scripts/views/view-jobs",
 		"../scripts/views/view-search-jobs",
 		"../scripts/views/view-candidates",
-		"../scripts/views/view-user-network",
-		"../scripts/views/view-employer-network",
+		"../scripts/views/view-connections",
+		"../scripts/views/view-network",
 		"../scripts/views/view-profile",
 		"../scripts/views/view-messages",
 		"../scripts/views/view-user-settings",
@@ -21,7 +21,7 @@ define([
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, UserNetwork, EmployerNetwork, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -199,9 +199,7 @@ define([
 					this.showLoadingView();
 					// If user is user
 					if(App.session.isUser()){
-						// Append View
-						var view = new UserNetwork();
-						App.layout.content.show(view);
+						App.router.navigate("searchJobs", true);
 					// If user is admin or support
 					}else{
 						// Append networks view
@@ -223,12 +221,31 @@ define([
 									model.endorsers = new Object();
 									model.endorsers = data;
 									// Append View
-									var view = new EmployerNetwork({model : model});
+									var view = new Network({model : model});
 									App.layout.content.show(view);
 								});
 							});
 						});
 					}
+
+					// Get Notifications
+					this.getNotifications();
+
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			connections : function(){
+				console.log("Connections route...");
+				// If user is logged in and verified go to connections screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show loading animation and clear out the current content
+					this.showLoadingView();
+					// Append View
+						var view = new Connections();
+						App.layout.content.show(view);
 
 					// Get Notifications
 					this.getNotifications();

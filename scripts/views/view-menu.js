@@ -19,6 +19,7 @@ define([
 			"click #menu-jobs"		 	: "jobs",
 			"click #menu-search-jobs"	: "searchJobs",
 			"click #menu-candidates" 	: "candidates",
+			"click #menu-connections"	: "connections",
 			"click #menu-network"	 	: "network",
 			"click #menu-profile"		: "profile",
 			"click #menu-messages"	 	: "messages",
@@ -86,6 +87,12 @@ define([
 		candidates : function(){
 			this.hideMenuAndNotification();
 			this.options.app.router.navigate("candidates", true);
+		},
+
+		connections : function(){
+			this.options.app.layout.hideMenu();
+			this.options.app.layout.hideNotifications();
+			this.options.app.router.navigate("connections", true);
 		},
 
 		network : function(){
