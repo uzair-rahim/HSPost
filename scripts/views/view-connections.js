@@ -21,10 +21,17 @@ define([
 			console.log("Connections view initialized...");
 		},
 
+		hasConnections : function(){
+			var connections = this.options.models;
+			return connections.length !== 0;
+		},
+
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
 				jsonObject.template.title = "My Connections"
+				jsonObject.hasConnections = this.hasConnections();
+				jsonObject.connections = this.options.models
 			return jsonObject;
 		}
 		

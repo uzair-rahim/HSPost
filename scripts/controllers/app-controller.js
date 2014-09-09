@@ -17,11 +17,12 @@ define([
 		"../scripts/views/view-employer-settings",
 		"../scripts/models/model-employer",
 		"../scripts/models/model-user",
+		"../scripts/models/model-network",
 		"../scripts/collections/collection-employers",
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -244,8 +245,14 @@ define([
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
 					// Append View
-						var view = new Connections();
-						App.layout.content.show(view);
+
+						var userGUID = App.session.get("guid");
+						var user = new ModelUser();
+							user.getNetworkUsers(userGUID, function(data){
+								var view = new Connections({models : data});
+								App.layout.content.show(view);
+
+							});
 
 					// Get Notifications
 					this.getNotifications();

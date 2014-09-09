@@ -109,7 +109,23 @@ define([
 
 					}
 				});
-			}
+			},
+
+			getNetworkUsers : function(guid,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + guid + "/network/users";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error fetching user work history");
+						Utils.ShowToast({message : "Error fetching user network"});
+					}
+				});
+			},
 
 		
 		});
