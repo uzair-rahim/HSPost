@@ -127,6 +127,38 @@ define([
 				});
 			},
 
+			getEndorsingUsers : function(guid,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + guid + "/endorsements";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error fetching user endorsements");
+						Utils.ShowToast({message : "Error fetching user endorsements"});
+					}
+				});
+			},
+
+			getFollowedEmployers : function(guid,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + guid + "/network/employers";
+				$.ajax({
+					type : "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error fetching user places");
+						Utils.ShowToast({message : "Error fetching user places"});
+					}
+				});
+			},
+
 		
 		});
 

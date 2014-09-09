@@ -54,17 +54,29 @@ define([
 				tabs.removeClass("selected");
 		},
 
+		hasEndorsements : function(){
+			var endorsements = this.options.models.endorsements;
+			return endorsements.length !== 0;
+		},
+
 		hasConnections : function(){
-			var connections = this.options.models;
+			var connections = this.options.models.connections;
 			return connections.length !== 0;
+		},
+
+		hasPlaces : function(){
+			var places = this.options.models.places;
+			return places.length !== 0;
 		},
 
 		serializeData : function(){
 			var jsonObject = new Object();
-				jsonObject.template = new Object();
-				jsonObject.template.title = "My Connections"
+				jsonObject.hasEndorsements = this.hasEndorsements();
+				jsonObject.endorsements = this.options.models.endorsements
 				jsonObject.hasConnections = this.hasConnections();
-				jsonObject.connections = this.options.models
+				jsonObject.connections = this.options.models.connections
+				jsonObject.hasPlaces = this.hasPlaces();
+				jsonObject.places = this.options.models.places
 			return jsonObject;
 		}
 		

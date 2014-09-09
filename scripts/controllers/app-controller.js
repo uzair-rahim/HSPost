@@ -244,14 +244,26 @@ define([
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
-					// Append View
-
+						var model = new Object();
 						var userGUID = App.session.get("guid");
 						var user = new ModelUser();
-							user.getNetworkUsers(userGUID, function(data){
-								var view = new Connections({models : data});
-								App.layout.content.show(view);
-
+							// Get Endorsements
+							user.getEndorsingUsers(userGUID, function(data){
+								model.endorsements = new Object();
+								model.endorsements = data;
+								// Get Connections
+								user.getNetworkUsers(userGUID, function(data){
+									model.connections = new Object();
+									model.connections = data;
+									// Get Places
+									user.getFollowedEmployers(userGUID,function(data){
+										model.places = new Object();
+										model.places = data;
+										//Append View
+										var view = new Connections({models : model});
+										App.layout.content.show(view);
+									});
+								});
 							});
 
 					// Get Notifications
