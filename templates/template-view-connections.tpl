@@ -1,36 +1,52 @@
-<div class="page-title">{{template.title}}</div>
-{{#if_true hasConnections}}
-	<div class="grid-list-title">{{jobName}}</div>
-	<ul class="grid-list">
-		{{#each connections}}
-			<li class="tall" data-guid="{{guid}}">
-				<!-- Profile Picture -->
-				<div class="column user-picture">
-					{{#if_not_null photo}}
-						<img src="{{photo.url}}"/>
-					{{/if_not_null}}
-				</div>
-				<!-- User Info -->
-				<div class="column user-info">
-					<div class="name">{{firstname}} {{lastname}}</div>
-					<div class="job">
-						{{#if_not_null primaryWorkHistory}}
-							{{#each primaryWorkHistory.jobs}}
-								{{jobName}} 
-							{{/each}} @ 
-						{{primaryWorkHistory.employer.name}}
-						{{else}}
-							Not Available
+<ul class="tabs">
+	<li id="tab-endorsements" class="selected">Endorsements</li>
+	<li id="tab-people">People</li>
+	<li id="tab-places">Places</li>
+</ul>
+<div id="panel-endorsements" class="panel show">
+	<div class="empty-page">
+		Looks like You don't have any endorsements.
+	</div>
+</div>
+<div id="panel-people" class="panel">
+	{{#if_true hasConnections}}
+		<div class="grid-list-title">My Connections</div>
+		<ul class="grid-list">
+			{{#each connections}}
+				<li class="tall" data-guid="{{guid}}">
+					<!-- Profile Picture -->
+					<div class="column user-picture">
+						{{#if_not_null photo}}
+							<img src="{{photo.url}}"/>
 						{{/if_not_null}}
 					</div>
-				</div>
-				<!-- More -->
-				<div class="column more"></div>
-			</li>
-		{{/each}}
-	</ul>	
-{{else}}
+					<!-- User Info -->
+					<div class="column user-info">
+						<div class="name">{{firstname}} {{lastname}}</div>
+						<div class="job">
+							{{#if_not_null primaryWorkHistory}}
+								{{#each primaryWorkHistory.jobs}}
+									{{jobName}} 
+								{{/each}} @ 
+							{{primaryWorkHistory.employer.name}}
+							{{else}}
+								Not Available
+							{{/if_not_null}}
+						</div>
+					</div>
+					<!-- More -->
+					<div class="column more"></div>
+				</li>
+			{{/each}}
+		</ul>	
+	{{else}}
+		<div class="empty-page">
+			Looks like You don't have any Connections.
+		</div>
+	{{/if_true}}
+</div>
+<div id="panel-places" class="panel">
 	<div class="empty-page">
-		Looks like you don't have any Connections.
+		Looks like You're not following any stores.
 	</div>
-{{/if_true}}
+</div>

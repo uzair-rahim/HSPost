@@ -44,6 +44,6 @@
 	{{/each}}
 {{else}}
 	<div class="empty-page">
-		Looks like you don't have any Candidates.
+		Looks like You don't have any Candidates.
 	</div>
 {{/if_true}}

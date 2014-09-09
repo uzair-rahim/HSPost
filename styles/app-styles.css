@@ -1098,6 +1098,7 @@ input::selection{
 					display: block;
 					float: left;
 					clear: both;
+					margin: 0 0 10px 0;
 					width: 100%;
 					min-width: 320px;
 					background-color: #e5e5e5;
@@ -1131,7 +1132,16 @@ input::selection{
 					color: #ff9f00;
 				}
 
+				.panel{
+					display: none;
+					float: left;
+					clear: both;
+					width: 100%;
+				}
 
+				.panel.show{
+					display: block;
+				}
 
 
 				.profile-row{

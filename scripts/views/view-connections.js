@@ -13,12 +13,45 @@ define([
 		className : "content",
 		template: Template,
 		events : {
-			
+			"click #tab-endorsements"	: "showEndorsements",
+			"click #tab-people" 		: "showPeople",
+			"click #tab-places" 		: "showPlaces"
 		},
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
 			console.log("Connections view initialized...");
+		},
+
+		showEndorsements : function(event){
+			this.hidePanels();
+			var panel = $("#panel-endorsements");
+				panel.addClass("show");
+			var tab = $(event.target).closest("ul.tabs li");
+				tab.addClass("selected");
+		},
+
+		showPeople : function(event){
+			this.hidePanels();
+			var panel = $("#panel-people");
+				panel.addClass("show");
+			var tab = $(event.target).closest("ul.tabs li");
+				tab.addClass("selected");
+		},
+
+		showPlaces : function(event){
+			this.hidePanels();
+			var panel = $("#panel-places");
+				panel.addClass("show");
+			var tab = $(event.target).closest("ul.tabs li");
+				tab.addClass("selected");
+		},
+
+		hidePanels : function(){
+			var panels = $(".panel");
+				panels.removeClass("show");
+			var tabs = $("ul.tabs li");
+				tabs.removeClass("selected");
 		},
 
 		hasConnections : function(){
