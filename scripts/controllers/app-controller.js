@@ -370,6 +370,7 @@ define([
 				console.log("Logout route...");
 				Utils.HideModal();
 				Utils.HideReloginDialog();
+				App.abortAllRequests();
 				// Set logged to false and redirect to login screen
 				App.session.set({logged : false, expired : false});
 				App.router.navigate("login", true);

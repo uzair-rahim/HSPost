@@ -75,6 +75,22 @@ define([
 
 		// Application AJAX event handlers
 
+		// AJAX Setup
+		App.requestPool = [];
+		App.abortAllRequests = function(){
+			$.each(App.requestPool, function(){
+				this.abort();
+			});
+
+			App.requestPool.length = 0;
+		};
+
+		// AJAX Send
+		// The method is called before an AJAX request is sent
+		$(document).ajaxSend(function(event,request,options){
+			App.requestPool.push(request);
+		});
+
 		// AJAX Start
 		// The method is called when the first AJAX request begins
 		$(document).ajaxStart(function(){
@@ -89,7 +105,16 @@ define([
 
 		// AJAX Complete
 		// The method is called when an AJAX request completes
-		$(document).ajaxComplete(function(){
+		$(document).ajaxComplete(function(event,request,options){
+			var index = App.requestPool.indexOf(request);
+			if (index > -1) {
+				App.requestPool.splice(index, 1);
+			}
+		});
+
+		// AJAX Success
+		// The method is called after an AJAX request completes successfully
+		$(document).ajaxSuccess(function(){
 			
 		});
 
@@ -103,18 +128,6 @@ define([
 				Utils.ShowModal();
 				Utils.ShowReloginDialog();
 			}
-		});
-
-		// AJAX Send
-		// The method is called before an AJAX request is sent
-		$(document).ajaxSend(function(){
-			
-		});
-
-		// AJAX Success
-		// The method is called after an AJAX request completes successfully
-		$(document).ajaxSuccess(function(){
-			
 		});
 
 		// Global Click Handler
