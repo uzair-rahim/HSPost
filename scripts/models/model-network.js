@@ -44,7 +44,6 @@ define([
 					},
 					error : function(){
 						console.log("Error fetching sent requests");
-						Utils.ShowToast({message : "Error fetching sent requests"});
 					}
 				});
 			},
@@ -60,7 +59,6 @@ define([
 					},
 					error : function(){
 						console.log("Error fetching receieved requests");
-						Utils.ShowToast({message : "Error fetching receieved requests"});
 					}
 				});
 			}

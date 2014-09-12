@@ -22,7 +22,7 @@ define([
 			AppConfig : {
 				// Menu
 				notification	: true,
-				dashboard		: true,
+				dashboard		: false,
 				candidates		: true,
 				jobs			: true,
 				network			: true,

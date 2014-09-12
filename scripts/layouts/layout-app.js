@@ -131,7 +131,6 @@ define([
 					Utils.ShowToast({message : auth.validationError[0].message});
 				}else{
 					dialog.addClass("load");
-					cancel.prop("disabled", true);
 					auth.save(credentials, options);
 				}
 

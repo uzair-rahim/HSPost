@@ -122,7 +122,6 @@ define([
 					},
 					error : function(){
 						console.log("Error fetching user work history");
-						Utils.ShowToast({message : "Error fetching user network"});
 					}
 				});
 			},
@@ -138,7 +137,6 @@ define([
 					},
 					error : function(){
 						console.log("Error fetching user endorsements");
-						Utils.ShowToast({message : "Error fetching user endorsements"});
 					}
 				});
 			},
@@ -154,7 +152,6 @@ define([
 					},
 					error : function(){
 						console.log("Error fetching user places");
-						Utils.ShowToast({message : "Error fetching user places"});
 					}
 				});
 			},
