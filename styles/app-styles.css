@@ -887,6 +887,7 @@ input::selection{
 					display: block;
 					float: left;
 					width: calc(100% - 30px);
+					min-width: 290px;
 					margin: 0 15px 15px 15px;
 					overflow: hidden;
 					white-space: nowrap;
