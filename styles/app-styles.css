@@ -248,6 +248,25 @@ input::selection{
 			width: calc(50% - 20px);
 		}
 
+		#app-relogin.dialog .loading-button{
+			display: none;
+			float: left;
+			margin: 5px 9px 5px 10px;
+			padding: 6px 52px;
+			background-color: #ffffff;
+			border: 1px solid #666666;
+			border-radius: 4px;
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);
+		}
+
+		#app-relogin.dialog.load #relogin{
+			display: none;
+		}
+
+		#app-relogin.dialog.load #relogin-animate{
+			display: block;
+		}
+
 	#app-menu{
 		position: relative;
 		display: block;
@@ -819,19 +838,14 @@ input::selection{
 					float: left;
 					clear: both;
 					width: calc(100% - 40px);
-					min-width: 320px;
-					margin: 20px 0;
-					padding: 140px 20px 0 20px;
+					min-width: 280px;
+					margin: 20px;
 					text-align: center;
 					color: #666666;
 					font-family: "Roboto", sans-serif;
 					font-size: 20px;
 					font-weight: 300;
 					white-space: normal;
-					background-image: url("../images/icon-blank-list.svg");
-					background-position: center 20px;
-					background-repeat: no-repeat;
-					background-size: auto 100px;
 				}
 
 					.empty-page > button{
@@ -850,7 +864,7 @@ input::selection{
 					display: block;
 					float: left;
 					width: calc(100% - 30px);
-					min-width: 320px;
+					min-width: 280px;
 					margin: 10px 15px 10px 15px;
 					overflow: hidden;
 				}
@@ -1474,7 +1488,3 @@ input::selection{
 									color: #888888;
 									text-indent: 2px;
 								}
-
-
-
-

@@ -3,6 +3,11 @@
 	<input type="email" id="relogin-email" placeholder="Email Address" disabled />
 	<input type="password" id="relogin-password" placeholder="Password"/>
 	<button id="relogin">Login</button>
+	<div id="relogin-animate" class="loading-button">
+		<div class="dot1"></div>
+		<div class="dot2"></div>
+		<div class="dot3"></div>
+	</div>
 	<button id="cancel-relogin">Cancel</button>
 </div>
 <div id="app-modal" class="transition"></div>

@@ -90,6 +90,8 @@ define([
 			},
 
 			relogin : function(){
+				var dialog = $("#app-relogin");
+				var cancel = $("#cancel-relogin");
 				var formEmail = $("#relogin-email").val();
 				var formPassword = $("#relogin-password").val();
 
@@ -112,11 +114,15 @@ define([
 						Utils.HideModal();
 						Utils.HideReloginDialog();
 						$("#relogin-password").val("");
+						dialog.removeClass("load");
+						cancel.prop("disabled", false);
 					},
 					error : function(model, errors){
 						if(typeof(errors.responseJSON) !== "undefined"){
 							var error = errors.responseJSON;
 							Utils.ShowToast({message : error.errorMsg});
+							dialog.removeClass("load");
+							cancel.prop("disabled", false);
 						}
 					}
 				}
@@ -127,6 +133,8 @@ define([
 				if(auth.validationError){
 					Utils.ShowToast({message : auth.validationError[0].message});
 				}else{
+					dialog.addClass("load");
+					cancel.prop("disabled", true);
 					auth.save(credentials, options);
 				}
 
