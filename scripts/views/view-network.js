@@ -13,12 +13,27 @@ define([
 		className : "content",
 		template: Template,
 		events : {
+			"click .column.more"	: "showContextMenu",
 			"click .grid-list > li" : "viewProfile"
 		},
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
 			console.log("Network view initialized...");
+		},
+
+		showContextMenu : function(event){
+			var offset =$(event.target).offset();
+			var xPosition ="14px";
+			var yPosition = offset.top - 10 + "px";
+
+			$.get("templates/template-context-menu-user.tpl", function(data){
+				$(document).find("#app-content .content").append(data);
+				$(".context-menu").css("right", xPosition).css("top", yPosition);
+			});
+
+			event.stopPropagation();
+
 		},
 
 		viewProfile : function(event){
