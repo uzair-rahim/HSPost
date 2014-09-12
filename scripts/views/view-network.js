@@ -30,6 +30,8 @@ define([
 			$.get("templates/template-context-menu-user.tpl", function(data){
 				$(document).find("#app-content .content").append(data);
 				$(".context-menu").css("right", xPosition).css("top", yPosition);
+				$(".context-menu li#archive-user").remove();
+				$(".context-menu li#see-referrals").remove();
 			});
 
 			event.stopPropagation();

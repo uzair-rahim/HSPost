@@ -16,7 +16,7 @@ define([
 			"click #tab-endorsements"	: "showEndorsements",
 			"click #tab-people" 		: "showPeople",
 			"click #tab-places" 		: "showPlaces",
-			"click .column.more"	: "showContextMenu",
+			"click .column.more"		: "showContextMenu",
 			"click .grid-list > li" 	: "viewProfile"
 		},
 
@@ -33,6 +33,8 @@ define([
 			$.get("templates/template-context-menu-user.tpl", function(data){
 				$(document).find("#app-content .content").append(data);
 				$(".context-menu").css("right", xPosition).css("top", yPosition);
+				$(".context-menu li#archive-user").remove();
+				$(".context-menu li#see-referrals").remove();
 			});
 
 			event.stopPropagation();
