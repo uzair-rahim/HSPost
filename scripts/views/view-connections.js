@@ -15,7 +15,8 @@ define([
 		events : {
 			"click #tab-endorsements"	: "showEndorsements",
 			"click #tab-people" 		: "showPeople",
-			"click #tab-places" 		: "showPlaces"
+			"click #tab-places" 		: "showPlaces",
+			"click .grid-list > li" 	: "viewProfile"
 		},
 
 		initialize : function(){
@@ -54,6 +55,13 @@ define([
 				tabs.removeClass("selected");
 		},
 
+		viewProfile : function(event){
+			var guid = $(event.target).closest("li").attr("data-guid");
+			if(typeof(guid) !== "undefined"){
+				App.router.navigate("profile/"+guid, true);
+			}
+		},
+
 		hasEndorsements : function(){
 			var endorsements = this.options.models.endorsements;
 			return endorsements.length !== 0;
@@ -64,6 +72,16 @@ define([
 			return connections.length !== 0;
 		},
 
+		hasSentRequests : function(){
+			var sent = this.options.models.sent;
+			return sent.length !== 0;
+		},
+
+		hasReceivedequests : function(){
+			var received = this.options.models.received;
+			return received.length !== 0;
+		},
+
 		hasPlaces : function(){
 			var places = this.options.models.places;
 			return places.length !== 0;
@@ -72,11 +90,15 @@ define([
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.hasEndorsements = this.hasEndorsements();
-				jsonObject.endorsements = this.options.models.endorsements
+				jsonObject.endorsements = this.options.models.endorsements;
 				jsonObject.hasConnections = this.hasConnections();
-				jsonObject.connections = this.options.models.connections
+				jsonObject.connections = this.options.models.connections;
+				jsonObject.hasSentRequests = this.hasSentRequests();
+				jsonObject.sent = this.options.models.sent;
+				jsonObject.hasReceivedequests = this.hasReceivedequests();
+				jsonObject.received = this.options.models.received;
 				jsonObject.hasPlaces = this.hasPlaces();
-				jsonObject.places = this.options.models.places
+				jsonObject.places = this.options.models.places;
 			return jsonObject;
 		}
 		

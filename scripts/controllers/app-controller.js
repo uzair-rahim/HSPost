@@ -255,14 +255,25 @@ define([
 								user.getNetworkUsers(userGUID, function(data){
 									model.connections = new Object();
 									model.connections = data;
-									// Get Places
-									user.getFollowedEmployers(userGUID,function(data){
-										model.places = new Object();
-										model.places = data;
-										//Append View
-										var view = new Connections({models : model});
-										App.layout.content.show(view);
-									});
+									// Get Sent Requests
+									var network = new ModelNetwork();
+										network.getSentRequests(userGUID,function(data){
+											model.sent = new Object();
+											model.sent = data;
+											// Get Received Requests
+											network.getReceivedRequests(userGUID,function(data){
+												model.received = new Object();
+												model.received = data;
+												// Get Places
+												user.getFollowedEmployers(userGUID,function(data){
+													model.places = new Object();
+													model.places = data;
+													//Append View
+													var view = new Connections({models : model});
+													App.layout.content.show(view);
+												});
+											});
+										});
 								});
 							});
 
