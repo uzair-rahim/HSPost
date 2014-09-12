@@ -43,15 +43,27 @@
 		<div class="profile-kpis">
 			<div class="endorsements">
 				<label>Endorsements</label>
-				<div>999+</div>
+				{{#if_gt user.endorsements.length 999}}
+					<div>999+</div>
+				{{else}}
+					<div>{{user.endorsements.length}}</div>
+				{{/if_gt}}
 			</div>
 			<div class="connections">
 				<label>Connections</label>
-				<div>999+</div>
+				{{#if_gt user.connections.length 999}}
+					<div>999+</div>
+				{{else}}
+					<div>{{user.connections.length}}</div>
+				{{/if_gt}}
 			</div>
 			<div class="places-worked">
 				<label>Places Worked</label>
-				<div>{{user.placesWorkedCount}}</div>
+				{{#if_gt user.placesWorkedCount 999}}
+					<div>999+</div>
+				{{else}}
+					<div>{{user.placesWorkedCount}}</div>
+				{{/if_gt}}
 			</div>
 		</div>
 	</div>

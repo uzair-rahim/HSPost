@@ -306,9 +306,20 @@ define([
 								user.getWorkHistory(function(data){
 									model.user.workHistory = new Object();
 									model.user.workHistory = data.history;	
-									// Append jobs view
-									var view = new Profile({model : model});
-									App.layout.content.show(view);	
+									// Get endorsements
+									user.getEndorsingUsers(userGUID, function(data){
+										model.endorsements = new Object();
+										model.endorsements = data;
+										// Get connections
+										user.getNetworkUsers(userGUID, function(data){
+											model.connections = new Object();
+											model.connections = data;
+											// Append profile view
+											var view = new Profile({model : model});
+											App.layout.content.show(view);	
+										});
+									});
+										
 								});
 							});
 						});

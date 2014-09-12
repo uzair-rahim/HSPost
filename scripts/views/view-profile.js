@@ -42,6 +42,10 @@ define([
 				}
 				jsonObject.user = new Object();
 				jsonObject.user = this.options.model.user;
+				jsonObject.user.endorsements = new Object();
+				jsonObject.user.endorsements = this.options.model.endorsements;
+				jsonObject.user.connections = new Object();
+				jsonObject.user.connections = this.options.model.connections;
 			return jsonObject;
 		}
 		
