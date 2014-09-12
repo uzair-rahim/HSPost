@@ -1,7 +1,7 @@
 <div class="page-title">{{template.title}}</div>
 {{#ifEmployerHasNoNetwork this}}
 	<div class="empty-page">
-		Looks like You don't have anybody in your network.
+		Looks like You don't have anybody in your Network.
 	</div>
 {{else}}
 	<div class="page-tools">

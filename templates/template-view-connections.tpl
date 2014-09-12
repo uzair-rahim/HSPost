@@ -35,7 +35,7 @@
 		</ul>
 	{{else}}
 		<div class="empty-page">
-			Looks like You don't have any endorsements.
+			Looks like You don't have any Endorsements.
 		</div>
 	{{/if_true}}
 </div>
@@ -145,7 +145,7 @@
 		Meh!
 	{{else}}
 		<div class="empty-page">
-			Looks like You're not following any stores.
+			Looks like You're not following any Stores.
 		</div>
 	{{/if_true}}
 </div>
