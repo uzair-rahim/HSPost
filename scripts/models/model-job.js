@@ -42,10 +42,19 @@ define([
 				return url;
 			},
 
-			getUnarchivedCandidates : function(callback){
-				var guid = this.attributes.guid;
-				var url = this.urlRoot() + "/"+ guid + "/candidates";
-				console.log(url);
+			updateStatus : function(jobGUID,status,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + jobGUID + "/status/" + status;
+				$.ajax({
+					type: "PUT",
+					url : url,
+					success : function(){
+						callback();
+					},
+					error : function(){
+						console.log("Error updating job status");
+					}
+				});
 			},
 		
 		});

@@ -4,9 +4,10 @@ define([
 		"utils",
 		"marionette",
 		"hbs!/HSPost/templates/template-view-jobs",
-		"../collections/collection-jobs"
+		"../collections/collection-jobs",
+		"../models/model-job"
 	],
-	function($, App, Utils, Marionette, Template, Collection){
+	function($, App, Utils, Marionette, Template, CollectionJobs, ModelJob){
 	"use strict";
 
 	var ViewJobs = Marionette.ItemView.extend({
@@ -25,8 +26,9 @@ define([
 
 		onShow : function(){
 			var that = this;
-			this.jobs = new Collection(this.options.models);
+			this.jobs = new CollectionJobs(this.options.models);
 
+			$(document).undelegate(".context-menu li:not('.disabled')", "click")
 			$(document).delegate(".context-menu li:not('.disabled')", "click", function(){
 				var action = $(this).attr("id");
 				var jobID = $(this).attr("data-jobID");
@@ -75,23 +77,39 @@ define([
 					$(this).attr("data-jobID", jobID);
 				});
 
+				var menu = $(".context-menu");
 				if(!isPosted){
-					var menu = $(".context-menu");
+						menu.find("#unpost-job").addClass("disabled");
 						menu.find("#copy-job-link").addClass("disabled");
 						menu.find("#share-with-employees").addClass("disabled");
 						menu.find("#share-with-followers").addClass("disabled");
 						menu.find("#share-with-connections").addClass("disabled");
+				}else{
+					menu.find("#post-job").addClass("disabled");
 				}
 			});
 
 		},
 
 		postJob : function(jobID){
-			console.log(jobID);
+			var jobInfo = this.jobs.get(jobID).attributes;
+			var jobGUID = jobInfo.guid;
+			var job = new ModelJob();
+				job.updateStatus(jobGUID,0, function(){
+					App.router.controller.jobs();
+					Utils.ShowToast({message : "Job status updated successfully"});
+					
+				});
 		},
 
 		unpostJob : function(jobID){
-			console.log(jobID);
+			var jobInfo = this.jobs.get(jobID).attributes;
+			var jobGUID = jobInfo.guid;
+			var job = new ModelJob();
+				job.updateStatus(jobGUID,1, function(){
+					App.router.controller.jobs();
+					Utils.ShowToast({message : "Job status updated successfully"});
+				});
 		},
 
 		editJob : function(jobID){

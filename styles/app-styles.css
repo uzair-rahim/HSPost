@@ -969,13 +969,14 @@ input::selection{
 							border-right: 1px dotted #cccccc;
 						}
 
-							@media screen and (max-width: 559px){
+							
+							@media screen and (max-width: 689px){
 								#app-main.collapse ul.grid-list li div.column.job-wage{
 									display: none;
 								}
 							}
 
-							@media screen and (max-width: 359px){
+							@media screen and (max-width: 489px){
 								ul.grid-list li div.column.job-wage{
 									display: none;
 								}
@@ -986,13 +987,13 @@ input::selection{
 							border-right: 1px dotted #cccccc;
 						}
 
-							@media screen and (max-width: 689px){
+							@media screen and (max-width: 559px){
 								#app-main.collapse ul.grid-list li div.column.posted{
 									display: none;
 								}
 							}
 
-							@media screen and (max-width: 489px){
+							@media screen and (max-width: 359px){
 								ul.grid-list li div.column.posted{
 									display: none;
 								}
