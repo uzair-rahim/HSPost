@@ -1057,7 +1057,8 @@ input::selection{
 							}
 						}	
 
-						ul.grid-list li div.column.user-picture{
+						ul.grid-list li div.column.user-picture,
+						ul.grid-list li div.column.employer-logo{
 							width: 44px;
 							height: 44px;
 							margin: 2px 0px 0px 4px;
@@ -1072,12 +1073,20 @@ input::selection{
 							overflow: hidden;
 						}
 
-						ul.grid-list li div.column.user-picture img{
+						ul.grid-list li div.column.employer-logo{
+							background-image: url("../images/icon-location-light.svg");
+							background-position: center 9px;
+							background-size: auto 25px;
+						}
+
+						ul.grid-list li div.column.user-picture img,
+						ul.grid-list li div.column.employer-logo img{
 							width: 44px;
 							height: 44px;
 						}
 
-						ul.grid-list li div.column.user-info{
+						ul.grid-list li div.column.user-info,
+						ul.grid-list li div.column.employer-info{
 							display: block;
 							float: left;
 							margin: 8px 0 0 0;
@@ -1086,12 +1095,14 @@ input::selection{
 						}
 
 							@media screen and (max-width: 519px){
-								#app-main.collapse ul.grid-list li div.column.user-info{
+								#app-main.collapse ul.grid-list li div.column.user-info,
+								#app-main.collapse ul.grid-list li div.column.employer-info{
 									width: calc(100% - 80px);
 								}
 							}
 
-							ul.grid-list li div.column.user-info .name{
+							ul.grid-list li div.column.user-info .name,
+							ul.grid-list li div.column.employer-info .name{
 								font-size: 14px;
 								color: #000000;
 								line-height: 20px;
@@ -1101,7 +1112,8 @@ input::selection{
 								white-space: nowrap;
 							}
 
-							ul.grid-list li div.column.user-info .job{
+							ul.grid-list li div.column.user-info .job,
+							ul.grid-list li div.column.employer-info .location{
 								line-height: 15px;
 								color: #888888;
 								width: 100%;
@@ -1490,3 +1502,338 @@ input::selection{
 									color: #888888;
 									text-indent: 2px;
 								}
+
+				.messages-container{
+					display: block;
+					float: left;
+					clear: both;
+					width: calc(100% - 30px);
+					margin: 0 15px;
+					overflow: hidden;
+				}
+
+					.messages-container > .scrollable{
+						display: block;
+						float: left;
+						clear: both;
+						width: 100%;
+						height: 100%;
+					}
+
+					@media screen and (max-width: 949px){
+						#app-main.collapse .messages-container > .scrollable{
+							width: 200%;
+						}
+					}
+
+					@media screen and (max-width: 749px){
+						.messages-container > .scrollable{
+							width: 200%;
+						}
+					}
+
+						.messages-container > .scrollable > .head{
+							display: block;
+							float: left;
+							clear: both;
+							width: 100%;
+							height: 40px;
+							border-bottom: 1px dotted #cccccc;
+						}
+
+							.messages-container > .scrollable > .head > .search{
+								display: block;
+								float: left;
+								width: 310px;
+								height: 30px;
+								margin: 5px 0;
+								border-right: 1px dotted #cccccc;
+							}
+
+							@media screen and (max-width: 949px){
+								#app-main.collapse .messages-container > .scrollable > .head > .search{
+									width: 50%;
+									border-right: none;
+								}
+							}
+
+							@media screen and (max-width: 749px){
+								.messages-container > .scrollable > .head > .search{
+									width: 50%;
+									border-right: none;
+								}
+							}
+
+								.messages-container > .scrollable > .head > .search input#search-messages-field{
+									float: left;
+									margin: 2px 0;
+									width: calc(100% - 40px);
+									height: 25px;
+									border: none;
+									outline: none;
+									color: #444444;
+									font-family: "Roboto", sans-serif;
+									font-size: 16px;
+									font-weight: 300;
+									text-indent: 6px;
+								}
+
+								.messages-container > .scrollable > .head > .search .search-icon{
+									display: block;
+									float: right;
+									width: 30px;
+									height: 30px;
+									background-image: url("../images/icon-search-pink.svg");
+									background-repeat: no-repeat;
+									background-position: center;
+									background-size: 12px;
+									cursor: pointer;
+								}
+
+							.messages-container > .scrollable > .head > .thread-info{
+								display: block;
+								float: left;
+								width: calc(100% - 320px);
+								height: 40px;
+								line-height: 40px;
+								color: #444444;
+								font-family: "Roboto", sans-serif;
+								font-size: 16px;
+								font-weight: 300;
+								text-indent: 10px;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
+
+							@media screen and (max-width: 949px){
+								#app-main.collapse .messages-container > .scrollable > .head > .thread-info{
+									width: 50%;
+									text-indent: 20px;
+									background-image: url("../images/icon-caret-left-pink.svg");
+									background-repeat: no-repeat;
+									background-position: 0 8px;
+									background-size: 24px;
+									cursor: pointer;
+								}
+							}
+
+							@media screen and (max-width: 749px){
+								.messages-container > .scrollable > .head > .thread-info{
+									width: 50%;
+									text-indent: 20px;
+									background-image: url("../images/icon-caret-left-pink.svg");
+									background-repeat: no-repeat;
+									background-position: 0 8px;
+									background-size: 24px;
+									cursor: pointer;
+								}
+							}
+
+							.messages-container > .scrollable > .head > .thread-info > span{
+								line-height: 40px;
+								font-family: "Roboto", sans-serif;
+								font-size: 16px;
+								font-weight: 400;
+							}
+
+						.messages-container > .scrollable > .body{
+							display: block;
+							float: left;
+							clear: both;
+							width: 100%;
+							height: calc(100% - 40px);
+						}
+
+							.messages-container > .scrollable > .body > .thread-list{
+								display: block;
+								float: left;
+								margin: 5px 0;
+								width: 310px;
+								height: calc(100% - 10px);
+								overflow: auto;
+								border-right: 1px dotted #cccccc;
+							}
+
+							@media screen and (max-width: 949px){
+								#app-main.collapse .messages-container > .scrollable > .body > .thread-list{
+									width: 50%;
+									border-right: none;
+								}
+							}
+
+							@media screen and (max-width: 749px){
+								.messages-container > .scrollable > .body > .thread-list{
+									width: 50%;
+									border-right: none;
+								}
+							}
+
+							.messages-container > .scrollable > .body > .thread-list > .blank-list{
+								display: block;
+								float: left;
+								clear: both;
+								width: calc(100% - 20px);
+								margin: 10px;
+								font-family: "Roboto", sans-serif;
+								font-size: 18px;
+								text-align: center;
+								color: #666666;
+								white-space: normal;
+							}
+
+							.messages-container > .scrollable > .body > .thread-view{
+								display: block;
+								float: left;
+								width: calc(100% - 312px);
+								height: 100%;
+								overflow: hidden;
+							}
+
+							@media screen and (max-width: 949px){
+								#app-main.collapse .messages-container > .scrollable > .body > .thread-view{
+									width: 50%;
+								}
+							}
+
+							@media screen and (max-width: 749px){
+								.messages-container > .scrollable > .body > .thread-view{
+									width: 50%;
+								}
+							}
+
+								.messages-container > .scrollable > .body > .thread-view > .blank-view{
+									display: block;
+									float: left;
+									clear: both;
+									width: calc(100% - 20px);
+									margin: 10px;
+									font-family: "Roboto", sans-serif;
+									font-size: 14px;
+									color: #aaaaaa;
+									white-space: normal;
+								}
+
+				ul.messages-list{
+					display: block;
+					float: left;
+					clear: both;
+					width: 100%;
+				}
+
+					ul.messages-list li{
+						display: block;
+						float: left;
+						clear: both;
+						width: calc(100% - 5px);
+						padding: 5px 0;
+						border-bottom: 1px dotted #cccccc;
+					}
+
+					ul.messages-list li:hover{
+						background-color: #fffbf5;
+					}
+
+					ul.messages-list li.new{
+						width: calc(100% - 8px);
+						border-left: 3px solid #ff9f00;
+					}
+
+					@media screen and (max-width: 949px){
+						#app-main.collapse ul.messages-list li{
+							width: 100%;
+						}
+
+						#app-main.collapse ul.messages-list li.new{
+							width: calc(100% - 3px);
+						}
+					}
+
+					@media screen and (max-width: 749px){
+						ul.messages-list li{
+							width: 100%;
+						}
+
+						ul.messages-list li.new{
+							width: calc(100% - 3px);
+						}
+					}
+
+						ul.messages-list > li > .picture{
+							display: block;
+							float: left;
+							width: 38px;
+							height: 38px;
+							margin: 0 0 0 8px;
+							border-radius: 50%;
+							border: 1px solid #cccccc;
+							background-color: #eeeeee;
+							background-image: url("../images/icon-user-light.svg");
+							background-position: center 4px;
+							background-repeat: no-repeat;
+							background-size: auto 36px;
+							overflow: hidden;
+						}
+
+							ul.messages-list > li > .picture img{
+								width: 40px;
+								height: 40px;
+							}
+
+						ul.messages-list > li > .info{
+							display: block;
+							float: left;
+							width: calc(100% - 52px);
+							margin: 2px 0 0 4px;
+							overflow: hidden;
+						}
+
+						ul.messages-list > li > .info > .name{
+							display: block;
+							float: left;
+							width: calc(100% - 10px);
+							clear: both;
+							line-height: 20px;
+							font-size: 14px;
+							color: #444444;
+							overflow: hidden;
+							text-overflow:ellipsis;
+							white-space: nowrap;
+						}
+
+						ul.messages-list li.new > .info > .name{
+							font-weight: bold;
+						}
+
+						ul.messages-list > li > .info > .message{
+							display: block;
+							float: left;
+							width: calc(100% - 10px);
+							clear: both;
+							font-size: 12px;
+							line-height: 14px;
+							color: #888888;
+							overflow: hidden;
+							text-overflow:ellipsis;
+							white-space: nowrap;
+						}
+
+						ul.messages-list > li.new > .info > .message{
+							color: #111111;
+						}
+
+						ul.messages-list > li > .info > .message.incoming{
+							text-indent: 16px;
+							background-image: url("../images/icon-reply-light.svg");
+							background-position: 2px 0px;
+							background-repeat: no-repeat;
+							background-size: auto 12px;
+						}
+
+						ul.messages-list > li > .info > .message.outgoing{
+							text-indent: 16px;
+							background-image: url("../images/icon-forward-light.svg");
+							background-position: 2px 0px;
+							background-repeat: no-repeat;
+							background-size: auto 12px;
+						}

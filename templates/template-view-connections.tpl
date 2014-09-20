@@ -142,7 +142,31 @@
 </div>
 <div id="panel-places" class="panel">
 	{{#if_true hasPlaces}}
-		Meh!
+		<ul class="grid-list">
+			{{#each places}}
+				<li class="tall" data-guid="{{guid}}">
+					<!-- Employer Logo -->
+					<div class="column employer-logo">
+						{{#if_not_null logo}}
+							<img src="{{logo.url}}"/>
+						{{/if_not_null}}
+					</div>
+					<!-- Employer Info -->
+					<div class="column employer-info">
+						<div class="name">{{name}}</div>
+						<div class="location">
+							{{#if_not_null location}}
+								{{location.address1}}
+							{{else}}
+								Location not available
+							{{/if_not_null}}
+						</div>
+					</div>
+					<!-- More -->
+					<div class="column more"></div>
+				</li>
+			{{/each}}
+		</ul>
 	{{else}}
 		<div class="empty-page">
 			Looks like You're not following any Stores.

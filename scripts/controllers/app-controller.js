@@ -18,11 +18,12 @@ define([
 		"../scripts/models/model-employer",
 		"../scripts/models/model-user",
 		"../scripts/models/model-network",
+		"../scripts/models/model-chat",
 		"../scripts/collections/collection-employers",
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -339,10 +340,14 @@ define([
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
-					// Append messages view
-					var view = new Messages();
-					App.layout.content.show(view);
-
+					// Get chat
+					var userGUID = App.session.get("guid");
+					var chat = new ModelChat();
+						chat.getUserChatList(userGUID,function(data){
+							// Append messages view
+							var view = new Messages({model : data});
+							App.layout.content.show(view);
+						});
 					// Get Notifications
 					this.getNotifications();
 
@@ -420,18 +425,18 @@ define([
 				}
 			},
 
+			// Helpers
+			showLoadingView : function(){
+				var view = new Loading();
+				App.layout.content.show(view);
+			},
+
 			getNotifications : function(){
 				var userGUID = App.session.get("guid");
 				var notifications = new CollectionNotifications();
 					notifications.getUserNotifications(userGUID, function(data){
 						App.session.set("notificationsCount", data.totalNotifications);
 					});
-			},
-
-			// Helpers
-			showLoadingView : function(){
-				var view = new Loading();
-				App.layout.content.show(view);
 			},
 
 			getEmployerGuid : function(){

@@ -23,7 +23,7 @@
 				{{/if_eq}}
 				<!-- Referral Bonus -->
 				{{#if_not_null referralBonus}}
-					<div class="column bonus">$50.00 Referral Bonus</div>
+					<div class="column bonus">${{referralBonus}} Referral Bonus</div>
 				{{else}}
 					<div class="column bonus"><span>No Referral Bonus</span></div>
 				{{/if_not_null}}
