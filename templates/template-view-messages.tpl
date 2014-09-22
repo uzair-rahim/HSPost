@@ -15,10 +15,18 @@
 				{{else}}
 					<ul class="threads-list">
 						{{#each chatList}}
-							{{#if_eq latestMessage.candidateSeen false}}
-								<li class="new" id="{{id}}">
+							{{#if_eq ../role "user"}}
+								{{#if_eq latestMessage.candidateSeen false}}
+									<li class="new" id="{{id}}">
+								{{else}}
+									<li id="{{id}}">
+								{{/if_eq}}
 							{{else}}
-								<li id="{{id}}">
+								{{#if_eq latestMessage.employerSeen false}}
+								<li class="new" id="{{id}}">
+								{{else}}
+									<li id="{{id}}">
+								{{/if_eq}}
 							{{/if_eq}}
 							<div class="picture">
 								{{#if_eq ../role "user"}}

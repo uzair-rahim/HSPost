@@ -15,8 +15,8 @@ define([
 		template: Template,
 		chats : null,
 		events : {
-			"click .threads-list > li" : "showThreadMessages",
-			"click .thread-info" 		: "showThreadList"
+			"click .threads-list > li"	: "showThreadMessages",
+			"click .thread-info"		: "showThreadList"
 		},
 
 		initialize : function(){
@@ -52,6 +52,19 @@ define([
 			chat.getUserChat(chatGUID,userGUID,function(data){
 				threadView.html(that.GetMessagesTemplate(data));
 				$(document).find(".messages-list").scrollTop($(".messages-list").prop("scrollHeight"));
+
+				if(selectedThread.hasClass("new")){
+					if(that.options.model.role == "user"){
+						chat.updateChatMessageAsSeenByUser(chatGUID, function(){
+							selectedThread.removeClass("new");
+						});
+					}else{
+						chat.updateChatMessageAsSeenByEmployer(chatGUID, function(){
+							selectedThread.removeClass("new");
+						});
+					}
+				}
+
 			});
 		},
 
@@ -67,13 +80,20 @@ define([
 		},
 
 		GetMessagesTemplate : function(data){
+			var that = this;
 			var html  = '<ul class="messages-list">';
 				$.each(data.messages, function(){
 					var status = "";
 					var align = "";
 					var date = Utils.GetDateTime(this.chatMessageContent.created);
-					if(!this.candidateSeen){
-						status = "new";
+					if(that.options.model.role == "user"){
+						if(!this.candidateSeen){
+							status = "new";
+						}
+					}else{
+						if(!this.employerSeen){
+							status = "new";
+						}
 					}
 					if(App.session.get("guid") !== this.sender.guid){
 						align = "right";
@@ -103,7 +123,6 @@ define([
 				jsonObject.chatList = new Object();
 				jsonObject.chatList = this.options.model;
 				jsonObject.role = this.options.model.role;
-				console.log(jsonObject);
 			return jsonObject;
 		}
 		

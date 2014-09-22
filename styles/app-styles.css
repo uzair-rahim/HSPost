@@ -1727,7 +1727,8 @@ input::selection{
 									.messages-container > .scrollable > .body > .thread-view > .reply-view #reply-field{
 										float: left;
 										margin: 12px 0 0 0;
-										width: calc(100% - 90px);
+										padding: 0 0 0 6px;
+										width: calc(100% - 96px);
 										height: 25px;
 										border: none;
 										outline: none;
@@ -1735,7 +1736,6 @@ input::selection{
 										font-family: "Roboto", sans-serif;
 										font-size: 16px;
 										font-weight: 300;
-										text-indent: 6px;
 										resize: none;
 									}
 
@@ -1761,6 +1761,10 @@ input::selection{
 						width: calc(100% - 5px);
 						padding: 5px 0;
 						border-bottom: 1px dotted #cccccc;
+					}
+
+					ul.threads-list li:nth-child(even){
+						background-color: #fcfcfc;
 					}
 
 					ul.threads-list li:hover,
@@ -1890,6 +1894,10 @@ input::selection{
 						width: calc(100% - 5px);
 					}
 
+					ul.messages-list li:nth-child(even){
+						background-color: #fcfcfc;
+					}
+
 						ul.messages-list li .picture{
 							display: block;
 							float: left;
@@ -1979,6 +1987,16 @@ input::selection{
 							ul.messages-list li.right .text .message{
 								float: right;
 								text-align: right;
+							}
+
+							ul.messages-list li.new{
+								width: calc(100% - 8px);
+								border-left: 3px solid #ff9f00;
+							}
+
+							ul.messages-list li.right.new{
+								border-left: 0;
+								border-right: 3px solid #ff9f00;
 							}
 
 							ul.messages-list li.new .text .name{

@@ -66,6 +66,38 @@ define([
 				});
 			},
 
+			updateChatMessageAsSeenByEmployer : function(chatGUID,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + chatGUID + "/messages/employer/seen";
+				$.ajax({
+					type : "PUT",
+					url : url,
+					asyn : false,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error marking chat messages as seen by employer");
+					}
+				});
+			},
+
+			updateChatMessageAsSeenByUser : function(chatGUID,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + chatGUID + "/messages/candidate/seen";
+				$.ajax({
+					type : "PUT",
+					url : url,
+					asyn : false,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error marking chat messages as seen by user");
+					}
+				});
+			},
+
 			getChatGUID : function(){
 				return this.attributes.guid;
 			},
