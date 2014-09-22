@@ -109,6 +109,26 @@ define([
 				if(isVisible){
 					dialog.removeClass("show");
 				}
+			},
+
+			// Get Inline Loading Animation Template
+			GetInlineLoadingAnimationTemplate : function(){
+				return '<div class="loading inline"><div class="dot1"></div>  <div class="dot2"></div>  <div class="dot3"></div>  </div>';
+			},
+
+			GetDateTime : function(given){
+				var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+				var givenDate = new Date(given);
+				var date = months[givenDate.getUTCMonth()] + " " + givenDate.getUTCDate();
+				var hours = givenDate.getHours();
+				var minutes = givenDate.getMinutes();
+				var ampm = hours >= 12 ? 'pm' : 'am';
+					hours = hours % 12;
+					hours = hours ? hours : 12;
+					minutes = minutes < 10 ? '0'+minutes : minutes;
+				var time = hours+":"+minutes+ampm;
+				
+				return date + " - " + time;	
 			}
 
 		});

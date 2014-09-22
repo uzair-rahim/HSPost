@@ -340,14 +340,30 @@ define([
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show loading animation and clear out the current content
 					this.showLoadingView();
-					// Get chat
-					var userGUID = App.session.get("guid");
-					var chat = new ModelChat();
-						chat.getUserChatList(userGUID,function(data){
-							// Append messages view
-							var view = new Messages({model : data});
-							App.layout.content.show(view);
-						});
+
+					var role = App.session.getRole();
+
+					if(role === "user"){
+						// Get User Chat
+						var userGUID = App.session.get("guid");
+						var chat = new ModelChat();
+							chat.getUserChatList(userGUID,function(data){
+								// Append messages view
+								data.role = App.session.getRole();
+								var view = new Messages({model : data});
+								App.layout.content.show(view);
+							});
+					}else{
+						// Get Employer Chat
+						var employerGUID = this.getEmployerGuid();
+						var chat = new ModelChat();
+							chat.getEmployerChatList(employerGUID,function(data){
+								// Append messages view
+								data.role = App.session.getRole();
+								var view = new Messages({model : data});
+								App.layout.content.show(view);
+							});
+					}
 					// Get Notifications
 					this.getNotifications();
 

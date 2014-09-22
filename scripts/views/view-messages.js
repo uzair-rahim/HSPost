@@ -46,10 +46,10 @@ define([
 				threadInfo.html('<span>'+jobName+'</span> @ '+employerName);
 				container.animate({scrollLeft : container.width()}, 150);
 			var threadView = $(".thread-view");
+				threadView.html(Utils.GetInlineLoadingAnimationTemplate());
 
 			var that = this;
 			chat.getUserChat(chatGUID,userGUID,function(data){
-				console.log(data);
 				threadView.html(that.GetMessagesTemplate(data));
 				$(document).find(".messages-list").scrollTop($(".messages-list").prop("scrollHeight"));
 			});
@@ -59,7 +59,11 @@ define([
 			var threads = $(".threads-list > li");
 				threads.removeClass("selected");
 			var container = $(".messages-container");
-				container.animate({scrollLeft : -container.width()}, 150);
+				container.animate({scrollLeft : -container.width()}, 150, function(){
+					var html = '<div class="blank-view">This blank message helps protect your privacy. Select a thread from the list to view messages.</div>';	
+					var threadView = $(".thread-view");	
+						threadView.html(html);
+				});
 		},
 
 		GetMessagesTemplate : function(data){
@@ -67,6 +71,7 @@ define([
 				$.each(data.messages, function(){
 					var status = "";
 					var align = "";
+					var date = Utils.GetDateTime(this.chatMessageContent.created);
 					if(!this.candidateSeen){
 						status = "new";
 					}
@@ -82,7 +87,7 @@ define([
 						html += '<div class="text">';
 							html += '<div class="name">'+this.sender.firstname+' '+this.sender.lastname+'</div>';
 							html += '<div class="message">'+this.chatMessageContent.text+'</div>';
-							html += '<div class="date">'+this.chatMessageContent.created+'</div>';
+							html += '<div class="date">'+date+'</div>';
 						html += '</div>';
 					html += '</li>';
 				});
@@ -97,6 +102,8 @@ define([
 				jsonObject.template.title = "Messages"
 				jsonObject.chatList = new Object();
 				jsonObject.chatList = this.options.model;
+				jsonObject.role = this.options.model.role;
+				console.log(jsonObject);
 			return jsonObject;
 		}
 		
