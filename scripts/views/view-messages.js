@@ -49,7 +49,7 @@ define([
 
 			var that = this;
 			chat.getUserChat(chatGUID,userGUID,function(data){
-				console.log(data)
+				console.log(data);
 				threadView.html(that.GetMessagesTemplate(data));
 				$(document).find(".messages-list").scrollTop($(".messages-list").prop("scrollHeight"));
 			});
@@ -87,6 +87,7 @@ define([
 					html += '</li>';
 				});
 				html += '</ul>';
+				html += '<div class="reply-view"><textarea id="reply-field" placeholder="Send a message..."></textarea><button id="reply-button" class="primary" data-guid="'+data.guid+'">Send</button></div>';
 			return html;	
 		},
 

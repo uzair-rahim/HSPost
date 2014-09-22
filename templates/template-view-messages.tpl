@@ -40,8 +40,8 @@
 			</div>
 			<div class="thread-view">
 				{{#if_not_eq chatList.length 0}}
-					<!--<div class="blank-view">This blank message helps protect your privacy. Select a thread from the list to view messages.</div>
-					<ul class="messages-list">
+					<div class="blank-view">This blank message helps protect your privacy. Select a thread from the list to view messages.</div>
+					<!--<ul class="messages-list">
 						<li>
 							<div class="picture"></div>
 							<div class="text">
