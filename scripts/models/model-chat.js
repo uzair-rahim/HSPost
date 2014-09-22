@@ -98,6 +98,24 @@ define([
 				});
 			},
 
+			addChat : function(chat,chatGUID,callback){
+				var that = this;
+				var url = this.urlRoot() + "/"+ chatGUID + "/message";
+				$.ajax({
+					type : "POST",
+					url : url,
+					contentType : "application/json",
+					data : JSON.stringify(chat),
+					async : false,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error adding to chat");
+					}
+				});
+			},
+
 			getChatGUID : function(){
 				return this.attributes.guid;
 			},

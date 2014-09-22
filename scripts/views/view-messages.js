@@ -3,10 +3,11 @@ define([
 		"app",
 		"utils",
 		"marionette",
+		"../models/model-chat",
 		"../collections/collection-chats",
 		"hbs!/HSPost/templates/template-view-messages"
 	],
-	function($, App, Utils, Marionette, CollectionChats, Template){
+	function($, App, Utils, Marionette, ModelChat, CollectionChats, Template){
 	"use strict";
 
 	var ViewMessages = Marionette.ItemView.extend({
@@ -16,7 +17,8 @@ define([
 		chats : null,
 		events : {
 			"click .threads-list > li"	: "showThreadMessages",
-			"click .thread-info"		: "showThreadList"
+			"click .thread-info"		: "showThreadList",
+			"click #reply-button"		: "sendReply"
 		},
 
 		initialize : function(){
@@ -28,6 +30,21 @@ define([
 			this.chats = new CollectionChats(this.options.model);
 			var container = $(".messages-container");
 				container.height($(window).height() - 110);
+
+			$(document.body).undelegate("#reply-field","keyup");
+			$(document.body).delegate("#reply-field","keyup",function(){
+				var maxCharacterLength = 1000;
+				if($(this).val().length > maxCharacterLength) {  
+	            	$(this).val($(this).val().substring(0, maxCharacterLength));
+	        	}
+
+	        	var replyButton = $(document).find("#reply-button");
+	        	if($(this).val().length > 0){
+	        		replyButton.prop("disabled", false);
+	        	}else{
+	        		replyButton.prop("disabled", true);
+	        	}
+			});
 		},
 
 		showThreadMessages : function(event){
@@ -66,6 +83,10 @@ define([
 				}
 
 			});
+		},
+
+		appendThreadMessage : function(data){
+
 		},
 
 		showThreadList : function(){
@@ -112,8 +133,58 @@ define([
 					html += '</li>';
 				});
 				html += '</ul>';
-				html += '<div class="reply-view"><textarea id="reply-field" placeholder="Send a message..."></textarea><button id="reply-button" class="primary" data-guid="'+data.guid+'">Send</button></div>';
+				html += '<div class="reply-view"><textarea id="reply-field" placeholder="Send a message..."></textarea><button id="reply-button" class="primary" data-guid="'+data.guid+'" disabled="true">Send</button></div>';
 			return html;	
+		},
+
+		GetAppendMessageTemplate : function(data){
+			var date = Utils.GetDateTime(data.chatMessageContent.updated);
+			var html = '<li>';
+					html += '<div class="picture">';
+						if(data.sender.photo !== null){
+							html += '<img src="'+data.sender.photo.url+'"/>';
+						}
+					html += '</div>';
+					html += '<div class="text">';
+						html += '<div class="name">'+data.sender.firstname+' '+data.sender.lastname+'</div>';
+						html += '<div class="message">'+data.chatMessageContent.text+'</div>';
+						html += '<div class="date">'+date+'</div>';
+					html += '</div>';
+				html += '</li>';
+			return html;
+		},
+
+		sendReply : function(event){
+			var chatGUID = $(event.target).attr("data-guid");
+			var senderGUID = App.session.get("guid");
+			var senderRole = this.options.model.role;
+			var chatMessage = $("#reply-field").val();
+
+			var message = new Object();
+				message.sender = new Object();
+				message.sender.guid = senderGUID;
+				message.chatMessageContent = new Object();
+				message.chatMessageContent.text = chatMessage;
+				if(senderRole == "user"){
+					message.candidateSeen = new Object();
+					message.candidateSeen = true;
+				}else{
+					message.employerSeen = new Object();
+					message.employerSeen = true;
+				}
+
+			$("#reply-button").prop("disabled", true);
+
+			var that = this;
+			var chat = new ModelChat();
+				chat.addChat(message,chatGUID, function(data){
+					var messagesList = $(document).find(".messages-list");	
+						messagesList.find("li").removeClass("new");
+						messagesList.append(that.GetAppendMessageTemplate(data));
+						messagesList.scrollTop($(".messages-list").prop("scrollHeight"));
+					$("#reply-field").val("");
+				});
+
 		},
 
 		serializeData : function(){
