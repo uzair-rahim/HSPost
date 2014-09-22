@@ -13,7 +13,7 @@
 				{{#if_eq chatList.length 0}}
 					<div class="blank-list">No Messages</div>
 				{{else}}
-					<ul class="messages-list">
+					<ul class="threads-list">
 						{{#each chatList}}
 							{{#if_eq latestMessage.candidateSeen false}}
 								<li class="new" id="{{id}}">
@@ -40,7 +40,25 @@
 			</div>
 			<div class="thread-view">
 				{{#if_not_eq chatList.length 0}}
-					<div class="blank-view">This blank message helps protect your privacy. Select a thread from the list to view messages.</div>
+					<!--<div class="blank-view">This blank message helps protect your privacy. Select a thread from the list to view messages.</div>
+					<ul class="messages-list">
+						<li>
+							<div class="picture"></div>
+							<div class="text">
+								<div class="name">Ralph Wiggum</div>
+								<div class="message">Insy Winsy spider went up the water spout down came the rain and washed the spider out</div>
+								<div class="date">Sep 20 9:44PM</div>
+							</div>
+						</li>
+						<li class="right">
+							<div class="picture"></div>
+							<div class="text">
+								<div class="name">Moonshine Patio Bar & Grill</div>
+								<div class="message">Out came the sunshine and dried up all the rain so insy winsy spider went up the sporut again</div>
+								<div class="date">Sep 20 9:44PM</div>
+							</div>
+						</li>
+					</ul>-->
 				{{/if_not_eq}}
 			</div>
 		</div>

@@ -1714,14 +1714,14 @@ input::selection{
 									white-space: normal;
 								}
 
-				ul.messages-list{
+				ul.threads-list{
 					display: block;
 					float: left;
 					clear: both;
 					width: 100%;
 				}
 
-					ul.messages-list li{
+					ul.threads-list li{
 						display: block;
 						float: left;
 						clear: both;
@@ -1730,36 +1730,37 @@ input::selection{
 						border-bottom: 1px dotted #cccccc;
 					}
 
-					ul.messages-list li:hover{
+					ul.threads-list li:hover,
+					ul.threads-list li.selected{
 						background-color: #fffbf5;
 					}
 
-					ul.messages-list li.new{
+					ul.threads-list li.new{
 						width: calc(100% - 8px);
 						border-left: 3px solid #ff9f00;
 					}
 
 					@media screen and (max-width: 949px){
-						#app-main.collapse ul.messages-list li{
+						#app-main.collapse ul.threads-list li{
 							width: 100%;
 						}
 
-						#app-main.collapse ul.messages-list li.new{
+						#app-main.collapse ul.threads-list li.new{
 							width: calc(100% - 3px);
 						}
 					}
 
 					@media screen and (max-width: 749px){
-						ul.messages-list li{
+						ul.threads-list li{
 							width: 100%;
 						}
 
-						ul.messages-list li.new{
+						ul.threads-list li.new{
 							width: calc(100% - 3px);
 						}
 					}
 
-						ul.messages-list > li > .picture{
+						ul.threads-list > li > .picture{
 							display: block;
 							float: left;
 							width: 38px;
@@ -1775,12 +1776,12 @@ input::selection{
 							overflow: hidden;
 						}
 
-							ul.messages-list > li > .picture img{
+							ul.threads-list > li > .picture img{
 								width: 40px;
 								height: 40px;
 							}
 
-						ul.messages-list > li > .info{
+						ul.threads-list > li > .info{
 							display: block;
 							float: left;
 							width: calc(100% - 52px);
@@ -1788,24 +1789,24 @@ input::selection{
 							overflow: hidden;
 						}
 
-						ul.messages-list > li > .info > .name{
+						ul.threads-list > li > .info > .name{
 							display: block;
 							float: left;
 							width: calc(100% - 10px);
 							clear: both;
 							line-height: 20px;
-							font-size: 14px;
-							color: #444444;
+							font-size: 12px;
+							color: #222222;
 							overflow: hidden;
 							text-overflow:ellipsis;
 							white-space: nowrap;
 						}
 
-						ul.messages-list li.new > .info > .name{
+						ul.threads-list li.new > .info > .name{
 							font-weight: bold;
 						}
 
-						ul.messages-list > li > .info > .message{
+						ul.threads-list > li > .info > .message{
 							display: block;
 							float: left;
 							width: calc(100% - 10px);
@@ -1818,11 +1819,11 @@ input::selection{
 							white-space: nowrap;
 						}
 
-						ul.messages-list > li.new > .info > .message{
+						ul.threads-list > li.new > .info > .message{
 							color: #111111;
 						}
 
-						ul.messages-list > li > .info > .message.incoming{
+						ul.threads-list > li > .info > .message.incoming{
 							text-indent: 16px;
 							background-image: url("../images/icon-reply-light.svg");
 							background-position: 2px 0px;
@@ -1830,10 +1831,137 @@ input::selection{
 							background-size: auto 12px;
 						}
 
-						ul.messages-list > li > .info > .message.outgoing{
+						ul.threads-list > li > .info > .message.outgoing{
 							text-indent: 16px;
 							background-image: url("../images/icon-forward-light.svg");
 							background-position: 2px 0px;
 							background-repeat: no-repeat;
 							background-size: auto 12px;
 						}
+
+				ul.messages-list{
+					display: block;
+					float: left;
+					clear: both;
+					width: 100%;
+					height: calc(100% - 50px);
+					overflow: auto;
+				}
+
+					ul.messages-list li{
+						display: block;
+						float: left;
+						clear: both;
+						margin: 0 0 0 5px;
+						padding: 5px 0;
+						width: calc(100% - 5px);
+					}
+
+						ul.messages-list li .picture{
+							display: block;
+							float: left;
+							width: 38px;
+							height: 38px;
+							margin: 0 0 0 8px;
+							border-radius: 50%;
+							border: 1px solid #cccccc;
+							background-color: #eeeeee;
+							background-image: url("../images/icon-user-light.svg");
+							background-position: center 4px;
+							background-repeat: no-repeat;
+							background-size: auto 36px;
+							overflow: hidden;
+						}
+
+						ul.messages-list li.right .picture{
+							float: right;
+						}
+
+						ul.messages-list li.new .picture{
+							
+						}
+
+							ul.messages-list li .picture img{
+								width: 40px;
+								height: 40px;
+							}
+
+						@media screen and (max-width: 949px){
+							#app-main.collapse ul.messages-list li .picture{
+								margin: 0;
+							}
+						}
+
+						@media screen and (max-width: 749px){
+							ul.messages-list li .picture{
+								margin: 0;
+							}
+						}	
+
+						ul.messages-list li .text{
+							display: block;
+							float: left;
+							width: calc(100% - 52px);
+							margin: 2px 0 0 4px;
+							overflow: hidden;
+						}
+
+							ul.messages-list li .text .name{
+								display: block;
+								float: left;
+								clear: both;
+								margin: 2px 0 0 0;
+								font-size: 12px;
+								line-height: 16px;
+								color: #222222;
+								overflow: hidden;
+								text-overflow:ellipsis;
+								white-space: nowrap;
+							}
+
+							ul.messages-list li.right .text .name{
+								float: right;
+								text-align: right;
+							}
+
+							ul.messages-list li .text .date{
+								display: block;
+								float: left;
+								clear: both;
+								font-size: 10px;
+								line-height: 16px;
+								font-weight: normal;
+								color: #aaaaaa;
+								overflow: hidden;
+								text-overflow:ellipsis;
+								white-space: nowrap;
+							}
+
+							ul.messages-list li.right .text .date{
+								float: right;
+								text-align: right;
+							}
+
+							ul.messages-list li .text .message{
+								display: block;
+								float: left;
+								width: calc(100% - 10px);
+								clear: both;
+								font-size: 12px;
+								line-height: 16px;
+								color: #666666;
+								white-space: normal;
+							}
+
+							ul.messages-list li.right .text .message{
+								float: right;
+								text-align: right;
+							}
+
+							ul.messages-list li.new .text .name{
+								font-weight: bold;
+							}
+
+							ul.messages-list li.new .text .message{
+								color: #222222;
+							}
