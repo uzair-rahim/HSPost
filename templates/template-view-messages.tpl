@@ -45,7 +45,7 @@
 								{{else}}
 									<div class="name">{{candidate.firstname}} {{candidate.lastname}}</div>
 								{{/if_eq}}
-								{{#if_eq candidate.guid latestMessage.sender.guid}}
+								{{#if_eq ../userGUID latestMessage.sender.guid}}
 									<div class="message outgoing">{{latestMessage.chatMessageContent.text}}</div>
 								{{else}}
 									<div class="message incoming">{{latestMessage.chatMessageContent.text}}</div>

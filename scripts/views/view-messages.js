@@ -200,6 +200,7 @@ define([
 				jsonObject.chatList = new Object();
 				jsonObject.chatList = this.options.model;
 				jsonObject.role = this.options.model.role;
+				jsonObject.userGUID = App.session.get("guid");
 			return jsonObject;
 		}
 		
