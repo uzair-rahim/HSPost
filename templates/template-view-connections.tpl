@@ -43,10 +43,10 @@
 	{{#if_true hasAnyConnections}}
 		<!-- Received Requests -->
 		{{#if_true hasReceivedRequests}}
-			<div class="grid-list-title">Pending Received Requests</div>
+			<div class="grid-list-title">Received Requests</div>
 			<ul class="grid-list">
 				{{#each received}}
-					<li class="tall" data-guid="{{fromUserguid}}">
+					<li class="tall" data-guid="{{fromUserGuid}}">
 						<!-- Profile Picture -->
 						<div class="column user-picture">
 							{{#if_not_null fromUserPhotoUrl}}
@@ -72,10 +72,10 @@
 		{{/if_true}}
 		<!-- Sent Requests -->
 		{{#if_true hasSentRequests}}
-		<div class="grid-list-title">Pending Sent Requests</div>
+		<div class="grid-list-title">Sent Requests</div>
 			<ul class="grid-list">
 				{{#each sent}}
-					<li class="tall" data-guid="{{toUserguid}}">
+					<li class="tall" data-guid="{{toUserGuid}}">
 						<!-- Profile Picture -->
 						<div class="column user-picture">
 							{{#if_not_null toUserPhotoUrl}}

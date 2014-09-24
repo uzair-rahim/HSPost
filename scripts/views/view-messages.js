@@ -60,7 +60,13 @@ define([
 			var employerName = chat.getEmployerName();
 			var container = $(".messages-container");
 			var threadInfo = $(".thread-info");
-				threadInfo.html('<span>'+candidateName+'</span');
+
+				if(this.options.model.role == "user"){
+					threadInfo.html('<span>'+employerName+'</span');
+				}else{
+					threadInfo.html('<span>'+candidateName+'</span');
+				}
+				
 				container.animate({scrollLeft : container.width()}, 150);
 			var threadView = $(".thread-view");
 				threadView.html(Utils.GetInlineLoadingAnimationTemplate());
