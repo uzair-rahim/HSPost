@@ -94,7 +94,7 @@ define([
 			return sent.length !== 0;
 		},
 
-		hasReceivedequests : function(){
+		hasReceivedRequests : function(){
 			var received = this.options.models.received;
 			return received.length !== 0;
 		},
@@ -112,8 +112,9 @@ define([
 				jsonObject.connections = this.options.models.connections;
 				jsonObject.hasSentRequests = this.hasSentRequests();
 				jsonObject.sent = this.options.models.sent;
-				jsonObject.hasReceivedequests = this.hasReceivedequests();
+				jsonObject.hasReceivedRequests = this.hasReceivedRequests();
 				jsonObject.received = this.options.models.received;
+				jsonObject.hasAnyConnections = this.hasConnections() || this.hasSentRequests() || this.hasReceivedRequests();
 				jsonObject.hasPlaces = this.hasPlaces();
 				jsonObject.places = this.options.models.places;
 			return jsonObject;

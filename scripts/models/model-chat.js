@@ -124,6 +124,10 @@ define([
 				return this.attributes.jobPosting.jobName;
 			},
 
+			getCandidateFullName : function(){
+				return this.attributes.candidate.firstname + " " + this.attributes.candidate.lastname;
+			},
+
 			getEmployerName : function(){
 				return this.attributes.jobPosting.employer.name;
 			}

@@ -56,11 +56,11 @@ define([
 			var chat = this.chats.get(chatID);
 			var chatGUID = chat.getChatGUID();
 			var userGUID = App.session.get("guid");
-			var jobName = chat.getJobName();
+			var candidateName = chat.getCandidateFullName();
 			var employerName = chat.getEmployerName();
 			var container = $(".messages-container");
 			var threadInfo = $(".thread-info");
-				threadInfo.html('<span>'+jobName+'</span> @ '+employerName);
+				threadInfo.html('<span>'+candidateName+'</span');
 				container.animate({scrollLeft : container.width()}, 150);
 			var threadView = $(".thread-view");
 				threadView.html(Utils.GetInlineLoadingAnimationTemplate());
