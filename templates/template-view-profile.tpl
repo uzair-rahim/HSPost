@@ -36,7 +36,11 @@
 		</div>
 		{{#if_false template.self}}
 		<div class="profile-actions">
-			<button class="primary connect">Connect</button>
+			{{#if_true user.isConnected}}
+				<button id="disconnect" class="connect">Connected</button>
+			{{else}}
+				<button id="connect" class="primary connect">Connect</button>
+			{{/if_true}}
 			{{#if_true user.isEndorsed}}
 				<button id="retract" class="endorse">Endorsed</button>
 			{{else}}

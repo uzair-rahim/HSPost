@@ -4,9 +4,10 @@ define([
 		"utils",
 		"marionette",
 		"hbs!/HSPost/templates/template-view-profile",
-		"../models/model-user"
+		"../models/model-user",
+		"../models/model-network"
 	],
-	function($, App, Utils, Marionette, Template, ModelUser){
+	function($, App, Utils, Marionette, Template, ModelUser, ModelNetwork){
 	"use strict";
 
 	var ViewProfile = Marionette.ItemView.extend({
@@ -14,8 +15,10 @@ define([
 		className : "content",
 		template: Template,
 		events : {
-			"click button#endorse"	: "endorseUser",
-			"click button#retract"	: "retractEndorsement",
+			"click button#endorse"		: "endorseUser",
+			"click button#retract"		: "retractEndorsement",
+			"click button#connect"		: "connectUser",
+			"click button#disconnect"	: "disconnectUser"
 		},
 
 		initialize : function(){
@@ -53,11 +56,39 @@ define([
 				});
 		},
 
+		connectUser : function(){
+			var connection = new Object();
+				connection.toUserGuid = this.options.model.user.guid;
+				connection.fromUserGuid = App.session.get("guid");
+
+			var network = new ModelNetwork();
+				network.createConnection(connection,function(data){
+					Backbone.history.loadUrl(Backbone.history.fragment);
+				});	
+		},
+
+		disconnectUser : function(){
+
+		},
+
 		isEndorsed : function(){
 			var returnValue = false;
 			var endorsements = this.options.model.endorsements;
 			var userGUID = App.session.get("guid");
 			$.each(endorsements, function(){
+				if(this.guid == userGUID){
+					returnValue = true;
+				}
+			});
+
+			return returnValue;
+		},
+
+		isConnected : function(){
+			var returnValue = false;
+			var connections = this.options.model.connections;
+			var userGUID = App.session.get("guid");
+			$.each(connections, function(){
 				if(this.guid == userGUID){
 					returnValue = true;
 				}
@@ -83,6 +114,7 @@ define([
 				jsonObject.user.isEndorsed = this.isEndorsed();
 				jsonObject.user.connections = new Object();
 				jsonObject.user.connections = this.options.model.connections;
+				jsonObject.user.isConnected = this.isConnected();
 			return jsonObject;
 		}
 		

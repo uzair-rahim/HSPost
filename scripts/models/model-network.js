@@ -76,6 +76,24 @@ define([
 						console.log("Error fetching receieved requests");
 					}
 				});
+			},
+
+			createConnection : function(connection,callback){
+				var that = this;
+				var url = this.urlRoot();
+				$.ajax({
+					type : "POST",
+					url : url,
+					contentType : "application/json",
+					data : JSON.stringify(connection),
+					async : false,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error creating connection");
+					}
+				});
 			}
 		
 		});
