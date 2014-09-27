@@ -156,6 +156,40 @@ define([
 				});
 			},
 
+			endorse : function(endorsedUserGUID,endorsingUser,callback){
+				var that = this;
+				var url = this.urlRoot() + "/"+ endorsedUserGUID + "/endorsements";
+				$.ajax({
+					type : "POST",
+					url : url,
+					contentType : "application/json",
+					data : JSON.stringify(endorsingUser),
+					async : false,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error endoring user");
+					}
+				});
+			},
+
+			retractEndorsement : function(endorsedUserGUID,endorsingUserGUID,callback){
+				var that = this;
+				var url = this.urlRoot() + "/"+ endorsedUserGUID + "/endorsements/" + endorsingUserGUID;
+				$.ajax({
+					type : "DELETE",
+					url : url,
+					contentType : "application/json",
+					async : false,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error retracting endorsement user");
+					}
+				});
+			}
 		
 		});
 

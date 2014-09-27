@@ -1292,17 +1292,25 @@ input::selection{
 						}
 
 						.profile-info .profile-actions button.connect{
-							background-image: url("../images/icon-users-pink.svg");
+							background-image: url("../images/icon-users-dark.svg");
 							background-repeat: no-repeat;
 							background-position: 10px 4px;
 							background-size: 16px;
 						}
 
+						.profile-info .profile-actions button.primary.connect{
+							background-image: url("../images/icon-users-pink.svg");
+						}
+
 						.profile-info .profile-actions button.endorse{
-							background-image: url("../images/icon-thumbs-up-pink.svg");
+							background-image: url("../images/icon-thumbs-up-dark.svg");
 							background-repeat: no-repeat;
 							background-position: 9px 4px;
 							background-size: 16px;
+						}
+
+						.profile-info .profile-actions button.primary.endorse{
+							background-image: url("../images/icon-thumbs-up-pink.svg");
 						}
 
 						@media screen and (max-width: 449px){
@@ -1313,7 +1321,9 @@ input::selection{
 							}
 
 							.profile-info .profile-actions button.connect,
-							.profile-info .profile-actions button.endorse{
+							.profile-info .profile-actions button.endorse,
+							.profile-info .profile-actions button.primary.connect,
+							.profile-info .profile-actions button.primary.endorse{
 								background-image: none;
 							}
 						}

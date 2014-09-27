@@ -33,6 +33,21 @@ define([
 				});
 			},
 
+			getConnections : function(guid,callback){
+				var that = this;
+				var url = this.urlRoot() + "/" + guid + "/users";
+				$.ajax({
+					type: "GET",
+					url : url,
+					success : function(response){
+						callback(response);
+					},
+					error : function(){
+						console.log("Error fetching connections");
+					}
+				});
+			},
+
 			getSentRequests : function(guid,callback){
 				var that = this;
 				var url = this.urlRoot() + "/sentRequests/" + guid;

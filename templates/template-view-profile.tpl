@@ -37,7 +37,11 @@
 		{{#if_false template.self}}
 		<div class="profile-actions">
 			<button class="primary connect">Connect</button>
-			<button class="primary endorse">Endorse</button>
+			{{#if_true user.isEndorsed}}
+				<button id="retract" class="endorse">Endorsed</button>
+			{{else}}
+				<button id="endorse" class="primary endorse">Endorse</button>
+			{{/if_true}}
 		</div>
 		{{/if_false}}
 		<div class="profile-kpis">
