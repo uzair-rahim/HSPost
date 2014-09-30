@@ -89,7 +89,11 @@
 							{{/if_not_null}}
 						</div>
 						<div class="employment-details">
-							<div class="position">Drive-Through</div>
+							<div class="position">
+								{{#each jobs}}
+									{{jobName}}, 
+								{{/each}}
+							</div>
 							<div class="location">{{employer.name}}</div>
 							<div class="dates">{{startDate}} - {{endDate}}</div>
 						</div>
