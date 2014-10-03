@@ -3,9 +3,10 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-network"
+		"hbs!/HSPost/templates/template-view-network",
+		"../views/view-network-list",
 	],
-	function($, App, Utils, Marionette, Template){
+	function($, App, Utils, Marionette, Template, ViewNetworkList){
 	"use strict";
 
 	var ViewNetwork = Marionette.ItemView.extend({
@@ -13,8 +14,7 @@ define([
 		className : "content",
 		template: Template,
 		events : {
-			"click .column.more"	: "showContextMenu",
-			"click .grid-list > li" : "viewProfile"
+			
 		},
 
 		initialize : function(){
@@ -22,39 +22,29 @@ define([
 			console.log("Network view initialized...");
 		},
 
-		showContextMenu : function(event){
-			var offset =$(event.target).offset();
-			var xPosition ="14px";
-			var yPosition = offset.top - 10 + "px";
-
-			$.get("templates/template-context-menu-user.tpl", function(data){
-				$(document).find("#app-content .content").append(data);
-				$(".context-menu").css("right", xPosition).css("top", yPosition);
-				$(".context-menu li#archive-user").remove();
-				$(".context-menu li#see-referrals").remove();
-			});
-
-			event.stopPropagation();
-
+		onShow : function(){
+			var container = this.el;
+			var network = this.options.model;
+			if(this.hasNetwork()){
+				$.each(network,function(key){
+					var networkList = new Object();
+						networkList.name = key.charAt(0).toUpperCase() + key.slice(1)
+						networkList.users = this;
+				var networkList = new ViewNetworkList({model : networkList});
+					$(container).append(networkList.render().el);
+				});
+			}
 		},
 
-		viewProfile : function(event){
-			var guid = $(event.target).closest("li").attr("data-guid");
-			if(typeof(guid) !== "undefined"){
-				App.router.navigate("profile/"+guid, true);
-			}
+		hasNetwork : function(){
+			return this.options.models !== 0;
 		},
 
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.employees = new Object();
-				jsonObject.followers = new Object();
-				jsonObject.endorsers = new Object();
 				jsonObject.template.title = "Network"
-				jsonObject.employees = this.model.employees;
-				jsonObject.followers = this.model.followers;
-				jsonObject.endorsers = this.model.endorsers;
+				jsonObject.hasNetwork = this.hasNetwork();
 			return jsonObject;
 		}
 		

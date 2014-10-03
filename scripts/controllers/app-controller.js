@@ -448,11 +448,11 @@ define([
 			},
 
 			getNotifications : function(){
-				var userGUID = App.session.get("guid");
-				var notifications = new CollectionNotifications();
-					notifications.getUserNotifications(userGUID, function(data){
-						App.session.set("notificationsCount", data.totalNotifications);
-					});
+				//var userGUID = App.session.get("guid");
+				//var notifications = new CollectionNotifications();
+				//	notifications.getUserNotifications(userGUID, function(data){
+				//		App.session.set("notificationsCount", data.totalNotifications);
+				//	});
 			},
 
 			getEmployerGuid : function(){
