@@ -3,9 +3,10 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-candidates"
+		"hbs!/HSPost/templates/template-view-candidates",
+		"../views/view-candidates-list",
 	],
-	function($, App, Utils, Marionette, Template){
+	function($, App, Utils, Marionette, Template, ViewCandidatesList){
 	"use strict";
 
 	var ViewCandidates = Marionette.ItemView.extend({
@@ -13,8 +14,7 @@ define([
 		className : "content",
 		template: Template,
 		events : {
-			"click .column.more"	: "showContextMenu",
-			"click .grid-list > li" : "viewProfile"
+			
 		},
 
 		initialize : function(){
@@ -22,18 +22,15 @@ define([
 			console.log("Candidates view initialized...");
 		},
 
-		showContextMenu : function(event){
-			var offset =$(event.target).offset();
-			var xPosition ="14px";
-			var yPosition = offset.top - 10 + "px";
-
-			$.get("templates/template-context-menu-user.tpl", function(data){
-				$(document).find("#app-content .content").append(data);
-				$(".context-menu").css("right", xPosition).css("top", yPosition);
-			});
-
-			event.stopPropagation();
-
+		onShow : function(){
+			var jobs = this.options.models;
+			var container = this.el;
+			if(this.hasCandidates()){
+				$.each(jobs,function(){
+					var candidatesList = new ViewCandidatesList({model : this});
+						$(container).append(candidatesList.render().el);
+				});
+			}
 		},
 
 		hasCandidates : function(){
@@ -41,22 +38,14 @@ define([
 
 			if(jobs.length === 0){
 				return false;
+			}else{
+				var totalCandidates = 0;
+				$.each(jobs, function(){
+					totalCandidates += this.candidates.length;
+				});
+				return totalCandidates !== 0;
 			}
 
-			var totalCandidates = 0;
-
-			$.each(jobs, function(){
-				totalCandidates += this.candidates.length;
-			});
-
-			return totalCandidates !== 0;
-		},
-
-		viewProfile : function(event){
-			var guid = $(event.target).closest("li").attr("data-guid");
-			if(typeof(guid) !== "undefined"){
-				App.router.navigate("profile/"+guid, true);
-			}
 		},
 
 		serializeData : function(){
@@ -64,7 +53,6 @@ define([
 				jsonObject.template = new Object();
 				jsonObject.template.title = "Candidates";
 				jsonObject.hasCandidates = this.hasCandidates();
-				jsonObject.jobs = this.options.models;
 			return jsonObject;
 		}
 		
