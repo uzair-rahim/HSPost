@@ -1800,7 +1800,7 @@ input::selection{
 
 					@media screen and (max-width: 749px){
 						ul.threads-list li{
-							width: 100%;
+							width: calc(100% - 3px);
 						}
 
 						ul.threads-list li.new{
