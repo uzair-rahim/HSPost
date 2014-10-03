@@ -56,7 +56,7 @@ define([
 			var chat = this.chats.get(chatID);
 			var chatGUID = chat.getChatGUID();
 			var userGUID = App.session.get("guid");
-			var candidateName = chat.getCandidateFullName();
+			var candidateName = chat.getUserFullName();
 			var employerName = chat.getEmployerName();
 			var container = $(".messages-container");
 			var threadInfo = $(".thread-info");
@@ -122,7 +122,7 @@ define([
 							status = "new";
 						}
 					}
-					if(App.session.get("guid") !== this.sender.guid){
+					if(App.session.get("guid") === this.sender.guid){
 						align = "right";
 					}
 					html += '<li class="'+status+' '+align+'">';

@@ -124,12 +124,26 @@ define([
 				return this.attributes.jobPosting.jobName;
 			},
 
-			getCandidateFullName : function(){
-				return this.attributes.candidate.firstname + " " + this.attributes.candidate.lastname;
+			getUserFullName : function(){
+				var fullname = "";
+				var participants = this.attributes.participants;
+					$.each(participants,function(){
+						if(this.user !== null){
+							fullname = this.user.firstname + " " + this.user.lastname;
+						}
+					});
+				return fullname;	
 			},
 
 			getEmployerName : function(){
-				return this.attributes.jobPosting.employer.name;
+				var employerName = "";
+				var participants = this.attributes.participants;
+					$.each(participants,function(){
+						if(this.employer !== null){
+							employerName = this.employer.name;
+						}
+					});
+				return employerName;	
 			}
 
 		});

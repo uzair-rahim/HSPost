@@ -1771,6 +1771,7 @@ input::selection{
 						width: calc(100% - 5px);
 						padding: 5px 0;
 						border-bottom: 1px dotted #cccccc;
+						border-left: 3px solid transparent;
 					}
 
 					ul.threads-list li:nth-child(even){

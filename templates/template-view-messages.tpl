@@ -30,20 +30,36 @@
 							{{/if_eq}}
 							<div class="picture">
 								{{#if_eq ../role "user"}}
-									{{#if_not_null jobPosting.employer.logo}}
-										<img src="{{jobPosting.employer.logo.url}}"/>
-									{{/if_not_null}}
+									{{#each this.participants}}
+										{{#if_not_null this.employer}}
+											{{#if_not_null this.employer.logo}}
+												<img src="{{this.employer.logo.url}}"/>
+											{{/if_not_null}}	
+										{{/if_not_null}}
+									{{/each}}
 								{{else}}
-									{{#if_not_null candidate.photo}}
-										<img src="{{candidate.photo.url}}"/>
-									{{/if_not_null}}
+									{{#each this.participants}}
+										{{#if_not_null this.user}}
+											{{#if_not_null this.user.photo}}
+												<img src="{{this.user.photo.url}}"/>
+											{{/if_not_null}}	
+										{{/if_not_null}}
+									{{/each}}
 								{{/if_eq}}
 							</div>
 							<div class="info">
 								{{#if_eq ../role "user"}}
-									<div class="name">{{jobPosting.employer.name}}</div>
+									{{#each this.participants}}
+										{{#if_not_null this.employer}}
+											<div class="name">{{this.employer.name}}</div>
+										{{/if_not_null}}
+									{{/each}}
 								{{else}}
-									<div class="name">{{candidate.firstname}} {{candidate.lastname}}</div>
+									{{#each this.participants}}
+										{{#if_not_null this.user}}
+											<div class="name">{{this.user.firstname}} {{this.user.lastname}}</div>
+										{{/if_not_null}}
+									{{/each}}
 								{{/if_eq}}
 								{{#if_eq ../userGUID latestMessage.sender.guid}}
 									<div class="message outgoing">{{latestMessage.chatMessageContent.text}}</div>
