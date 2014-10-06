@@ -145,7 +145,7 @@ define([
 
 		GetAppendMessageTemplate : function(data){
 			var date = Utils.GetDateTime(data.chatMessageContent.updated);
-			var html = '<li>';
+			var html = '<li class="right">';
 					html += '<div class="picture">';
 						if(data.sender.photo !== null){
 							html += '<img src="'+data.sender.photo.url+'"/>';
