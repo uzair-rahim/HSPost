@@ -25,8 +25,11 @@ define([
 		onRender : function(){
 			var container = $(this.el).find("ul.grid-list");
 			$.each(this.model.candidates, function(){
-				var user = new UserRow({model : this});
-				$(container).append(user.render().el);
+				if(!this.archived){
+					this.userType = "candidate";
+					var user = new UserRow({model : this});
+					$(container).append(user.render().el);
+				}
 			});
 		},
 

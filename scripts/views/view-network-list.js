@@ -24,9 +24,21 @@ define([
 
 		onRender : function(){
 			var container = $(this.el).find("ul.grid-list");
+			var that = this.model;
 			$.each(this.model.users, function(){
 				var network = new Object();
 					network.user = this;
+					switch(that.name){
+						case "Employees":
+							network.userType = "employee";
+						break;
+						case "Followers":
+							network.userType = "follower";
+						break;
+						case "Endorsers":
+							network.userType = "endorser";
+						break;
+					}
 				var user = new UserRow({model : network});
 				$(container).append(user.render().el);
 			});

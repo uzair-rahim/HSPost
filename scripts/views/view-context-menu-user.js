@@ -3,12 +3,12 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-context-menu-job"
+		"hbs!/HSPost/templates/template-context-menu-user"
 	],
 	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ContextMenuJob = Marionette.ItemView.extend({
+	var ContextMenuUser = Marionette.ItemView.extend({
 		tagName : "ul",
 		className : "context-menu",
 		template: Template,
@@ -18,19 +18,33 @@ define([
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Context Menu Job view initialized...");
+			console.log("Context Menu User view initialized...");
 		},
 
 		onRender : function(){
 			$(this.el).css("right", this.model.xPosition).css("top", this.model.yPosition);
-			if(!this.model.isPosted){
-				$(this.el).find("#unpost-job").addClass("disabled");
-				$(this.el).find("#copy-job-link").addClass("disabled");
-				$(this.el).find("#share-with-connections").addClass("disabled");
-				$(this.el).find("#share-with-employees").addClass("disabled");
-				$(this.el).find("#share-with-followers").addClass("disabled");
-			}else{
-				$(this.el).find("#post-job").addClass("disabled");
+			switch(this.model.userType){
+				case "employee" :
+					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#see-referrals").remove();
+				break;
+				case "follower" :
+					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#see-referrals").remove();
+				break;
+				case "endorser" :
+					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#see-referrals").remove();
+					$(this.el).find("#send-message").remove();
+				break;
+				case "user" :
+					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#see-referrals").remove();
+				break;
+				case "candidate" :
+				
+				break;
+
 			}
 		},
 
@@ -55,5 +69,5 @@ define([
 		
 	});
 
-	return ContextMenuJob;
+	return ContextMenuUser;
 });
