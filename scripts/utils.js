@@ -129,6 +129,14 @@ define([
 				var time = hours+":"+minutes+ampm;
 				
 				return date + " - " + time;	
+			},
+
+			RemoveExistingContextMenus : function(){
+				var contextMenus = $(document).find(".context-menu");
+				$.each(contextMenus, function(){
+					$(this).remove();
+					$(this).unbind();
+				});
 			}
 
 		});

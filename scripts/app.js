@@ -145,8 +145,12 @@ define([
 				}
 			}
 
-			// Remove all context menu
-			$(".context-menu").remove();
+			// Hide context menu if clicked anywhere in the document except the more icon
+			var more = element.hasClass("column more");
+
+			if(!more){
+				Utils.RemoveExistingContextMenus();
+			}
 			
 		});
 
