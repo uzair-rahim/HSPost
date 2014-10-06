@@ -3,7 +3,7 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-candidate-list",
+		"hbs!/HSPost/templates/template-view-candidates-list",
 		"../views/view-user-row"
 	],
 	function($, App, Utils, Marionette, Template, UserRow){
