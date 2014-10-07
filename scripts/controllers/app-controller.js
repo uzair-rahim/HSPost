@@ -3,7 +3,7 @@ define([
         "app",
         "utils",
 		"marionette",
-		"../scripts/views/view-loading",
+		"../scripts/views/view-activity-indicator",
 		"../scripts/views/view-login",
 		"../scripts/views/view-dashboard",
 		"../scripts/views/view-jobs",
@@ -23,7 +23,7 @@ define([
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Loading, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, ActivityIndicator, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -97,8 +97,8 @@ define([
 					if(App.session.isUser()){
 						App.router.navigate("searchJobs", true);
 					}else{
-						// ...show loading animation and clear out the current content
-						this.showLoadingView();
+						// ...show Activity Indicator and clear out the current content
+						this.showActivityIndicator();
 						// Append candidates view
 						var view = new Dashboard();
 						App.layout.content.show(view);	
@@ -121,8 +121,8 @@ define([
 					if(App.session.isUser()){
 						App.router.navigate("searchJobs", true);
 					}else{
-						// ...show loading animation and clear out the current content
-						this.showLoadingView();
+						// ...show Activity Indicator and clear out the current content
+						this.showActivityIndicator();
 						// Append jobs view
 						var guid = this.getEmployerGuid(); 
 						var jobs = new CollectionJobs();
@@ -149,8 +149,8 @@ define([
 						var route = Utils.GetDefaultRoute();
 						App.router.navigate(route, true);
 					}else{
-						// ...show loading animation and clear out the current content
-						this.showLoadingView();
+						// ...show Activity Indicator and clear out the current content
+						this.showActivityIndicator();
 						// Append jobs view
 						var view = new SearchJobs();
 						App.layout.content.show(view);
@@ -173,8 +173,8 @@ define([
 					if(App.session.isUser()){
 						App.router.navigate("searchJobs", true);
 					}else{
-						// ...show loading animation and clear out the current content
-						this.showLoadingView();
+						// ...show Activity Indicator and clear out the current content
+						this.showActivityIndicator();
 						// Append candidates view
 						var guid = this.getEmployerGuid(); 
 						var jobs = new CollectionJobs();
@@ -197,8 +197,8 @@ define([
 				console.log("Network route...");
 				// If user is logged in and verified go to network screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
-					// Show loading animation and clear out the current content
-					this.showLoadingView();
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
 					// If user is user
 					if(App.session.isUser()){
 						App.router.navigate("searchJobs", true);
@@ -243,8 +243,8 @@ define([
 				console.log("Connections route...");
 				// If user is logged in and verified go to connections screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
-					// Show loading animation and clear out the current content
-					this.showLoadingView();
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
 						var model = new Object();
 						var userGUID = App.session.get("guid");
 						var user = new ModelUser();
@@ -291,8 +291,8 @@ define([
 				console.log("Profile route...");
 				// If user is logged in and verified go to jobs screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
-					// Show loading animation and clear out the current content
-					this.showLoadingView();
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
 					
 					var model = new Object();
 					var user = new ModelUser({guid : userGUID});
@@ -338,8 +338,8 @@ define([
 				console.log("Messages route...");
 				// If user is logged in and verified go to messages screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
-					// Show loading animation and clear out the current content
-					this.showLoadingView();
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
 
 					var role = App.session.getRole();
 
@@ -377,8 +377,8 @@ define([
 				console.log("Settings route...");
 				// If user is logged in and verified go to settings screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
-					// Show loading animation and clear out the current content
-					this.showLoadingView();
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
 					if(App.session.isUser()){
 						// Append user settings view
 						var view = new UserSettings();
@@ -442,8 +442,8 @@ define([
 			},
 
 			// Helpers
-			showLoadingView : function(){
-				var view = new Loading();
+			showActivityIndicator : function(){
+				var view = new ActivityIndicator();
 				App.layout.content.show(view);
 			},
 

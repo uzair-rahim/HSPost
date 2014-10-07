@@ -69,7 +69,7 @@ define([
 				
 				container.animate({scrollLeft : container.width()}, 150);
 			var threadView = $(".thread-view");
-				threadView.html(Utils.GetInlineLoadingAnimationTemplate());
+				threadView.html(Utils.GetInlineActivityIndicator());
 
 			var that = this;
 			chat.getUserChat(chatGUID,userGUID,function(data){

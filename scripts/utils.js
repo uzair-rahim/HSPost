@@ -111,9 +111,9 @@ define([
 				}
 			},
 
-			// Get Inline Loading Animation Template
-			GetInlineLoadingAnimationTemplate : function(){
-				return '<div class="loading inline"><div class="dot1"></div>  <div class="dot2"></div>  <div class="dot3"></div>  </div>';
+			// Get Inline Activity Indicator
+			GetInlineActivityIndicator : function(){
+				return '<div class="activity-indicator inline"><div class="dot1"></div>  <div class="dot2"></div>  <div class="dot3"></div>  </div>';
 			},
 
 			GetDateTime : function(given){

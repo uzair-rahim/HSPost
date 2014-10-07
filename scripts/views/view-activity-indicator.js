@@ -3,12 +3,12 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-loading"
+		"hbs!/HSPost/templates/template-view-activity-indicator"
 	],
 	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var ViewLoading = Marionette.ItemView.extend({
+	var ViewActivityIndicator = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "content",
 		template: Template,
@@ -18,7 +18,7 @@ define([
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Loading view initialized...");
+			console.log("Activity Indicator view initialized...");
 		},
 
 		serializeData : function(){
@@ -29,5 +29,5 @@ define([
 		
 	});
 
-	return ViewLoading;
+	return ViewActivityIndicator;
 });

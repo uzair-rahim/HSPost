@@ -6,7 +6,7 @@
 	<label for="remember-me">Remember me</label>
 </div>
 <button id="login">Login</button>
-<div class="loading-button">
+<div class="activity-indicator-button">
 	<div class="dot1"></div>
 	<div class="dot2"></div>
 	<div class="dot3"></div>

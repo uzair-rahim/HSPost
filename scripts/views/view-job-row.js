@@ -73,7 +73,12 @@ define([
 			};
 		},
 
+		showActivityIndicator : function(){
+			$(this.el).html(Utils.GetInlineActivityIndicator());
+		},
+
 		postJob : function(){
+			this.showActivityIndicator();
 			var jobGUID = this.model.guid;
 			var job = new ModelJob();
 			var that = this;
@@ -85,6 +90,7 @@ define([
 		},
 
 		unpostJob : function(){
+			this.showActivityIndicator();
 			var jobGUID = this.model.guid;
 			var job = new ModelJob();
 			var that = this;
