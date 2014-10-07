@@ -3,7 +3,6 @@ define([
         "app",
         "utils",
 		"marionette",
-		"../scripts/views/view-activity-indicator",
 		"../scripts/views/view-login",
 		"../scripts/views/view-dashboard",
 		"../scripts/views/view-jobs",
@@ -23,7 +22,7 @@ define([
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, ActivityIndicator, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -443,8 +442,7 @@ define([
 
 			// Helpers
 			showActivityIndicator : function(){
-				var view = new ActivityIndicator();
-				App.layout.content.show(view);
+				$(App.layout.content.el).html(Utils.GetActivityIndicator());
 			},
 
 			getNotifications : function(){

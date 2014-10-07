@@ -111,6 +111,11 @@ define([
 				}
 			},
 
+			// Get Activity Indicator
+			GetActivityIndicator : function(){
+				return '<div class="activity-indicator"><div class="dot1"></div>  <div class="dot2"></div>  <div class="dot3"></div> </div>';
+			},
+
 			// Get Inline Activity Indicator
 			GetInlineActivityIndicator : function(){
 				return '<div class="activity-indicator inline"><div class="dot1"></div>  <div class="dot2"></div>  <div class="dot3"></div>  </div>';
