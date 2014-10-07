@@ -5,6 +5,7 @@
 </ul>
 <div id="panel-endorsements" class="panel show">
 	{{#if_true hasEndorsements}}
+		<div class="grid-list-title">My Endorsements</div>
 		<ul class="grid-list">
 			{{#each endorsements}}
 				<li class="tall" data-guid="{{guid}}">
@@ -139,6 +140,7 @@
 </div>
 <div id="panel-places" class="panel">
 	{{#if_true hasPlaces}}
+		<div class="grid-list-title">Following</div>
 		<ul class="grid-list">
 			{{#each places}}
 				<li class="tall" data-guid="{{guid}}">
