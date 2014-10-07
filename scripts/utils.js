@@ -142,7 +142,43 @@ define([
 					$(this).remove();
 					$(this).unbind();
 				});
-			}
+			},
+
+			GetFromUserFromConnectionRequest : function(data){
+				var job = new Object();
+					job.jobName = data.fromUserPrimaryWorkHistoryJob;
+
+				var user = new Object();
+					user.guid = data.fromUserGuid;
+					user.firstname = data.fromUserFirstname;
+					user.lastname = data.fromUserLastname;
+					user.photo = new Object();
+					user.photo.url = data.fromUserPhotoUrl;
+					user.primaryWorkHistory = new Object();
+					user.primaryWorkHistory.jobs = new Array();
+					user.primaryWorkHistory.jobs.push(job);
+					user.primaryWorkHistory.employer = new Object();
+					user.primaryWorkHistory.employer.name = data.fromUserPrimaryWorkHistoryName;
+				return user;
+			},
+
+			GetToUserFromConnectionRequest : function(data){
+				var job = new Object();
+					job.jobName = data.toUserPrimaryWorkHistoryJob;
+
+				var user = new Object();
+					user.guid = data.toUserGuid;
+					user.firstname = data.toUserFirstname;
+					user.lastname = data.toUserLastname;
+					user.photo = new Object();
+					user.photo.url = data.toUserPhotoUrl;
+					user.primaryWorkHistory = new Object();
+					user.primaryWorkHistory.jobs = new Array();
+					user.primaryWorkHistory.jobs.push(job);
+					user.primaryWorkHistory.employer = new Object();
+					user.primaryWorkHistory.employer.name = data.toUserPrimaryWorkHistoryName;
+				return user;
+			},
 
 		});
 
