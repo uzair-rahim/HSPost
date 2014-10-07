@@ -21,6 +21,7 @@ img{ border: 0; }
 .activity-indicator { position: absolute; top:50%; left: 50%; text-align: center; }
 .activity-indicator.inline { position: relative; top: 50%; left: 0; transform: translateY(-50%); }
 .activity-indicator > div { width: 10px; height: 10px; background-color: #aaaaaa; border-radius: 100%; display: inline-block; -webkit-animation: bouncedelay 1.4s infinite ease-in-out; animation: bouncedelay 1.4s infinite ease-in-out; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
+.activity-indicator.inline > div { width: 6px; height: 6px; }
 .activity-indicator-button > div { width: 6px; height: 6px; background-color: #aaaaaa; border-radius: 100%; display: inline-block; -webkit-animation: bouncedelay 1.4s infinite ease-in-out; animation: bouncedelay 1.4s infinite ease-in-out; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
 .activity-indicator .dot1, .activity-indicator-button .dot1 { -webkit-animation-delay: -0.32s; animation-delay: -0.32s; }
 .activity-indicator .dot2, .activity-indicator-button .dot2 { -webkit-animation-delay: -0.16s; animation-delay: -0.16s; }
