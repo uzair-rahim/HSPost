@@ -407,6 +407,12 @@ define([
 				App.router.navigate("login", true);
 			},
 
+			clean : function(){
+				console.log("Clean route...");
+				App.router.navigate("logout", true);
+				App.session.removeUserSession();
+			},
+
 			// Processes
 
 			redirectOnLogin : function(){

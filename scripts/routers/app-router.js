@@ -21,7 +21,8 @@ define([
 				"connections"		: "connections",
 				"messages"	 		: "messages",
 				"settings"	 		: "settings",
-				"logout" 	 		: "logout"
+				"logout" 	 		: "logout",
+				"clean"				: "clean"
 			}
 
 		});
