@@ -3,22 +3,25 @@ define([
 		"app",
 		"utils",
 		"marionette",
+		"hbs!/HSPost/templates/template-view-messages",
+		"../views/view-messages-list",
+		"../views/view-messages-view",
+		"../views/view-messages-reply",
+		"../views/view-message-row",
 		"../models/model-chat",
-		"../collections/collection-chats",
-		"hbs!/HSPost/templates/template-view-messages"
 	],
-	function($, App, Utils, Marionette, ModelChat, CollectionChats, Template){
+	function($, App, Utils, Marionette, Template, ViewMessagesList, ViewMessagesView, ViewMessagesReply, ViewMessageRow, ModelChat){
 	"use strict";
 
 	var ViewMessages = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "content",
+		messagesList : null,
+		messagesView : null,
+		messagesReply : null,
 		template: Template,
-		chats : null,
 		events : {
-			"click .threads-list > li"	: "showThreadMessages",
-			"click .thread-info"		: "showThreadList",
-			"click #reply-button"		: "sendReply"
+			"click .thread-info" : "slideViewLeft"
 		},
 
 		initialize : function(){
@@ -27,180 +30,106 @@ define([
 		},
 
 		onShow : function(){
-			this.chats = new CollectionChats(this.options.model);
-			var container = $(".messages-container");
-				container.height($(window).height() - 110);
+			var messagesContainer = $(".messages-container");
+				messagesContainer.height($(window).height() - 110);
 
-			$(document.body).undelegate("#reply-field","keyup");
-			$(document.body).delegate("#reply-field","keyup",function(){
-				var maxCharacterLength = 1000;
-				if($(this).val().length > maxCharacterLength) {  
-	            	$(this).val($(this).val().substring(0, maxCharacterLength));
-	        	}
+			var messagesBody = $(this.el).find(".body");
+			this.messagesList = new ViewMessagesList({model : this.model});
+			this.messagesView = new ViewMessagesView({model : this.model});
+			
+			$(messagesBody).append(this.messagesList.render().el);
+			$(messagesBody).append(this.messagesView.render().el);
 
-	        	var replyButton = $(document).find("#reply-button");
-	        	if($(this).val().length > 0){
-	        		replyButton.prop("disabled", false);
-	        	}else{
-	        		replyButton.prop("disabled", true);
-	        	}
-			});
+			this.listenTo(this.messagesList, "selectChat", this.selectChat);
 		},
 
-		showThreadMessages : function(event){
-			var threads = $(".threads-list > li");
-				threads.removeClass("selected");
-			var selectedThread = $(event.target).closest("li");
-				selectedThread.addClass("selected");
-			var chatID = selectedThread.attr("id");
-			var chat = this.chats.get(chatID);
-			var chatGUID = chat.getChatGUID();
-			var userGUID = App.session.get("guid");
-			var candidateName = chat.getUserFullName();
-			var employerName = chat.getEmployerName();
-			var container = $(".messages-container");
-			var threadInfo = $(".thread-info");
-
-				if(this.options.model.role == "user"){
-					threadInfo.html('<span>'+employerName+'</span');
-				}else{
-					threadInfo.html('<span>'+candidateName+'</span');
-				}
-				
-				container.animate({scrollLeft : container.width()}, 150);
-			var threadView = $(".thread-view");
-				threadView.html(Utils.GetInlineActivityIndicator());
-
-			var that = this;
-			chat.getUserChat(chatGUID,userGUID,function(data){
-				threadView.html(that.GetMessagesTemplate(data));
-				$(document).find(".messages-list").scrollTop($(".messages-list").prop("scrollHeight"));
-
-				if(selectedThread.hasClass("new")){
-					if(that.options.model.role == "user"){
-						chat.updateChatMessageAsSeenByUser(chatGUID, function(){
-							selectedThread.removeClass("new");
-						});
-					}else{
-						chat.updateChatMessageAsSeenByEmployer(chatGUID, function(){
-							selectedThread.removeClass("new");
-						});
-					}
-				}
-
-			});
-		},
-
-		appendThreadMessage : function(data){
-
-		},
-
-		showThreadList : function(){
-			var threads = $(".threads-list > li");
-				threads.removeClass("selected");
-			var container = $(".messages-container");
-				container.animate({scrollLeft : -container.width()}, 150, function(){
-					var html = '<div class="blank-view">This blank message helps protect your privacy. Select a thread from the list to view messages.</div>';	
-					var threadView = $(".thread-view");	
-						threadView.html(html);
-				});
-		},
-
-		GetMessagesTemplate : function(data){
-			var that = this;
-			var html  = '<ul class="messages-list">';
-				$.each(data.messages, function(){
-					var status = "";
-					var align = "";
-					var date = Utils.GetDateTime(this.chatMessageContent.created);
-					if(that.options.model.role == "user"){
-						if(!this.candidateSeen){
-							status = "new";
-						}
-					}else{
-						if(!this.employerSeen){
-							status = "new";
-						}
-					}
-					if(App.session.get("guid") === this.sender.guid){
-						align = "right";
-					}
-					html += '<li class="'+status+' '+align+'">';
-						html += '<div class="picture">';
-							if(this.sender.photo !== null){
-								html += '<img src="'+this.sender.photo.url+'"/>';
-							}
-						html += '</div>';
-						html += '<div class="text">';
-							html += '<div class="name">'+this.sender.firstname+' '+this.sender.lastname+'</div>';
-							html += '<div class="message">'+this.chatMessageContent.text+'</div>';
-							html += '<div class="date">'+date+'</div>';
-						html += '</div>';
-					html += '</li>';
-				});
-				html += '</ul>';
-				html += '<div class="reply-view"><textarea id="reply-field" placeholder="Send a message..."></textarea><button id="reply-button" class="primary" data-guid="'+data.guid+'" disabled="true">Send</button></div>';
-			return html;	
-		},
-
-		GetAppendMessageTemplate : function(data){
-			var date = Utils.GetDateTime(data.chatMessageContent.updated);
-			var html = '<li class="right">';
-					html += '<div class="picture">';
-						if(data.sender.photo !== null){
-							html += '<img src="'+data.sender.photo.url+'"/>';
-						}
-					html += '</div>';
-					html += '<div class="text">';
-						html += '<div class="name">'+data.sender.firstname+' '+data.sender.lastname+'</div>';
-						html += '<div class="message">'+data.chatMessageContent.text+'</div>';
-						html += '<div class="date">'+date+'</div>';
-					html += '</div>';
-				html += '</li>';
-			return html;
-		},
-
-		sendReply : function(event){
-			var chatGUID = $(event.target).attr("data-guid");
-			var senderGUID = App.session.get("guid");
-			var senderRole = this.options.model.role;
-			var chatMessage = $("#reply-field").val();
-
-			var message = new Object();
-				message.sender = new Object();
-				message.sender.guid = senderGUID;
-				message.chatMessageContent = new Object();
-				message.chatMessageContent.text = chatMessage;
-				if(senderRole == "user"){
-					message.candidateSeen = new Object();
-					message.candidateSeen = true;
-				}else{
-					message.employerSeen = new Object();
-					message.employerSeen = true;
-				}
-
-			$("#reply-button").prop("disabled", true);
-
+		selectChat : function(chatGUID){
+			var threadInfoContainer = $(this.el).find(".head .thread-info");
 			var that = this;
 			var chat = new ModelChat();
-				chat.addChat(message,chatGUID, function(data){
-					var messagesList = $(document).find(".messages-list");	
-						messagesList.find("li").removeClass("new");
-						messagesList.append(that.GetAppendMessageTemplate(data));
-						messagesList.scrollTop($(".messages-list").prop("scrollHeight"));
-					$("#reply-field").val("");
-				});
+			switch(this.model.role){
+				case "user" :
+					var userGUID = App.session.get("guid");
+					chat.getUserChat(chatGUID,userGUID,function(response){
+						$.each(response.participants, function(){
+							if(this.employer !== null){
+								threadInfoContainer.html("<span>"+this.employer.name+"</span>");
+							}
+						});
+						that.showChatMessages(response.messages,chatGUID);
+					})
+				break;
+				default :
+					var employerGUID = this.getEmployerGUID();
+					chat.getEmployerChat(chatGUID,employerGUID,function(response){
+						$.each(response.participants, function(){
+							if(this.user !== null){
+								threadInfoContainer.html("<span>"+this.user.firstname + " " + this.user.lastname +"</span> ");
+								if(this.user.primaryWorkHistory !== null){
+									threadInfoContainer.append(this.user.primaryWorkHistory.jobs[0].jobName + " @ "+this.user.primaryWorkHistory.employer.name);
+								}
+							}
+						});
+						that.showChatMessages(response.messages,chatGUID);
+					});
+				break;
+			}
+			
+		},
 
+		sendReply : function(chat){
+			chat.sender = new Object();
+			chat.sender.guid = App.session.get("guid");
+			this.model.role === "user" ? chat.candidateSeen = true :chat.employerSeen = true;
+			console.log(chat);
+		},
+
+		showChatMessages : function(messages,chatGUID){
+			this.slideViewRight();
+			var role = this.model.role;
+
+			var container = $(this.el).find(".body .thread-view");
+				container.html('<ul class="messages-list"></ul>');
+
+				var chat = new Object();
+					chat.guid = chatGUID;
+
+			this.messagesReply = new ViewMessagesReply({model : chat});
+				container.append(this.messagesReply.render().el);
+
+			this.listenTo(this.messagesReply, "sendReply", this.sendReply);
+
+			var messagesContainer = $(container).find("ul.messages-list");
+			$.each(messages,function(){
+				this.role = role;
+				var message = new ViewMessageRow({model : this});
+				messagesContainer.append(message.render().el);
+			});
+		},
+
+		slideViewRight : function(){
+			var container = $(".messages-container");
+			var width = container.width();
+				container.animate({scrollLeft : width}, 150);
+		},
+
+		slideViewLeft: function(){
+			var container = $(".messages-container");
+			var width = -container.width();
+				container.animate({scrollLeft : width}, 150);
+		},
+
+		getEmployerGUID : function(){
+			var selectedEmployer = App.session.get("selectedEmployer");
+			var employers = App.session.get("employers");
+			var guid = employers[selectedEmployer].guid;
+			return guid;
 		},
 
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
 				jsonObject.template.title = "Messages"
-				jsonObject.chatList = new Object();
-				jsonObject.chatList = this.options.model;
-				jsonObject.role = this.options.model.role;
-				jsonObject.userGUID = App.session.get("guid");
 			return jsonObject;
 		}
 		
