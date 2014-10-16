@@ -8,12 +8,12 @@ define([
 	function($, App, Utils, Marionette, Template){
 	"use strict";
 
-	var EmployerRow = Marionette.ItemView.extend({
+	var ChatRow = Marionette.ItemView.extend({
 		tagName : "li",
 		className : "",
 		template: Template,
 		events : {
-			
+			"click" : "selectChat"
 		},
 
 		initialize : function(){
@@ -22,22 +22,59 @@ define([
 		},
 
 		onRender : function(){
-			if(!this.model.seen){
-				$(this.el).addClass("new");
+			var role = this.model.role;
+			switch(role){
+				case "user" :
+					if(!this.model.latestMessage.candidateSeen){
+						$(this.el).addClass("new");
+					}
+				break;
+				default : 
+					if(!this.model.latestMessage.employerSeen){
+						$(this.el).addClass("new");
+					}	
+				break;
 			}
 		},
 
-		showActivityIndicator : function(){
-			$(this.el).html(Utils.GetInlineActivityIndicator());
+		selectChat : function(){
+			this.trigger("selectChat", this.model.guid);
+		},
+
+		getChatSummary : function(){
+			var userGUID = App.session.get("guid");
+			var summary = new Object();
+				summary.photo = new Object();
+			var chat = this.model;
+			var participants = chat.participants;
+			$.each(participants,function(){
+				summary.message = chat.latestMessage.chatMessageContent.text;
+				summary.type = chat.latestMessage.sender.guid === userGUID ? "outgoing" : "incoming";
+				switch(chat.role){
+					case "user" :
+						if(this.employer !== null){
+							summary.photo = this.employer.logo;
+							summary.name = this.employer.name;
+						}
+					break;
+					default : 
+						if(this.user !== null){
+							summary.photo = this.user.photo;
+							summary.name = this.user.firstname + " " + this.user.lastname;
+						}
+					break;
+				}
+			});
+			return summary;
 		},
 
 		serializeData : function(){
 			var jsonObject = new Object();
-				jsonObject.chat = this.model;
+				jsonObject.summary = this.getChatSummary();
 			return jsonObject;
 		}
 		
 	});
 
-	return EmployerRow;
+	return ChatRow;
 });

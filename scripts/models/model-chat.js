@@ -18,9 +18,9 @@ define([
 				console.log("Chat model initialized...");
 			},
 
-			getUserChatList : function(userGUID,callback){
+			getUserChatList : function(userGUID,archived,callback){
 				var that = this;
-				var url = this.urlRoot() + "/user/" + userGUID;
+				var url = this.urlRoot() + "/user/" + userGUID + "?archived=" + archived;
 				$.ajax({
 					type : "GET",
 					url : url,
@@ -30,9 +30,9 @@ define([
 				});
 			},
 
-			getEmployerChatList : function(employerGUID,callback){
+			getEmployerChatList : function(employerGUID,archived,callback){
 				var that = this;
-				var url = this.urlRoot() + "/employer/" + employerGUID;
+				var url = this.urlRoot() + "/employer/" + employerGUID + "?archived=" + archived;;
 				$.ajax({
 					type : "GET",
 					url : url,
@@ -56,7 +56,7 @@ define([
 
 			getEmployerChat : function(chatGUID,employerGUID,callback){
 				var that = this;
-				var url = this.urlRoot() + "/" + chatGUID + "/user/" + employerGUID;
+				var url = this.urlRoot() + "/" + chatGUID + "/employer/" + employerGUID;
 				$.ajax({
 					type : "GET",
 					url : url,

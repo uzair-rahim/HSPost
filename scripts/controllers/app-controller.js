@@ -346,7 +346,7 @@ define([
 						// Get User Chat
 						var userGUID = App.session.get("guid");
 						var chat = new ModelChat();
-							chat.getUserChatList(userGUID,function(data){
+							chat.getUserChatList(userGUID,0,function(data){
 								// Append messages view
 								data.role = App.session.getRole();
 								var view = new Messages({model : data});
@@ -356,7 +356,7 @@ define([
 						// Get Employer Chat
 						var employerGUID = this.getEmployerGuid();
 						var chat = new ModelChat();
-							chat.getEmployerChatList(employerGUID,function(data){
+							chat.getEmployerChatList(employerGUID,0,function(data){
 								// Append messages view
 								data.role = App.session.getRole();
 								var view = new Messages({model : data});

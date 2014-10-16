@@ -6,6 +6,8 @@ define([
 	function($, Cookie, Backbone){
 		var AppUtils = Backbone.Model.extend({
 
+			MAX_CHAT_MESSAGE_LENGTH : 1000,
+
 			// Regular Expressions
 			RegularExpressions : {
 				alpha 			: /^[A-Za-z]/,
@@ -121,6 +123,7 @@ define([
 				return '<div class="activity-indicator inline"><div class="dot1"></div>  <div class="dot2"></div>  <div class="dot3"></div>  </div>';
 			},
 
+			// Get time from a given millis 
 			GetDateTime : function(given){
 				var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 				var givenDate = new Date(given);
@@ -136,6 +139,7 @@ define([
 				return date + " - " + time;	
 			},
 
+			// Remove all exisiting context menus
 			RemoveExistingContextMenus : function(){
 				var contextMenus = $(document).find(".context-menu");
 				$.each(contextMenus, function(){
@@ -144,6 +148,7 @@ define([
 				});
 			},
 
+			// Get user data from From Connection Request
 			GetFromUserFromConnectionRequest : function(data){
 				var job = new Object();
 					job.jobName = data.fromUserPrimaryWorkHistoryJob;
@@ -162,6 +167,7 @@ define([
 				return user;
 			},
 
+			// Get user data from To Connection Request
 			GetToUserFromConnectionRequest : function(data){
 				var job = new Object();
 					job.jobName = data.toUserPrimaryWorkHistoryJob;
@@ -178,7 +184,7 @@ define([
 					user.primaryWorkHistory.employer = new Object();
 					user.primaryWorkHistory.employer.name = data.toUserPrimaryWorkHistoryName;
 				return user;
-			},
+			}
 
 		});
 
