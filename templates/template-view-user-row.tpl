@@ -18,3 +18,20 @@
 </div>
 <!-- More -->
 <div class="column more"></div>
+<!-- Connections -->
+{{#if_not_eq user.sharedNetworkConnectionCount undefined}}
+	{{#if_gt user.sharedNetworkConnectionCount 0}}
+		<div class="column connections data">{{user.sharedNetworkConnectionCount}}</div>
+	{{else}}
+		<div class="column connections">{{user.sharedNetworkConnectionCount}}</div>
+	{{/if_gt}}
+{{/if_not_eq}}
+<!-- Endorsements -->
+{{#if_not_eq user.endorsementCount undefined}}
+	{{#if_gt user.endorsementCount 0}}
+		<div class="column endorsements data">{{user.endorsementCount}}</div>
+	{{else}}
+		<div class="column endorsements">{{user.endorsementCount}}</div>
+	{{/if_gt}}
+{{/if_not_eq}}
+

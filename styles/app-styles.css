@@ -1124,6 +1124,50 @@ input::selection{
 								white-space: nowrap;
 							}
 
+						ul.grid-list li div.column.endorsements,
+						ul.grid-list li div.column.connections{
+							display: block;
+							float: right;
+							width: 50px;
+							height: 50px;
+							line-height: 75px;
+							text-indent: 0;
+							color: #888888;
+							text-align: center;
+							background-image: url("../images/icon-thumbs-up-light.svg");
+							background-repeat: no-repeat;
+							background-position: center 5px;
+							background-size: 20px;
+						}
+
+						ul.grid-list li div.column.connections{
+							background-image: url("../images/icon-users-light.svg");	
+						}
+
+						ul.grid-list li div.column.endorsements.data{
+							color: #222222;
+							background-image: url("../images/icon-thumbs-up-pink.svg");
+						}
+
+						ul.grid-list li div.column.connections.data{
+							color: #222222;
+							background-image: url("../images/icon-users-pink.svg");
+						}
+
+						@media screen and (max-width: 729px){
+							#app-main.collapse ul.grid-list li div.column.endorsements,
+							#app-main.collapse ul.grid-list li div.column.connections{
+								display: none;
+							}
+						}
+
+						@media screen and (max-width: 529px){
+							ul.grid-list li div.column.endorsements,
+							ul.grid-list li div.column.connections{
+								display: none;
+							}
+						}
+
 				ul.tabs{
 					display: block;
 					float: left;
