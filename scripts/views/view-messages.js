@@ -78,10 +78,27 @@ define([
 		},
 
 		sendReply : function(chat){
+			var date = new Date();
+			var chatGUID = chat.guid;
+			delete chat.guid;
 			chat.sender = new Object();
 			chat.sender.guid = App.session.get("guid");
+			chat.sender.photo = App.session.get("photo");
+			chat.sender.firstname = App.session.get("firstname");
+			chat.sender.lastname = App.session.get("lastname");
+			chat.chatMessageContent.updated = date.getTime();
 			this.model.role === "user" ? chat.candidateSeen = true :chat.employerSeen = true;
-			console.log(chat);
+
+			var container = $(this.el).find(".body .thread-view");
+			var messagesContainer = $(container).find("ul.messages-list");
+			var message = new ViewMessageRow({model : chat});
+				messagesContainer.append(message.render().el);
+
+			var chatModel = new ModelChat();
+				chatModel.addChat(chat,chatGUID,function(response){
+					//
+				});	
+
 		},
 
 		showChatMessages : function(messages,chatGUID){
