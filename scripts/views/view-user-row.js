@@ -105,10 +105,18 @@ define([
 			console.log(user);
 		},
 
+		isSelectable : function(){
+			if(typeof this.model.archived === "undefined"){
+				return false;
+			}else{
+				return this.model.archived;
+			}
+		},
+
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.user = this.model.user;
-				jsonObject.user.selectable = this.model.archived;
+				jsonObject.user.selectable = this.isSelectable();
 			return jsonObject;
 		}
 		

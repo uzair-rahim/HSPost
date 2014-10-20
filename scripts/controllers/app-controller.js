@@ -10,7 +10,9 @@ define([
 		"../scripts/views/view-candidates",
 		"../scripts/views/view-archived-candidates",
 		"../scripts/views/view-connections",
-		"../scripts/views/view-network",
+		"../scripts/views/view-employees",
+		"../scripts/views/view-followers",
+		"../scripts/views/view-endorsers",
 		"../scripts/views/view-profile",
 		"../scripts/views/view-messages",
 		"../scripts/views/view-user-settings",
@@ -23,7 +25,7 @@ define([
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, ArchivedCandidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, ArchivedCandidates, Connections, Employees, Followers, Endorsers, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -221,7 +223,7 @@ define([
 				}
 			},
 
-			network : function(){
+			employees : function(){
 				console.log("Network route...");
 				// If user is logged in and verified go to network screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
@@ -240,21 +242,77 @@ define([
 
 						// Get Employees
 						employer.getEmployees(function(data){
-							model.employees = new Object();
-							model.employees = data;
-							// Get Followers
-							employer.getFollowers(function(data){
-								model.followers = new Object();
-								model.followers = data;
-								// Get Endorsers
-								employer.getEndorsers(function(data){
-									model.endorsers = new Object();
-									model.endorsers = data;
-									// Append View
-									var view = new Network({model : model});
-									App.layout.content.show(view);
-								});
-							});
+							// Append View
+							var view = new Employees({model : data});
+							App.layout.content.show(view);
+						});
+					}
+
+					// Get Notifications
+					this.getNotifications();
+
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			followers : function(){
+				console.log("Followers route...");
+				// If user is logged in and verified go to network screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
+					// If user is user
+					if(App.session.isUser()){
+						App.router.navigate("searchJobs", true);
+					// If user is admin or support
+					}else{
+						// Append networks view
+						var guid = this.getEmployerGuid();
+						var employer = new ModelEmployer();
+						var model = new Object();
+						employer.set({guid : guid});
+
+						// Get Employees
+						employer.getFollowers(function(data){
+							// Append View
+							var view = new Followers({model : data});
+							App.layout.content.show(view);
+						});
+					}
+
+					// Get Notifications
+					this.getNotifications();
+
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			endorsers : function(){
+				console.log("Endorsers route...");
+				// If user is logged in and verified go to network screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
+					// If user is user
+					if(App.session.isUser()){
+						App.router.navigate("searchJobs", true);
+					// If user is admin or support
+					}else{
+						// Append networks view
+						var guid = this.getEmployerGuid();
+						var employer = new ModelEmployer();
+						var model = new Object();
+						employer.set({guid : guid});
+
+						// Get Employees
+						employer.getEndorsers(function(data){
+							// Append View
+							var view = new Endorsers({model : data});
+							App.layout.content.show(view);
 						});
 					}
 
