@@ -65,10 +65,10 @@
 	</li>
 	<li class="divider"></li>
 	<li id="menu-connections">
-		<label>Connections</label>
+		<label>My Connections</label>
 	</li>
 	<li id="menu-profile">
-		<label>Profile</label>
+		<label>My Profile</label>
 	</li>
 	<li class="divider"></li>
 	<li id="menu-settings">
