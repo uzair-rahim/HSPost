@@ -103,11 +103,11 @@ define([
 					}else{
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
-						// Append candidates view
+						// Append view
 						var that = this;
 						var view = new Dashboard();
 						App.layout.content.show(view);
-						this.setMenuSelection("#menu-dashboard");
+						that.setMenuSelection("#menu-dashboard");
 					}
 
 					// Get Notifications
@@ -129,7 +129,7 @@ define([
 					}else{
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
-						// Append jobs view
+						// Append view
 						var that = this;
 						var guid = this.getEmployerGuid(); 
 						var jobs = new CollectionJobs();
@@ -159,7 +159,7 @@ define([
 					}else{
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
-						// Append jobs view
+						// Append view
 						var that = this;
 						var view = new SearchJobs();
 						App.layout.content.show(view);
@@ -185,7 +185,7 @@ define([
 					}else{
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
-						// Append candidates view
+						// Append view
 						var that = this;
 						var guid = this.getEmployerGuid(); 
 						var employer = new ModelEmployer();
@@ -215,7 +215,7 @@ define([
 					}else{
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
-						// Append candidates view
+						// Append view
 						var that = this;
 						var guid = this.getEmployerGuid(); 
 						var employer = new ModelEmployer();
@@ -250,7 +250,6 @@ define([
 						var that = this;
 						var guid = this.getEmployerGuid();
 						var employer = new ModelEmployer();
-						var model = new Object();
 						employer.set({guid : guid});
 						employer.getEmployees(function(data){
 							var view = new Employees({model : data});
@@ -283,9 +282,7 @@ define([
 						var that = this;
 						var guid = this.getEmployerGuid();
 						var employer = new ModelEmployer();
-						var model = new Object();
 						employer.set({guid : guid});
-
 						employer.getFollowers(function(data){
 							var view = new Followers({model : data});
 							App.layout.content.show(view);
@@ -317,9 +314,7 @@ define([
 						var that = this;
 						var guid = this.getEmployerGuid();
 						var employer = new ModelEmployer();
-						var model = new Object();
 						employer.set({guid : guid});
-
 						employer.getEndorsers(function(data){
 							var view = new Endorsers({model : data});
 							App.layout.content.show(view);
