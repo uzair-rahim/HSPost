@@ -24,10 +24,11 @@ define([
 
 		onShow : function(){
 			var candidates = this.options.models;
-			var container = $(this.el).find(".grid-list");
+			var container = $(this.el).find("ul.grid-list");
 			if(this.hasCandidates()){
 				$.each(candidates,function(){
-					this.userType = "candidate";
+					this.user.userType = "candidate";
+					this.user.selectable = true;
 					var user = new UserRow({model : this});
 					$(container).append(user.render().el);
 				});

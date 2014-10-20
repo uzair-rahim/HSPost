@@ -9,7 +9,9 @@ define([
 		"../scripts/views/view-search-jobs",
 		"../scripts/views/view-candidates",
 		"../scripts/views/view-archived-candidates",
-		"../scripts/views/view-connections",
+		"../scripts/views/view-endorsements",
+		"../scripts/views/view-people",
+		"../scripts/views/view-places",
 		"../scripts/views/view-employees",
 		"../scripts/views/view-followers",
 		"../scripts/views/view-endorsers",
@@ -25,7 +27,7 @@ define([
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, ArchivedCandidates, Connections, Employees, Followers, Endorsers, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, ArchivedCandidates, Endorsements, People, Places, Employees, Followers, Endorsers, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -102,8 +104,10 @@ define([
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
 						// Append candidates view
+						var that = this;
 						var view = new Dashboard();
-						App.layout.content.show(view);	
+						App.layout.content.show(view);
+						this.setMenuSelection("#menu-dashboard");
 					}
 
 					// Get Notifications
@@ -126,11 +130,13 @@ define([
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
 						// Append jobs view
+						var that = this;
 						var guid = this.getEmployerGuid(); 
 						var jobs = new CollectionJobs();
 						jobs.getJobs(guid, function(data){
 							var view = new Jobs({models : data});
 							App.layout.content.show(view);
+							that.setMenuSelection("#menu-jobs");
 						});
 					}
 					
@@ -154,8 +160,10 @@ define([
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
 						// Append jobs view
+						var that = this;
 						var view = new SearchJobs();
 						App.layout.content.show(view);
+						that.setMenuSelection("#menu-search-jobs");
 					}
 
 					// Get Notifications
@@ -178,11 +186,13 @@ define([
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
 						// Append candidates view
+						var that = this;
 						var guid = this.getEmployerGuid(); 
 						var employer = new ModelEmployer();
 						employer.getCandidatesByEmployer(guid, 0, 15, 0, function(data){
 							var view = new Candidates({models : data});
 							App.layout.content.show(view);
+							that.setMenuSelection("#menu-candidates");
 						});
 					}
 
@@ -206,11 +216,13 @@ define([
 						// ...show Activity Indicator and clear out the current content
 						this.showActivityIndicator();
 						// Append candidates view
+						var that = this;
 						var guid = this.getEmployerGuid(); 
 						var employer = new ModelEmployer();
 						employer.getCandidatesByEmployer(guid, 0, 15, 1, function(data){
 							var view = new ArchivedCandidates({models : data});
 							App.layout.content.show(view);
+							that.setMenuSelection("#menu-candidates");
 						});
 					}
 
@@ -234,17 +246,16 @@ define([
 						App.router.navigate("searchJobs", true);
 					// If user is admin or support
 					}else{
-						// Append networks view
+						// Append view
+						var that = this;
 						var guid = this.getEmployerGuid();
 						var employer = new ModelEmployer();
 						var model = new Object();
 						employer.set({guid : guid});
-
-						// Get Employees
 						employer.getEmployees(function(data){
-							// Append View
 							var view = new Employees({model : data});
 							App.layout.content.show(view);
+							that.setMenuSelection("#menu-network");
 						});
 					}
 
@@ -268,17 +279,17 @@ define([
 						App.router.navigate("searchJobs", true);
 					// If user is admin or support
 					}else{
-						// Append networks view
+						// Append view
+						var that = this;
 						var guid = this.getEmployerGuid();
 						var employer = new ModelEmployer();
 						var model = new Object();
 						employer.set({guid : guid});
 
-						// Get Employees
 						employer.getFollowers(function(data){
-							// Append View
 							var view = new Followers({model : data});
 							App.layout.content.show(view);
+							that.setMenuSelection("#menu-network");
 						});
 					}
 
@@ -302,17 +313,17 @@ define([
 						App.router.navigate("searchJobs", true);
 					// If user is admin or support
 					}else{
-						// Append networks view
+						// Append view
+						var that = this;
 						var guid = this.getEmployerGuid();
 						var employer = new ModelEmployer();
 						var model = new Object();
 						employer.set({guid : guid});
 
-						// Get Employees
 						employer.getEndorsers(function(data){
-							// Append View
 							var view = new Endorsers({model : data});
 							App.layout.content.show(view);
+							that.setMenuSelection("#menu-network");
 						});
 					}
 
@@ -325,43 +336,85 @@ define([
 				}
 			},
 
-			connections : function(){
-				console.log("Connections route...");
+			endorsements : function(){
+				console.log("Places route...");
 				// If user is logged in and verified go to connections screen
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show Activity Indicator and clear out the current content
 					this.showActivityIndicator();
+						var that = this;
+						var userGUID = App.session.get("guid");
+						var user = new ModelUser();
+							user.getEndorsingUsers(userGUID, function(data){
+								//Append View
+								var view = new Endorsements({model : data});
+								App.layout.content.show(view);
+								that.setMenuSelection("#menu-connections");
+							});
+
+					// Get Notifications
+					this.getNotifications();
+
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			people : function(){
+				console.log("People route...");
+				// If user is logged in and verified go to connections screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
+						var that = this;
 						var model = new Object();
 						var userGUID = App.session.get("guid");
 						var user = new ModelUser();
-							// Get Endorsements
-							user.getEndorsingUsers(userGUID, function(data){
-								model.endorsements = new Object();
-								model.endorsements = data;
-								// Get Connections
-								user.getNetworkUsers(userGUID, function(data){
-									model.connections = new Object();
-									model.connections = data;
-									// Get Sent Requests
-									var network = new ModelNetwork();
-										network.getSentRequests(userGUID,function(data){
-											model.sent = new Object();
-											model.sent = data;
-											// Get Received Requests
-											network.getReceivedRequests(userGUID,function(data){
-												model.received = new Object();
-												model.received = data;
-												// Get Places
-												user.getFollowedEmployers(userGUID,function(data){
-													model.places = new Object();
-													model.places = data;
-													//Append View
-													var view = new Connections({models : model});
-													App.layout.content.show(view);
-												});
-											});
+							// Get Connections
+							user.getNetworkUsers(userGUID, function(data){
+								model.connections = new Object();
+								model.connections = data;
+								// Get Sent Requests
+								var network = new ModelNetwork();
+									network.getSentRequests(userGUID,function(data){
+										model.sent = new Object();
+										model.sent = data;
+										// Get Received Requests
+										network.getReceivedRequests(userGUID,function(data){
+											model.received = new Object();
+											model.received = data;
+											//Append View
+											var view = new People({models : model});
+											App.layout.content.show(view);
+											that.setMenuSelection("#menu-connections");
 										});
-								});
+									});
+							});
+
+					// Get Notifications
+					this.getNotifications();
+
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			places : function(){
+				console.log("Places route...");
+				// If user is logged in and verified go to connections screen
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// Show Activity Indicator and clear out the current content
+					this.showActivityIndicator();
+						var that = this;
+						var userGUID = App.session.get("guid");
+						var user = new ModelUser();
+							user.getFollowedEmployers(userGUID, function(data){
+								//Append View
+								var view = new Places({model : data});
+								App.layout.content.show(view);
+								that.setMenuSelection("#menu-connections");
 							});
 
 					// Get Notifications
@@ -380,6 +433,7 @@ define([
 					// Show Activity Indicator and clear out the current content
 					this.showActivityIndicator();
 					
+					var that = this;
 					var model = new Object();
 					var user = new ModelUser({guid : userGUID});
 						// Get user
@@ -403,7 +457,8 @@ define([
 											model.connections = data;
 											// Append profile view
 											var view = new Profile({model : model});
-											App.layout.content.show(view);	
+											App.layout.content.show(view);
+											that.setMenuSelection("#menu-profile");
 										});
 									});
 										
@@ -426,7 +481,7 @@ define([
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show Activity Indicator and clear out the current content
 					this.showActivityIndicator();
-
+					var that = this;
 					var role = App.session.getRole();
 
 					if(role === "user"){
@@ -438,6 +493,7 @@ define([
 								data.role = App.session.getRole();
 								var view = new Messages({model : data});
 								App.layout.content.show(view);
+								that.setMenuSelection("#menu-messages");
 							});
 					}else{
 						// Get Employer Chat
@@ -448,6 +504,7 @@ define([
 								data.role = App.session.getRole();
 								var view = new Messages({model : data});
 								App.layout.content.show(view);
+								that.setMenuSelection("#menu-messages");
 							});
 					}
 					// Get Notifications
@@ -465,14 +522,17 @@ define([
 				if(App.session.isLoggedIn() && App.session.isVerified()){
 					// Show Activity Indicator and clear out the current content
 					this.showActivityIndicator();
+					var that = this;
 					if(App.session.isUser()){
 						// Append user settings view
 						var view = new UserSettings();
 						App.layout.content.show(view);
+						that.setMenuSelection("#menu-settings");
 					}else{
 						// Append employer settings view
 						var view = new EmployerSettings();
 						App.layout.content.show(view);
+						that.setMenuSelection("#menu-settings");
 					}
 
 					// Get Notifications
@@ -531,6 +591,10 @@ define([
 				}else{
 					alert("User is not verified");
 				}
+			},
+
+			setMenuSelection : function(item){
+				App.menu.setSelection(item);
 			},
 
 			// Helpers

@@ -37,7 +37,7 @@ define([
 			var options = new Object();
 				options.xPosition = xPosition;
 				options.yPosition = yPosition;
-				options.userType = this.model.userType;
+				options.userType = this.model.user.userType;
 
 			Utils.RemoveExistingContextMenus();
 
@@ -113,18 +113,10 @@ define([
 			console.log(user);
 		},
 
-		isSelectable : function(){
-			if(typeof this.model.archived === "undefined"){
-				return false;
-			}else{
-				return this.model.archived;
-			}
-		},
-
 		serializeData : function(){
+			this.model.user.selectable = typeof this.model.user.selectable === "undefined" ? true : this.model.user.selectable;
 			var jsonObject = new Object();
 				jsonObject.user = this.model.user;
-				jsonObject.user.selectable = this.isSelectable();
 			return jsonObject;
 		}
 		

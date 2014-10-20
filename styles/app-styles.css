@@ -444,13 +444,19 @@ input::selection{
 				display: block;
 				float: left;
 				clear: both;
-				width: calc(100% - 34px);
+				width: calc(100% - 36px);
 				line-height: 42px;
 				color: #cccccc;
 				font-family: "Roboto" sans-serif;
 				font-size: 16px;
 				font-weight: 300;
 				text-indent: 10px;
+				border-left: 2px solid transparent;
+			}
+
+			#app-menu ul.menu-list li.selected label{
+				color: #ffffff;
+				border-left-color: #ff9f00;
 			}
 
 				#app-menu ul.menu-list li:hover label{

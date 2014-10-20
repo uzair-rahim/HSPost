@@ -99,6 +99,7 @@ define([
 			this.options.app.layout.hideMenu();
 			this.options.app.layout.hideNotifications();
 			this.options.app.router.navigate("network", true);
+	
 		},
 
 		profile : function(){
@@ -178,6 +179,11 @@ define([
 
 		getSelectedEmployer : function(){
 			return this.options.app.session.attributes.selectedEmployer;
+		},
+
+		setSelection : function(item){
+			$(".menu-list li").removeClass("selected");
+			$(item).addClass("selected");
 		},
 
 		serializeData : function(){

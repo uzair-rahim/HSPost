@@ -4,6 +4,7 @@
 <li id="archive-user">Archive</li>
 <li id="unarchive-user">Unarchive</li>
 <li id="connect">Connect</li>
+<li id="disconnect">Disconnect</li>
 <li class="divider"></li>
 <li id="see-connections">See Connections</li>
 <li id="see-endorsements">See Endorsements</li>

@@ -29,8 +29,9 @@ define([
 			if(this.hasEmployees()){
 				$.each(employee,function(){
 					var user = new Object();
-						user.userType = "employee";
 						user.user = this;
+						user.user.userType = "employee";
+						user.user.selectable = true;
 					var row = new UserRow({model : user});
 					$(container).append(row.render().el);
 				});
@@ -46,7 +47,7 @@ define([
 		},
 
 		hasEmployees : function(){
-			return this.options.models !== 0;
+			return this.options.model.length !== 0;
 		},
 
 		serializeData : function(){
