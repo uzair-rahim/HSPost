@@ -57,6 +57,9 @@ define([
 				case "archive-user":
 					this.archiveUser();
 				break;
+				case "unarchive-user":
+					this.unarchiveUser();
+				break;
 				case "connect": 
 					this.connect();
 				break;
@@ -76,6 +79,11 @@ define([
 		},
 
 		archiveUser : function(){
+			var user = this.model;
+			console.log(user);
+		},
+
+		unarchiveUser : function(){
 			var user = this.model;
 			console.log(user);
 		},

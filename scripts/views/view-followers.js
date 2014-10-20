@@ -29,6 +29,7 @@ define([
 			if(this.hasFollowers()){
 				$.each(follower,function(){
 					var user = new Object();
+						user.userType = "follower";
 						user.user = this;
 					var row = new UserRow({model : user});
 					$(container).append(row.render().el);

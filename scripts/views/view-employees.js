@@ -29,6 +29,7 @@ define([
 			if(this.hasEmployees()){
 				$.each(employee,function(){
 					var user = new Object();
+						user.userType = "employee";
 						user.user = this;
 					var row = new UserRow({model : user});
 					$(container).append(row.render().el);

@@ -29,6 +29,7 @@ define([
 			if(this.hasEndorsers()){
 				$.each(endorser,function(){
 					var user = new Object();
+						user.userType = "endorser";
 						user.user = this;
 					var row = new UserRow({model : user});
 					$(container).append(row.render().el);

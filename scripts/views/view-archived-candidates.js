@@ -27,6 +27,7 @@ define([
 			var container = $(this.el).find(".grid-list");
 			if(this.hasCandidates()){
 				$.each(candidates,function(){
+					this.userType = "archived";
 					var user = new UserRow({model : this});
 					$(container).append(user.render().el);
 				});

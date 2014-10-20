@@ -25,24 +25,36 @@ define([
 			$(this.el).css("right", this.model.xPosition).css("top", this.model.yPosition);
 			switch(this.model.userType){
 				case "employee" :
+					$(this.el).find("#hire-user").remove();
 					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#unarchive-user").remove();
 					$(this.el).find("#see-referrals").remove();
 				break;
 				case "follower" :
+					$(this.el).find("#hire-user").remove();
 					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#unarchive-user").remove();
 					$(this.el).find("#see-referrals").remove();
 				break;
 				case "endorser" :
+					$(this.el).find("#hire-user").remove();
 					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#unarchive-user").remove();
 					$(this.el).find("#see-referrals").remove();
 					$(this.el).find("#send-message").remove();
 				break;
 				case "user" :
+					$(this.el).find("#hire-user").remove();
 					$(this.el).find("#archive-user").remove();
+					$(this.el).find("#unarchive-user").remove();
 					$(this.el).find("#see-referrals").remove();
 				break;
+				case "archived" :
+					$(this.el).find("#hire-user").remove();
+					$(this.el).find("#archive-user").remove();
+				break;
 				case "candidate" :
-				
+					$(this.el).find("#unarchive-user").remove();
 				break;
 
 			}
