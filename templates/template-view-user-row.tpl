@@ -1,4 +1,6 @@
+{{#if_false user.selectable}}
 <input type="checkbox" class="user-select"/>
+{{/if_false}}
 <!-- Profile Picture -->
 <div class="column user-picture">
 	{{#if_not_null user.photo}}

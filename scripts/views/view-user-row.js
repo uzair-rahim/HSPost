@@ -51,6 +51,9 @@ define([
 
 		contextMenuAction : function(action){
 			switch(action){
+				case "view-profile":
+					this.viewProfile();
+				break;
 				case "archive-user":
 					this.archiveUser();
 				break;
@@ -105,6 +108,7 @@ define([
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.user = this.model.user;
+				jsonObject.user.selectable = this.model.archived;
 			return jsonObject;
 		}
 		

@@ -8,6 +8,7 @@ define([
 		"../scripts/views/view-jobs",
 		"../scripts/views/view-search-jobs",
 		"../scripts/views/view-candidates",
+		"../scripts/views/view-archived-candidates",
 		"../scripts/views/view-connections",
 		"../scripts/views/view-network",
 		"../scripts/views/view-profile",
@@ -22,7 +23,7 @@ define([
 		"../scripts/collections/collection-jobs",
 		"../scripts/collections/collection-notifications"
 	],
-	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
+	function($, App, Utils, Marionette, Login, Dashboard, Jobs, SearchJobs, Candidates, ArchivedCandidates, Connections, Network, Profile, Messages, UserSettings, EmployerSettings, ModelEmployer, ModelUser, ModelNetwork, ModelChat, CollectionEmployers, CollectionJobs, CollectionNotifications){
 		"use strict";
 
 		var AppController = Marionette.Controller.extend({
@@ -176,9 +177,37 @@ define([
 						this.showActivityIndicator();
 						// Append candidates view
 						var guid = this.getEmployerGuid(); 
-						var jobs = new CollectionJobs();
-						jobs.getJobs(guid, function(data){
+						var employer = new ModelEmployer();
+						employer.getCandidatesByEmployer(guid, 0, 15, 0, function(data){
 							var view = new Candidates({models : data});
+							App.layout.content.show(view);
+						});
+					}
+
+					// Get Notifications
+					this.getNotifications();
+
+				// If user is not logged in or is not verified go to login screen	
+				}else{
+					App.router.navigate("login", true);
+				}
+			},
+
+			archivedCandidates : function(){
+				console.log("Archived candidates route...");
+				// If user is logged in and verified then...
+				if(App.session.isLoggedIn() && App.session.isVerified()){
+					// ...go to search jobs screen if user is user
+					if(App.session.isUser()){
+						App.router.navigate("searchJobs", true);
+					}else{
+						// ...show Activity Indicator and clear out the current content
+						this.showActivityIndicator();
+						// Append candidates view
+						var guid = this.getEmployerGuid(); 
+						var employer = new ModelEmployer();
+						employer.getCandidatesByEmployer(guid, 0, 15, 1, function(data){
+							var view = new ArchivedCandidates({models : data});
 							App.layout.content.show(view);
 						});
 					}

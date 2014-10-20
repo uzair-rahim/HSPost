@@ -1,3 +1,5 @@
+<li id="view-profile">View Profile</li>
+<li class="divider"></li>
 <li id="archive-user">Archive</li>
 <li id="connect">Connect</li>
 <li class="divider"></li>

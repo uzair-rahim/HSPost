@@ -3,23 +3,23 @@ define([
 		"app",
 		"utils",
 		"marionette",
-		"hbs!/HSPost/templates/template-view-candidates",
+		"hbs!/HSPost/templates/template-view-archived-candidates",
 		"../views/view-user-row"
 	],
 	function($, App, Utils, Marionette, Template, UserRow){
 	"use strict";
 
-	var ViewCandidates = Marionette.ItemView.extend({
+	var ViewArchivedCandidates = Marionette.ItemView.extend({
 		tagName : "div",
 		className : "content",
 		template: Template,
 		events : {
-			"click #tab-archived" : "showArchivedCandidates"
+			"click #tab-recent" : "showRecentCandidates"
 		},
 
 		initialize : function(){
 			_.bindAll.apply(_, [this].concat(_.functions(this)));
-			console.log("Candidates view initialized...");
+			console.log("Archived Candidates view initialized...");
 		},
 
 		onShow : function(){
@@ -33,8 +33,8 @@ define([
 			}
 		},
 
-		showArchivedCandidates : function(event){
-			App.router.navigate("archivedCandidates", true);
+		showRecentCandidates : function(event){
+			App.router.navigate("candidates", true);
 		},
 
 		hasCandidates : function(){
@@ -45,12 +45,12 @@ define([
 		serializeData : function(){
 			var jsonObject = new Object();
 				jsonObject.template = new Object();
-				jsonObject.template.title = "Candidates";
+				jsonObject.template.title = "Archived Candidates";
 				jsonObject.hasCandidates = this.hasCandidates();
 			return jsonObject;
 		}
 		
 	});
 
-	return ViewCandidates;
+	return ViewArchivedCandidates;
 });
