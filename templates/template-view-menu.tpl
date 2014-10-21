@@ -29,6 +29,12 @@
 	{{/if_gt}}
 </div>
 <ul class="menu-list">
+	{{#if_not_eq user.type "user"}}
+	<li id="menu-getting-started">
+		<label>Getting Started</label>
+	</li>
+	<li class="divider"></li>
+	{{/if_not_eq}}
 	{{#if_true config.notification}}
 	<li id="menu-notifications">
 		<label>Notifications</label>

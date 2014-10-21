@@ -454,13 +454,17 @@ input::selection{
 				border-left: 2px solid transparent;
 			}
 
-			#app-menu ul.menu-list li.selected label{
-				color: #ffffff;
-				border-left-color: #ff9f00;
-			}
-
 				#app-menu ul.menu-list li:hover label{
 					color: #ffffff;
+				}
+
+				#app-menu ul.menu-list li.selected label{
+					color: #ffffff;
+					border-left-color: #ff9f00;
+				}
+
+				#app-menu ul.menu-list li.highlighted label{
+					color: #faa21c;
 				}
 
 			#app-menu ul.menu-list li div.count{
@@ -663,6 +667,7 @@ input::selection{
 				width: 0;
 				background-color: #f2f2f2;	
 				box-shadow: inset 2px 0 3px 0 rgba(0,0,0,0.05);
+				z-index: 9995;
 			}
 
 			#app-notifications.show{

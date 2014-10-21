@@ -2,9 +2,9 @@
 <li id="unpost-job">Unpost</li>
 <li id="edit-job">Edit</li>
 <li class="divider"></li>
-<li id="copy-job-link">Copy job link</li>
-<li id="share-with-connections">Share with connections</li>
-<li id="share-with-employees">Share with employees</li>
-<li id="share-with-followers">Share with followers</li>
+<li id="copy-job-link">Copy Job Link</li>
+<li id="share-with-connections">Share with Connections</li>
+<li id="share-with-employees">Share with Employees</li>
+<li id="share-with-followers">Share with Followers</li>
 <li class="divider"></li>
 <li id="delete-job">Delete</li>
